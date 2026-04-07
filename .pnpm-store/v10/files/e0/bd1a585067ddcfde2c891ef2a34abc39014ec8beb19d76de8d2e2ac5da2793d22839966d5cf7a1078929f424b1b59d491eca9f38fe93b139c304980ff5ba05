@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPrivatedivisionProps */
+/** @typedef {typeof __propDef.events}  SiPrivatedivisionEvents */
+/** @typedef {typeof __propDef.slots}  SiPrivatedivisionSlots */
+export default class SiPrivatedivision extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPrivatedivisionProps = typeof __propDef.props;
+export type SiPrivatedivisionEvents = typeof __propDef.events;
+export type SiPrivatedivisionSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

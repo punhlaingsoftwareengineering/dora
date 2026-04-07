@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCoronarendererProps */
+/** @typedef {typeof __propDef.events}  SiCoronarendererEvents */
+/** @typedef {typeof __propDef.slots}  SiCoronarendererSlots */
+export default class SiCoronarenderer extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCoronarendererProps = typeof __propDef.props;
+export type SiCoronarendererEvents = typeof __propDef.events;
+export type SiCoronarendererSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

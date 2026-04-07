@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAnacondaProps */
+/** @typedef {typeof __propDef.events}  SiAnacondaEvents */
+/** @typedef {typeof __propDef.slots}  SiAnacondaSlots */
+export default class SiAnaconda extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAnacondaProps = typeof __propDef.props;
+export type SiAnacondaEvents = typeof __propDef.events;
+export type SiAnacondaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

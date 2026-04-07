@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFoobar2000Props */
+/** @typedef {typeof __propDef.events}  SiFoobar2000Events */
+/** @typedef {typeof __propDef.slots}  SiFoobar2000Slots */
+export default class SiFoobar2000 extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFoobar2000Props = typeof __propDef.props;
+export type SiFoobar2000Events = typeof __propDef.events;
+export type SiFoobar2000Slots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

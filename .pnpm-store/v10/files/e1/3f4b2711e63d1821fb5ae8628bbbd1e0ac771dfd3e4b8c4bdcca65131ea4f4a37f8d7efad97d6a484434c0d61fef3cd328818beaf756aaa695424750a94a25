@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTreehouseProps */
+/** @typedef {typeof __propDef.events}  SiTreehouseEvents */
+/** @typedef {typeof __propDef.slots}  SiTreehouseSlots */
+export default class SiTreehouse extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTreehouseProps = typeof __propDef.props;
+export type SiTreehouseEvents = typeof __propDef.events;
+export type SiTreehouseSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

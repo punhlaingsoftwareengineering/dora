@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiProgressProps */
+/** @typedef {typeof __propDef.events}  SiProgressEvents */
+/** @typedef {typeof __propDef.slots}  SiProgressSlots */
+export default class SiProgress extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiProgressProps = typeof __propDef.props;
+export type SiProgressEvents = typeof __propDef.events;
+export type SiProgressSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

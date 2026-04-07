@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPlaystationvitaProps */
+/** @typedef {typeof __propDef.events}  SiPlaystationvitaEvents */
+/** @typedef {typeof __propDef.slots}  SiPlaystationvitaSlots */
+export default class SiPlaystationvita extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPlaystationvitaProps = typeof __propDef.props;
+export type SiPlaystationvitaEvents = typeof __propDef.events;
+export type SiPlaystationvitaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiHiltonhotelsandresortsProps */
+/** @typedef {typeof __propDef.events}  SiHiltonhotelsandresortsEvents */
+/** @typedef {typeof __propDef.slots}  SiHiltonhotelsandresortsSlots */
+export default class SiHiltonhotelsandresorts extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiHiltonhotelsandresortsProps = typeof __propDef.props;
+export type SiHiltonhotelsandresortsEvents = typeof __propDef.events;
+export type SiHiltonhotelsandresortsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBowerProps */
+/** @typedef {typeof __propDef.events}  SiBowerEvents */
+/** @typedef {typeof __propDef.slots}  SiBowerSlots */
+export default class SiBower extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBowerProps = typeof __propDef.props;
+export type SiBowerEvents = typeof __propDef.events;
+export type SiBowerSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

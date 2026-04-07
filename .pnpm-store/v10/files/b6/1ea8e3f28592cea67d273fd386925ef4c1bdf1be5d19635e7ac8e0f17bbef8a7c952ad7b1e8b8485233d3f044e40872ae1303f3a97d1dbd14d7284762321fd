@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiYcombinatorProps */
+/** @typedef {typeof __propDef.events}  SiYcombinatorEvents */
+/** @typedef {typeof __propDef.slots}  SiYcombinatorSlots */
+export default class SiYcombinator extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiYcombinatorProps = typeof __propDef.props;
+export type SiYcombinatorEvents = typeof __propDef.events;
+export type SiYcombinatorSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

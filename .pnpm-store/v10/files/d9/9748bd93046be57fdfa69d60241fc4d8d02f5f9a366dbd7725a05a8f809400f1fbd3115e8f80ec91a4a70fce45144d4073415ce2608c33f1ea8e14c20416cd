@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAkasaairProps */
+/** @typedef {typeof __propDef.events}  SiAkasaairEvents */
+/** @typedef {typeof __propDef.slots}  SiAkasaairSlots */
+export default class SiAkasaair extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAkasaairProps = typeof __propDef.props;
+export type SiAkasaairEvents = typeof __propDef.events;
+export type SiAkasaairSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSennheiserProps */
+/** @typedef {typeof __propDef.events}  SiSennheiserEvents */
+/** @typedef {typeof __propDef.slots}  SiSennheiserSlots */
+export default class SiSennheiser extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSennheiserProps = typeof __propDef.props;
+export type SiSennheiserEvents = typeof __propDef.events;
+export type SiSennheiserSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

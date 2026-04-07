@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTelequebecProps */
+/** @typedef {typeof __propDef.events}  SiTelequebecEvents */
+/** @typedef {typeof __propDef.slots}  SiTelequebecSlots */
+export default class SiTelequebec extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTelequebecProps = typeof __propDef.props;
+export type SiTelequebecEvents = typeof __propDef.events;
+export type SiTelequebecSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

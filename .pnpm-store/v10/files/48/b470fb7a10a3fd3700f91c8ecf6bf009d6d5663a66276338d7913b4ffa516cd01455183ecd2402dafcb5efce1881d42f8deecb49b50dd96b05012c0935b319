@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiWixProps */
+/** @typedef {typeof __propDef.events}  SiWixEvents */
+/** @typedef {typeof __propDef.slots}  SiWixSlots */
+export default class SiWix extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiWixProps = typeof __propDef.props;
+export type SiWixEvents = typeof __propDef.events;
+export type SiWixSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

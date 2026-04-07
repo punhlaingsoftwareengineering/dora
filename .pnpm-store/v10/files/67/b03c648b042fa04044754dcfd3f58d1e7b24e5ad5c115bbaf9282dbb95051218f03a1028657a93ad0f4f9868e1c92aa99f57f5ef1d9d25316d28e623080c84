@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSoundchartsProps */
+/** @typedef {typeof __propDef.events}  SiSoundchartsEvents */
+/** @typedef {typeof __propDef.slots}  SiSoundchartsSlots */
+export default class SiSoundcharts extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSoundchartsProps = typeof __propDef.props;
+export type SiSoundchartsEvents = typeof __propDef.events;
+export type SiSoundchartsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

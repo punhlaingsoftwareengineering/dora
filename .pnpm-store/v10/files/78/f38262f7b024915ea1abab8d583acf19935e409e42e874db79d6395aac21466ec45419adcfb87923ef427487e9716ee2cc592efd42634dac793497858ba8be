@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiParamountplusProps */
+/** @typedef {typeof __propDef.events}  SiParamountplusEvents */
+/** @typedef {typeof __propDef.slots}  SiParamountplusSlots */
+export default class SiParamountplus extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiParamountplusProps = typeof __propDef.props;
+export type SiParamountplusEvents = typeof __propDef.events;
+export type SiParamountplusSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

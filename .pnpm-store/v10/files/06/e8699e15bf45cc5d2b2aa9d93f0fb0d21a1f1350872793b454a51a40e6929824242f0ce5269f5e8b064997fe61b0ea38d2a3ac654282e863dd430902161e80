@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSphinxProps */
+/** @typedef {typeof __propDef.events}  SiSphinxEvents */
+/** @typedef {typeof __propDef.slots}  SiSphinxSlots */
+export default class SiSphinx extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSphinxProps = typeof __propDef.props;
+export type SiSphinxEvents = typeof __propDef.events;
+export type SiSphinxSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiWearosProps */
+/** @typedef {typeof __propDef.events}  SiWearosEvents */
+/** @typedef {typeof __propDef.slots}  SiWearosSlots */
+export default class SiWearos extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiWearosProps = typeof __propDef.props;
+export type SiWearosEvents = typeof __propDef.events;
+export type SiWearosSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

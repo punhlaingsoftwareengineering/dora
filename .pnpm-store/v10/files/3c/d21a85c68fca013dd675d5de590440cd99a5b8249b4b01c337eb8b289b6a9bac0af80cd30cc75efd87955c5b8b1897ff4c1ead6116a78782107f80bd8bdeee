@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNationalgridProps */
+/** @typedef {typeof __propDef.events}  SiNationalgridEvents */
+/** @typedef {typeof __propDef.slots}  SiNationalgridSlots */
+export default class SiNationalgrid extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNationalgridProps = typeof __propDef.props;
+export type SiNationalgridEvents = typeof __propDef.events;
+export type SiNationalgridSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

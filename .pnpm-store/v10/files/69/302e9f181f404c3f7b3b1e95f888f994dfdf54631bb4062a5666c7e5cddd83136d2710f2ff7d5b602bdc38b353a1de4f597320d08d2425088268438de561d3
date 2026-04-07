@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiThinkpadProps */
+/** @typedef {typeof __propDef.events}  SiThinkpadEvents */
+/** @typedef {typeof __propDef.slots}  SiThinkpadSlots */
+export default class SiThinkpad extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiThinkpadProps = typeof __propDef.props;
+export type SiThinkpadEvents = typeof __propDef.events;
+export type SiThinkpadSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGooglemapsProps */
+/** @typedef {typeof __propDef.events}  SiGooglemapsEvents */
+/** @typedef {typeof __propDef.slots}  SiGooglemapsSlots */
+export default class SiGooglemaps extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGooglemapsProps = typeof __propDef.props;
+export type SiGooglemapsEvents = typeof __propDef.events;
+export type SiGooglemapsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

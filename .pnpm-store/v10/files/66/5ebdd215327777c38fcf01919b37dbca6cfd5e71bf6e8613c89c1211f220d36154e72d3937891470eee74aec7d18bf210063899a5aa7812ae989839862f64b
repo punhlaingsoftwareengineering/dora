@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAviraProps */
+/** @typedef {typeof __propDef.events}  SiAviraEvents */
+/** @typedef {typeof __propDef.slots}  SiAviraSlots */
+export default class SiAvira extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAviraProps = typeof __propDef.props;
+export type SiAviraEvents = typeof __propDef.events;
+export type SiAviraSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

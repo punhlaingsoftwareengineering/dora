@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAdguardProps */
+/** @typedef {typeof __propDef.events}  SiAdguardEvents */
+/** @typedef {typeof __propDef.slots}  SiAdguardSlots */
+export default class SiAdguard extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAdguardProps = typeof __propDef.props;
+export type SiAdguardEvents = typeof __propDef.events;
+export type SiAdguardSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCommonworkflowlanguageProps */
+/** @typedef {typeof __propDef.events}  SiCommonworkflowlanguageEvents */
+/** @typedef {typeof __propDef.slots}  SiCommonworkflowlanguageSlots */
+export default class SiCommonworkflowlanguage extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCommonworkflowlanguageProps = typeof __propDef.props;
+export type SiCommonworkflowlanguageEvents = typeof __propDef.events;
+export type SiCommonworkflowlanguageSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

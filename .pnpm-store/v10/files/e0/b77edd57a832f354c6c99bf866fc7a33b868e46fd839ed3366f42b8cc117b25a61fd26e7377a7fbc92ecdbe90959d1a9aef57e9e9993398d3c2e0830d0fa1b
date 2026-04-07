@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiKarlsruherverkehrsverbundProps */
+/** @typedef {typeof __propDef.events}  SiKarlsruherverkehrsverbundEvents */
+/** @typedef {typeof __propDef.slots}  SiKarlsruherverkehrsverbundSlots */
+export default class SiKarlsruherverkehrsverbund extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiKarlsruherverkehrsverbundProps = typeof __propDef.props;
+export type SiKarlsruherverkehrsverbundEvents = typeof __propDef.events;
+export type SiKarlsruherverkehrsverbundSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

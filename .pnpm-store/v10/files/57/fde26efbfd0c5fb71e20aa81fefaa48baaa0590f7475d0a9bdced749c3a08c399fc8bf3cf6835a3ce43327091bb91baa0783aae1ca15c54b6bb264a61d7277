@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiShikimoriProps */
+/** @typedef {typeof __propDef.events}  SiShikimoriEvents */
+/** @typedef {typeof __propDef.slots}  SiShikimoriSlots */
+export default class SiShikimori extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiShikimoriProps = typeof __propDef.props;
+export type SiShikimoriEvents = typeof __propDef.events;
+export type SiShikimoriSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

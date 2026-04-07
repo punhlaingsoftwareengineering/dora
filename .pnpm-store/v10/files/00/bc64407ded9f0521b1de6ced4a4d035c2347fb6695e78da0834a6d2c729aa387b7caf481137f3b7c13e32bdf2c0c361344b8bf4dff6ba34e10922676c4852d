@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiToggltrackProps */
+/** @typedef {typeof __propDef.events}  SiToggltrackEvents */
+/** @typedef {typeof __propDef.slots}  SiToggltrackSlots */
+export default class SiToggltrack extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiToggltrackProps = typeof __propDef.props;
+export type SiToggltrackEvents = typeof __propDef.events;
+export type SiToggltrackSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

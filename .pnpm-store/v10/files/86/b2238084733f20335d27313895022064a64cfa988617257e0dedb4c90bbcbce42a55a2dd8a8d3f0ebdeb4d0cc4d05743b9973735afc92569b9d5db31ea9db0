@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiIlovepdfProps */
+/** @typedef {typeof __propDef.events}  SiIlovepdfEvents */
+/** @typedef {typeof __propDef.slots}  SiIlovepdfSlots */
+export default class SiIlovepdf extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiIlovepdfProps = typeof __propDef.props;
+export type SiIlovepdfEvents = typeof __propDef.events;
+export type SiIlovepdfSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

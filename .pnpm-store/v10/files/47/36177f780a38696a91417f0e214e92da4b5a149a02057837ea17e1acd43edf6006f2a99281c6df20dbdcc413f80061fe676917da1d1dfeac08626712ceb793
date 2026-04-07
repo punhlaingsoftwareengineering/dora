@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiProcesswireProps */
+/** @typedef {typeof __propDef.events}  SiProcesswireEvents */
+/** @typedef {typeof __propDef.slots}  SiProcesswireSlots */
+export default class SiProcesswire extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiProcesswireProps = typeof __propDef.props;
+export type SiProcesswireEvents = typeof __propDef.events;
+export type SiProcesswireSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

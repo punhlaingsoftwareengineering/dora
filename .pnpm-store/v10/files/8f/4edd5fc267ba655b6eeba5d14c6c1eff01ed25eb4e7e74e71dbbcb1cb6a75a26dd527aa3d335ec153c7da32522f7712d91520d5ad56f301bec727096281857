@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFacebookgamingProps */
+/** @typedef {typeof __propDef.events}  SiFacebookgamingEvents */
+/** @typedef {typeof __propDef.slots}  SiFacebookgamingSlots */
+export default class SiFacebookgaming extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFacebookgamingProps = typeof __propDef.props;
+export type SiFacebookgamingEvents = typeof __propDef.events;
+export type SiFacebookgamingSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

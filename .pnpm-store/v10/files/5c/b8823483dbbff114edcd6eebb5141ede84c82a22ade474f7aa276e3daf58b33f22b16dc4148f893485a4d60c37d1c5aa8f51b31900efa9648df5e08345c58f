@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTripadvisorProps */
+/** @typedef {typeof __propDef.events}  SiTripadvisorEvents */
+/** @typedef {typeof __propDef.slots}  SiTripadvisorSlots */
+export default class SiTripadvisor extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTripadvisorProps = typeof __propDef.props;
+export type SiTripadvisorEvents = typeof __propDef.events;
+export type SiTripadvisorSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

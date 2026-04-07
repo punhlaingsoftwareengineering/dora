@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiZigbee2mqttProps */
+/** @typedef {typeof __propDef.events}  SiZigbee2mqttEvents */
+/** @typedef {typeof __propDef.slots}  SiZigbee2mqttSlots */
+export default class SiZigbee2mqtt extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiZigbee2mqttProps = typeof __propDef.props;
+export type SiZigbee2mqttEvents = typeof __propDef.events;
+export type SiZigbee2mqttSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

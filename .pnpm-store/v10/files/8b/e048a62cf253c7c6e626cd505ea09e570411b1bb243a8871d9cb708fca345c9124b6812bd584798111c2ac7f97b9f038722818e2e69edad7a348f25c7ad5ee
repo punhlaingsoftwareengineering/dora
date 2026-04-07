@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAbdownloadmanagerProps */
+/** @typedef {typeof __propDef.events}  SiAbdownloadmanagerEvents */
+/** @typedef {typeof __propDef.slots}  SiAbdownloadmanagerSlots */
+export default class SiAbdownloadmanager extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAbdownloadmanagerProps = typeof __propDef.props;
+export type SiAbdownloadmanagerEvents = typeof __propDef.events;
+export type SiAbdownloadmanagerSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

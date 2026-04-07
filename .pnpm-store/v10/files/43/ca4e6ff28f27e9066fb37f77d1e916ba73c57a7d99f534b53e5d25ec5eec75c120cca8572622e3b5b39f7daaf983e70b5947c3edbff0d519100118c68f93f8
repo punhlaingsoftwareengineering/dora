@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGitcodeProps */
+/** @typedef {typeof __propDef.events}  SiGitcodeEvents */
+/** @typedef {typeof __propDef.slots}  SiGitcodeSlots */
+export default class SiGitcode extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGitcodeProps = typeof __propDef.props;
+export type SiGitcodeEvents = typeof __propDef.events;
+export type SiGitcodeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

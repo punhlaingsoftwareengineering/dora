@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiEvernoteProps */
+/** @typedef {typeof __propDef.events}  SiEvernoteEvents */
+/** @typedef {typeof __propDef.slots}  SiEvernoteSlots */
+export default class SiEvernote extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiEvernoteProps = typeof __propDef.props;
+export type SiEvernoteEvents = typeof __propDef.events;
+export type SiEvernoteSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

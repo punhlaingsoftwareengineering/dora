@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiXmppProps */
+/** @typedef {typeof __propDef.events}  SiXmppEvents */
+/** @typedef {typeof __propDef.slots}  SiXmppSlots */
+export default class SiXmpp extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiXmppProps = typeof __propDef.props;
+export type SiXmppEvents = typeof __propDef.events;
+export type SiXmppSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

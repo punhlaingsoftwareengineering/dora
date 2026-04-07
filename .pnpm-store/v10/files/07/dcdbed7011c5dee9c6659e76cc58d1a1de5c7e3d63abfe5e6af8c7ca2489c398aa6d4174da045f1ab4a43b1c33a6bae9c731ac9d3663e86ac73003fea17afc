@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiVirtualboxProps */
+/** @typedef {typeof __propDef.events}  SiVirtualboxEvents */
+/** @typedef {typeof __propDef.slots}  SiVirtualboxSlots */
+export default class SiVirtualbox extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiVirtualboxProps = typeof __propDef.props;
+export type SiVirtualboxEvents = typeof __propDef.events;
+export type SiVirtualboxSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

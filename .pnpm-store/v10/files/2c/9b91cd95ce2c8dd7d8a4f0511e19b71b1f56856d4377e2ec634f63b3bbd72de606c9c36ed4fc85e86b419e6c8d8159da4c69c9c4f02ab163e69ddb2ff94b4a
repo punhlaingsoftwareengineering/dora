@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPlaycanvasProps */
+/** @typedef {typeof __propDef.events}  SiPlaycanvasEvents */
+/** @typedef {typeof __propDef.slots}  SiPlaycanvasSlots */
+export default class SiPlaycanvas extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPlaycanvasProps = typeof __propDef.props;
+export type SiPlaycanvasEvents = typeof __propDef.events;
+export type SiPlaycanvasSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

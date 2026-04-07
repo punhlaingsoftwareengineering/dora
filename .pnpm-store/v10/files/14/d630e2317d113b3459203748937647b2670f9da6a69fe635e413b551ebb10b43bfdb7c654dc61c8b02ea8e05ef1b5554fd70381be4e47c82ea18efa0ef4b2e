@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGooglebigqueryProps */
+/** @typedef {typeof __propDef.events}  SiGooglebigqueryEvents */
+/** @typedef {typeof __propDef.slots}  SiGooglebigquerySlots */
+export default class SiGooglebigquery extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGooglebigqueryProps = typeof __propDef.props;
+export type SiGooglebigqueryEvents = typeof __propDef.events;
+export type SiGooglebigquerySlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

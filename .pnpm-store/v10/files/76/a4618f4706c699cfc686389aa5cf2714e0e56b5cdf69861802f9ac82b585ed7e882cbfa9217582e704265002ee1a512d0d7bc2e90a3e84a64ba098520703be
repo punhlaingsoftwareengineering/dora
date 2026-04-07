@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSnowflakeProps */
+/** @typedef {typeof __propDef.events}  SiSnowflakeEvents */
+/** @typedef {typeof __propDef.slots}  SiSnowflakeSlots */
+export default class SiSnowflake extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSnowflakeProps = typeof __propDef.props;
+export type SiSnowflakeEvents = typeof __propDef.events;
+export type SiSnowflakeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

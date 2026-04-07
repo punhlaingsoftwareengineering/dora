@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRazorpayProps */
+/** @typedef {typeof __propDef.events}  SiRazorpayEvents */
+/** @typedef {typeof __propDef.slots}  SiRazorpaySlots */
+export default class SiRazorpay extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRazorpayProps = typeof __propDef.props;
+export type SiRazorpayEvents = typeof __propDef.events;
+export type SiRazorpaySlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGooglechatProps */
+/** @typedef {typeof __propDef.events}  SiGooglechatEvents */
+/** @typedef {typeof __propDef.slots}  SiGooglechatSlots */
+export default class SiGooglechat extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGooglechatProps = typeof __propDef.props;
+export type SiGooglechatEvents = typeof __propDef.events;
+export type SiGooglechatSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGradleProps */
+/** @typedef {typeof __propDef.events}  SiGradleEvents */
+/** @typedef {typeof __propDef.slots}  SiGradleSlots */
+export default class SiGradle extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGradleProps = typeof __propDef.props;
+export type SiGradleEvents = typeof __propDef.events;
+export type SiGradleSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

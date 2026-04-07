@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiActualbudgetProps */
+/** @typedef {typeof __propDef.events}  SiActualbudgetEvents */
+/** @typedef {typeof __propDef.slots}  SiActualbudgetSlots */
+export default class SiActualbudget extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiActualbudgetProps = typeof __propDef.props;
+export type SiActualbudgetEvents = typeof __propDef.events;
+export type SiActualbudgetSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiThreemaProps */
+/** @typedef {typeof __propDef.events}  SiThreemaEvents */
+/** @typedef {typeof __propDef.slots}  SiThreemaSlots */
+export default class SiThreema extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiThreemaProps = typeof __propDef.props;
+export type SiThreemaEvents = typeof __propDef.events;
+export type SiThreemaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

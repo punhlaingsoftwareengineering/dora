@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiDazhongdianpingProps */
+/** @typedef {typeof __propDef.events}  SiDazhongdianpingEvents */
+/** @typedef {typeof __propDef.slots}  SiDazhongdianpingSlots */
+export default class SiDazhongdianping extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiDazhongdianpingProps = typeof __propDef.props;
+export type SiDazhongdianpingEvents = typeof __propDef.events;
+export type SiDazhongdianpingSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiApacheguacamoleProps */
+/** @typedef {typeof __propDef.events}  SiApacheguacamoleEvents */
+/** @typedef {typeof __propDef.slots}  SiApacheguacamoleSlots */
+export default class SiApacheguacamole extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiApacheguacamoleProps = typeof __propDef.props;
+export type SiApacheguacamoleEvents = typeof __propDef.events;
+export type SiApacheguacamoleSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

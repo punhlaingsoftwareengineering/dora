@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMochaProps */
+/** @typedef {typeof __propDef.events}  SiMochaEvents */
+/** @typedef {typeof __propDef.slots}  SiMochaSlots */
+export default class SiMocha extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMochaProps = typeof __propDef.props;
+export type SiMochaEvents = typeof __propDef.events;
+export type SiMochaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

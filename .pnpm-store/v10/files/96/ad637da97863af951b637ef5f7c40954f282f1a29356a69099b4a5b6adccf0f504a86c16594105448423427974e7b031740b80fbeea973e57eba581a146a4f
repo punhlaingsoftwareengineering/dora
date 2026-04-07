@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiChaiProps */
+/** @typedef {typeof __propDef.events}  SiChaiEvents */
+/** @typedef {typeof __propDef.slots}  SiChaiSlots */
+export default class SiChai extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiChaiProps = typeof __propDef.props;
+export type SiChaiEvents = typeof __propDef.events;
+export type SiChaiSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

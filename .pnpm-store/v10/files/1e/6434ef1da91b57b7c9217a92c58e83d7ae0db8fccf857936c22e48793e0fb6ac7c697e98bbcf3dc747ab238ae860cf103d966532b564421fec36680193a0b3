@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOvercastProps */
+/** @typedef {typeof __propDef.events}  SiOvercastEvents */
+/** @typedef {typeof __propDef.slots}  SiOvercastSlots */
+export default class SiOvercast extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOvercastProps = typeof __propDef.props;
+export type SiOvercastEvents = typeof __propDef.events;
+export type SiOvercastSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

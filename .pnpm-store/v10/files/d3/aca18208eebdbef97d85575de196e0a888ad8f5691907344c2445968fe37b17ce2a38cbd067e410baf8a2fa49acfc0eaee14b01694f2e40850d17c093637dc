@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOperagxProps */
+/** @typedef {typeof __propDef.events}  SiOperagxEvents */
+/** @typedef {typeof __propDef.slots}  SiOperagxSlots */
+export default class SiOperagx extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOperagxProps = typeof __propDef.props;
+export type SiOperagxEvents = typeof __propDef.events;
+export type SiOperagxSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCloudflareProps */
+/** @typedef {typeof __propDef.events}  SiCloudflareEvents */
+/** @typedef {typeof __propDef.slots}  SiCloudflareSlots */
+export default class SiCloudflare extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCloudflareProps = typeof __propDef.props;
+export type SiCloudflareEvents = typeof __propDef.events;
+export type SiCloudflareSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

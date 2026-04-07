@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiLibreofficedrawProps */
+/** @typedef {typeof __propDef.events}  SiLibreofficedrawEvents */
+/** @typedef {typeof __propDef.slots}  SiLibreofficedrawSlots */
+export default class SiLibreofficedraw extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiLibreofficedrawProps = typeof __propDef.props;
+export type SiLibreofficedrawEvents = typeof __propDef.events;
+export type SiLibreofficedrawSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRedhatopenshiftProps */
+/** @typedef {typeof __propDef.events}  SiRedhatopenshiftEvents */
+/** @typedef {typeof __propDef.slots}  SiRedhatopenshiftSlots */
+export default class SiRedhatopenshift extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRedhatopenshiftProps = typeof __propDef.props;
+export type SiRedhatopenshiftEvents = typeof __propDef.events;
+export type SiRedhatopenshiftSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

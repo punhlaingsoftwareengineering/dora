@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiIheartradioProps */
+/** @typedef {typeof __propDef.events}  SiIheartradioEvents */
+/** @typedef {typeof __propDef.slots}  SiIheartradioSlots */
+export default class SiIheartradio extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiIheartradioProps = typeof __propDef.props;
+export type SiIheartradioEvents = typeof __propDef.events;
+export type SiIheartradioSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

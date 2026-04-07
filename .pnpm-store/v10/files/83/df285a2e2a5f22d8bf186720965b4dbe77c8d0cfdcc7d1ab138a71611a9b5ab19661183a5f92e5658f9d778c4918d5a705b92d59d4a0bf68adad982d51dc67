@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSnapcraftProps */
+/** @typedef {typeof __propDef.events}  SiSnapcraftEvents */
+/** @typedef {typeof __propDef.slots}  SiSnapcraftSlots */
+export default class SiSnapcraft extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSnapcraftProps = typeof __propDef.props;
+export type SiSnapcraftEvents = typeof __propDef.events;
+export type SiSnapcraftSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

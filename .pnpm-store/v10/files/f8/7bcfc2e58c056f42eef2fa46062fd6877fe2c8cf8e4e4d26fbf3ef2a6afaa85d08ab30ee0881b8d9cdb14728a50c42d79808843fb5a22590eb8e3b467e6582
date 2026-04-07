@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOcamlProps */
+/** @typedef {typeof __propDef.events}  SiOcamlEvents */
+/** @typedef {typeof __propDef.slots}  SiOcamlSlots */
+export default class SiOcaml extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOcamlProps = typeof __propDef.props;
+export type SiOcamlEvents = typeof __propDef.events;
+export type SiOcamlSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

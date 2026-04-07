@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiVonageProps */
+/** @typedef {typeof __propDef.events}  SiVonageEvents */
+/** @typedef {typeof __propDef.slots}  SiVonageSlots */
+export default class SiVonage extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiVonageProps = typeof __propDef.props;
+export type SiVonageEvents = typeof __propDef.events;
+export type SiVonageSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

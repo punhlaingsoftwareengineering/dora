@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMonoprixProps */
+/** @typedef {typeof __propDef.events}  SiMonoprixEvents */
+/** @typedef {typeof __propDef.slots}  SiMonoprixSlots */
+export default class SiMonoprix extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMonoprixProps = typeof __propDef.props;
+export type SiMonoprixEvents = typeof __propDef.events;
+export type SiMonoprixSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

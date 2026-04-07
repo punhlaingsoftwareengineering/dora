@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCheerioProps */
+/** @typedef {typeof __propDef.events}  SiCheerioEvents */
+/** @typedef {typeof __propDef.slots}  SiCheerioSlots */
+export default class SiCheerio extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCheerioProps = typeof __propDef.props;
+export type SiCheerioEvents = typeof __propDef.events;
+export type SiCheerioSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

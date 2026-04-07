@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTamiyaProps */
+/** @typedef {typeof __propDef.events}  SiTamiyaEvents */
+/** @typedef {typeof __propDef.slots}  SiTamiyaSlots */
+export default class SiTamiya extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTamiyaProps = typeof __propDef.props;
+export type SiTamiyaEvents = typeof __propDef.events;
+export type SiTamiyaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

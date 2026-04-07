@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiWelcometothejungleProps */
+/** @typedef {typeof __propDef.events}  SiWelcometothejungleEvents */
+/** @typedef {typeof __propDef.slots}  SiWelcometothejungleSlots */
+export default class SiWelcometothejungle extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiWelcometothejungleProps = typeof __propDef.props;
+export type SiWelcometothejungleEvents = typeof __propDef.events;
+export type SiWelcometothejungleSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

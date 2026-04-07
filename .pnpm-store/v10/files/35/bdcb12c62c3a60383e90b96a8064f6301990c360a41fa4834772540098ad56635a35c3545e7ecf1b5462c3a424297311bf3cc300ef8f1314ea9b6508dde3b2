@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiApachekafkaProps */
+/** @typedef {typeof __propDef.events}  SiApachekafkaEvents */
+/** @typedef {typeof __propDef.slots}  SiApachekafkaSlots */
+export default class SiApachekafka extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiApachekafkaProps = typeof __propDef.props;
+export type SiApachekafkaEvents = typeof __propDef.events;
+export type SiApachekafkaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

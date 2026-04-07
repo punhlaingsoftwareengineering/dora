@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAdaProps */
+/** @typedef {typeof __propDef.events}  SiAdaEvents */
+/** @typedef {typeof __propDef.slots}  SiAdaSlots */
+export default class SiAda extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAdaProps = typeof __propDef.props;
+export type SiAdaEvents = typeof __propDef.events;
+export type SiAdaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

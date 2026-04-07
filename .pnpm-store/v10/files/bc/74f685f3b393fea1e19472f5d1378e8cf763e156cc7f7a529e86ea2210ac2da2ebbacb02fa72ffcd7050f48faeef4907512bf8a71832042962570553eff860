@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTelegramProps */
+/** @typedef {typeof __propDef.events}  SiTelegramEvents */
+/** @typedef {typeof __propDef.slots}  SiTelegramSlots */
+export default class SiTelegram extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTelegramProps = typeof __propDef.props;
+export type SiTelegramEvents = typeof __propDef.events;
+export type SiTelegramSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

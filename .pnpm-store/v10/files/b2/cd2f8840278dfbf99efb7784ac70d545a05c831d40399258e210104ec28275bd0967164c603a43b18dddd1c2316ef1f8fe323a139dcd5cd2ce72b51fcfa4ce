@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGoogletasksProps */
+/** @typedef {typeof __propDef.events}  SiGoogletasksEvents */
+/** @typedef {typeof __propDef.slots}  SiGoogletasksSlots */
+export default class SiGoogletasks extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGoogletasksProps = typeof __propDef.props;
+export type SiGoogletasksEvents = typeof __propDef.events;
+export type SiGoogletasksSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

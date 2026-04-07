@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiApacheluceneProps */
+/** @typedef {typeof __propDef.events}  SiApacheluceneEvents */
+/** @typedef {typeof __propDef.slots}  SiApacheluceneSlots */
+export default class SiApachelucene extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiApacheluceneProps = typeof __propDef.props;
+export type SiApacheluceneEvents = typeof __propDef.events;
+export type SiApacheluceneSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

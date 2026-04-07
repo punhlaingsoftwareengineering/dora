@@ -1,0 +1,12 @@
+
+    <script>
+      export let color = 'currentColor';
+      export let size = 24;
+      export let title = "siNamemc";
+    </script>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} fill={color} viewBox="0 0 24 24">
+      <title>{title}</title>
+      <path d="M0 0v24h24V0Zm4.8 4.8H16V8h3.2v11.2H16V8H8v11.2H4.8V8Z" />
+    </svg>
+  

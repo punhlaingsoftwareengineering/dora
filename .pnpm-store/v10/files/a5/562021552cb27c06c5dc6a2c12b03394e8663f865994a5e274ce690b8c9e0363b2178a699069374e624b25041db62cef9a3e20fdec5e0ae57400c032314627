@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRescuetimeProps */
+/** @typedef {typeof __propDef.events}  SiRescuetimeEvents */
+/** @typedef {typeof __propDef.slots}  SiRescuetimeSlots */
+export default class SiRescuetime extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRescuetimeProps = typeof __propDef.props;
+export type SiRescuetimeEvents = typeof __propDef.events;
+export type SiRescuetimeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

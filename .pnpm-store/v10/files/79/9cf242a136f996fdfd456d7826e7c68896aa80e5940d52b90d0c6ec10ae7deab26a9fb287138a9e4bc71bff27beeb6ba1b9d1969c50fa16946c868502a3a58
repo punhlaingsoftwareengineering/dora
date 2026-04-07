@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiZincsearchProps */
+/** @typedef {typeof __propDef.events}  SiZincsearchEvents */
+/** @typedef {typeof __propDef.slots}  SiZincsearchSlots */
+export default class SiZincsearch extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiZincsearchProps = typeof __propDef.props;
+export type SiZincsearchEvents = typeof __propDef.events;
+export type SiZincsearchSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

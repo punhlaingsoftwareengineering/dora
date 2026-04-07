@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGunicornProps */
+/** @typedef {typeof __propDef.events}  SiGunicornEvents */
+/** @typedef {typeof __propDef.slots}  SiGunicornSlots */
+export default class SiGunicorn extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGunicornProps = typeof __propDef.props;
+export type SiGunicornEvents = typeof __propDef.events;
+export type SiGunicornSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

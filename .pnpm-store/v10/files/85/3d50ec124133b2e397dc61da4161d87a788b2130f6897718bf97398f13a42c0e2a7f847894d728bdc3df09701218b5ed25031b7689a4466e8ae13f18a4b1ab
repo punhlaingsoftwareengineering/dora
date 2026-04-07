@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiKanikoProps */
+/** @typedef {typeof __propDef.events}  SiKanikoEvents */
+/** @typedef {typeof __propDef.slots}  SiKanikoSlots */
+export default class SiKaniko extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiKanikoProps = typeof __propDef.props;
+export type SiKanikoEvents = typeof __propDef.events;
+export type SiKanikoSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

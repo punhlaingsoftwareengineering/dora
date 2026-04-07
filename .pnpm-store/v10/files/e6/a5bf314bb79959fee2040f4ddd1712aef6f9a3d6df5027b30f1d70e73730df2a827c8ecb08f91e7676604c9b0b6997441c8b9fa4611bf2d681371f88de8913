@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiJfrogProps */
+/** @typedef {typeof __propDef.events}  SiJfrogEvents */
+/** @typedef {typeof __propDef.slots}  SiJfrogSlots */
+export default class SiJfrog extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiJfrogProps = typeof __propDef.props;
+export type SiJfrogEvents = typeof __propDef.events;
+export type SiJfrogSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

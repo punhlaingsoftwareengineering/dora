@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNotepadplusplusProps */
+/** @typedef {typeof __propDef.events}  SiNotepadplusplusEvents */
+/** @typedef {typeof __propDef.slots}  SiNotepadplusplusSlots */
+export default class SiNotepadplusplus extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNotepadplusplusProps = typeof __propDef.props;
+export type SiNotepadplusplusEvents = typeof __propDef.events;
+export type SiNotepadplusplusSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

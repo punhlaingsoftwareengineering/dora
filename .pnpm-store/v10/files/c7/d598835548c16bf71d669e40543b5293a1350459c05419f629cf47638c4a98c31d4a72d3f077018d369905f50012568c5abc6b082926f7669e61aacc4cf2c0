@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMercurialProps */
+/** @typedef {typeof __propDef.events}  SiMercurialEvents */
+/** @typedef {typeof __propDef.slots}  SiMercurialSlots */
+export default class SiMercurial extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMercurialProps = typeof __propDef.props;
+export type SiMercurialEvents = typeof __propDef.events;
+export type SiMercurialSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

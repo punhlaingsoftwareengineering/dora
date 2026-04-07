@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiErlangProps */
+/** @typedef {typeof __propDef.events}  SiErlangEvents */
+/** @typedef {typeof __propDef.slots}  SiErlangSlots */
+export default class SiErlang extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiErlangProps = typeof __propDef.props;
+export type SiErlangEvents = typeof __propDef.events;
+export type SiErlangSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

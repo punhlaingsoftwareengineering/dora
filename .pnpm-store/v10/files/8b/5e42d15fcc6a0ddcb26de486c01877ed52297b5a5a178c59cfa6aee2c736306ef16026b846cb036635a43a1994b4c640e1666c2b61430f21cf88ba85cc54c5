@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiLastdotfmProps */
+/** @typedef {typeof __propDef.events}  SiLastdotfmEvents */
+/** @typedef {typeof __propDef.slots}  SiLastdotfmSlots */
+export default class SiLastdotfm extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiLastdotfmProps = typeof __propDef.props;
+export type SiLastdotfmEvents = typeof __propDef.events;
+export type SiLastdotfmSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

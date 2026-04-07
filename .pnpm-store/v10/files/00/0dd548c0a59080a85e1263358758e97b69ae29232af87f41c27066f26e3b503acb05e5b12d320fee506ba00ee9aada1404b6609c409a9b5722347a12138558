@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGrafanaProps */
+/** @typedef {typeof __propDef.events}  SiGrafanaEvents */
+/** @typedef {typeof __propDef.slots}  SiGrafanaSlots */
+export default class SiGrafana extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGrafanaProps = typeof __propDef.props;
+export type SiGrafanaEvents = typeof __propDef.events;
+export type SiGrafanaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

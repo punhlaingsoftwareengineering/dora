@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCalibrewebProps */
+/** @typedef {typeof __propDef.events}  SiCalibrewebEvents */
+/** @typedef {typeof __propDef.slots}  SiCalibrewebSlots */
+export default class SiCalibreweb extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCalibrewebProps = typeof __propDef.props;
+export type SiCalibrewebEvents = typeof __propDef.events;
+export type SiCalibrewebSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

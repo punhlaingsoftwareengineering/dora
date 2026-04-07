@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOpenapiinitiativeProps */
+/** @typedef {typeof __propDef.events}  SiOpenapiinitiativeEvents */
+/** @typedef {typeof __propDef.slots}  SiOpenapiinitiativeSlots */
+export default class SiOpenapiinitiative extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOpenapiinitiativeProps = typeof __propDef.props;
+export type SiOpenapiinitiativeEvents = typeof __propDef.events;
+export type SiOpenapiinitiativeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

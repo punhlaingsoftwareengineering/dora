@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTeamspeakProps */
+/** @typedef {typeof __propDef.events}  SiTeamspeakEvents */
+/** @typedef {typeof __propDef.slots}  SiTeamspeakSlots */
+export default class SiTeamspeak extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTeamspeakProps = typeof __propDef.props;
+export type SiTeamspeakEvents = typeof __propDef.events;
+export type SiTeamspeakSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

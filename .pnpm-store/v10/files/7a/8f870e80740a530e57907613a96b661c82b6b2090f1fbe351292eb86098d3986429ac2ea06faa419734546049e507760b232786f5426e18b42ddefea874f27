@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAlltrailsProps */
+/** @typedef {typeof __propDef.events}  SiAlltrailsEvents */
+/** @typedef {typeof __propDef.slots}  SiAlltrailsSlots */
+export default class SiAlltrails extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAlltrailsProps = typeof __propDef.props;
+export type SiAlltrailsEvents = typeof __propDef.events;
+export type SiAlltrailsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

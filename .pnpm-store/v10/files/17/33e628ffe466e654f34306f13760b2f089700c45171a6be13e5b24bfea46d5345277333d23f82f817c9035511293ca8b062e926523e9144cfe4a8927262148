@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRuffProps */
+/** @typedef {typeof __propDef.events}  SiRuffEvents */
+/** @typedef {typeof __propDef.slots}  SiRuffSlots */
+export default class SiRuff extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRuffProps = typeof __propDef.props;
+export type SiRuffEvents = typeof __propDef.events;
+export type SiRuffSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

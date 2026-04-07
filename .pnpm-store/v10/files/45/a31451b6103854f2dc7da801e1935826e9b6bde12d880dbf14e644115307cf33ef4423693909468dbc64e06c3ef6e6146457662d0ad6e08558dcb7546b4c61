@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPiaggiogroupProps */
+/** @typedef {typeof __propDef.events}  SiPiaggiogroupEvents */
+/** @typedef {typeof __propDef.slots}  SiPiaggiogroupSlots */
+export default class SiPiaggiogroup extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPiaggiogroupProps = typeof __propDef.props;
+export type SiPiaggiogroupEvents = typeof __propDef.events;
+export type SiPiaggiogroupSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

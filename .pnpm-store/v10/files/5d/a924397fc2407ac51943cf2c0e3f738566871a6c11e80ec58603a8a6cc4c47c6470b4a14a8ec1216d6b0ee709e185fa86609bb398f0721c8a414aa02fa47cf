@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPronounsdotpageProps */
+/** @typedef {typeof __propDef.events}  SiPronounsdotpageEvents */
+/** @typedef {typeof __propDef.slots}  SiPronounsdotpageSlots */
+export default class SiPronounsdotpage extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPronounsdotpageProps = typeof __propDef.props;
+export type SiPronounsdotpageEvents = typeof __propDef.events;
+export type SiPronounsdotpageSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

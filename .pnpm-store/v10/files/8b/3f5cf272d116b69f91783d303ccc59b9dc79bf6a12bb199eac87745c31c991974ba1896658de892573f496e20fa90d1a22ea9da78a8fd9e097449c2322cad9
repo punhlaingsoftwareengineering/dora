@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBitcoinsvProps */
+/** @typedef {typeof __propDef.events}  SiBitcoinsvEvents */
+/** @typedef {typeof __propDef.slots}  SiBitcoinsvSlots */
+export default class SiBitcoinsv extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBitcoinsvProps = typeof __propDef.props;
+export type SiBitcoinsvEvents = typeof __propDef.events;
+export type SiBitcoinsvSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiEightsleepProps */
+/** @typedef {typeof __propDef.events}  SiEightsleepEvents */
+/** @typedef {typeof __propDef.slots}  SiEightsleepSlots */
+export default class SiEightsleep extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiEightsleepProps = typeof __propDef.props;
+export type SiEightsleepEvents = typeof __propDef.events;
+export type SiEightsleepSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

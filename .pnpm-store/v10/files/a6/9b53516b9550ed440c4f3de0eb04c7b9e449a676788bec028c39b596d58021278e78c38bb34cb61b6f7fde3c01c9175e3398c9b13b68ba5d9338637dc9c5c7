@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMtaProps */
+/** @typedef {typeof __propDef.events}  SiMtaEvents */
+/** @typedef {typeof __propDef.slots}  SiMtaSlots */
+export default class SiMta extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMtaProps = typeof __propDef.props;
+export type SiMtaEvents = typeof __propDef.events;
+export type SiMtaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

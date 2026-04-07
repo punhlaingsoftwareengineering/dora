@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiXubuntuProps */
+/** @typedef {typeof __propDef.events}  SiXubuntuEvents */
+/** @typedef {typeof __propDef.slots}  SiXubuntuSlots */
+export default class SiXubuntu extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiXubuntuProps = typeof __propDef.props;
+export type SiXubuntuEvents = typeof __propDef.events;
+export type SiXubuntuSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

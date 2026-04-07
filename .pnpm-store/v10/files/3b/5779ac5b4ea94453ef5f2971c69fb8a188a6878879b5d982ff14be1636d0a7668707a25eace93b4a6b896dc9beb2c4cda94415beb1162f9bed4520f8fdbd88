@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRabbitmqProps */
+/** @typedef {typeof __propDef.events}  SiRabbitmqEvents */
+/** @typedef {typeof __propDef.slots}  SiRabbitmqSlots */
+export default class SiRabbitmq extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRabbitmqProps = typeof __propDef.props;
+export type SiRabbitmqEvents = typeof __propDef.events;
+export type SiRabbitmqSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

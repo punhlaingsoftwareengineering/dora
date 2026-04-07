@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBakalariProps */
+/** @typedef {typeof __propDef.events}  SiBakalariEvents */
+/** @typedef {typeof __propDef.slots}  SiBakalariSlots */
+export default class SiBakalari extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBakalariProps = typeof __propDef.props;
+export type SiBakalariEvents = typeof __propDef.events;
+export type SiBakalariSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

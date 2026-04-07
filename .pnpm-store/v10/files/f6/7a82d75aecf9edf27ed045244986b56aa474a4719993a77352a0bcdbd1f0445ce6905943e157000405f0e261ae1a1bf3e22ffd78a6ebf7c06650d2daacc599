@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiLeicaProps */
+/** @typedef {typeof __propDef.events}  SiLeicaEvents */
+/** @typedef {typeof __propDef.slots}  SiLeicaSlots */
+export default class SiLeica extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiLeicaProps = typeof __propDef.props;
+export type SiLeicaEvents = typeof __propDef.events;
+export type SiLeicaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

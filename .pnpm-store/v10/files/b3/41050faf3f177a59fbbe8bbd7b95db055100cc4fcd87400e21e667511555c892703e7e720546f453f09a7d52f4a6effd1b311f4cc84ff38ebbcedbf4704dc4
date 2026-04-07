@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiYoutubeProps */
+/** @typedef {typeof __propDef.events}  SiYoutubeEvents */
+/** @typedef {typeof __propDef.slots}  SiYoutubeSlots */
+export default class SiYoutube extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiYoutubeProps = typeof __propDef.props;
+export type SiYoutubeEvents = typeof __propDef.events;
+export type SiYoutubeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

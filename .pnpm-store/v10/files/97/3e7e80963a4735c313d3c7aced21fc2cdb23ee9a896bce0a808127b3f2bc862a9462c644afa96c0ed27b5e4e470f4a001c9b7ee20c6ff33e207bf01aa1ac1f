@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGitterProps */
+/** @typedef {typeof __propDef.events}  SiGitterEvents */
+/** @typedef {typeof __propDef.slots}  SiGitterSlots */
+export default class SiGitter extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGitterProps = typeof __propDef.props;
+export type SiGitterEvents = typeof __propDef.events;
+export type SiGitterSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

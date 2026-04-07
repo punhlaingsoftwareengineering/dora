@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBetfairProps */
+/** @typedef {typeof __propDef.events}  SiBetfairEvents */
+/** @typedef {typeof __propDef.slots}  SiBetfairSlots */
+export default class SiBetfair extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBetfairProps = typeof __propDef.props;
+export type SiBetfairEvents = typeof __propDef.events;
+export type SiBetfairSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBurgerkingProps */
+/** @typedef {typeof __propDef.events}  SiBurgerkingEvents */
+/** @typedef {typeof __propDef.slots}  SiBurgerkingSlots */
+export default class SiBurgerking extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBurgerkingProps = typeof __propDef.props;
+export type SiBurgerkingEvents = typeof __propDef.events;
+export type SiBurgerkingSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

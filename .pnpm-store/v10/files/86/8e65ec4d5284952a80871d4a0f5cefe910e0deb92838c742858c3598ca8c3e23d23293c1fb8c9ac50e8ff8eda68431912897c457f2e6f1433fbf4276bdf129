@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGooglegeminiProps */
+/** @typedef {typeof __propDef.events}  SiGooglegeminiEvents */
+/** @typedef {typeof __propDef.slots}  SiGooglegeminiSlots */
+export default class SiGooglegemini extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGooglegeminiProps = typeof __propDef.props;
+export type SiGooglegeminiEvents = typeof __propDef.events;
+export type SiGooglegeminiSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

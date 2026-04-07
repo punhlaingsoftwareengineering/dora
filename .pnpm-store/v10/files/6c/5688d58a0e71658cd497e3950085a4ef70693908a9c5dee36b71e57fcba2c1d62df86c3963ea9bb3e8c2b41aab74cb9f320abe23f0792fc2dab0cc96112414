@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRaylibProps */
+/** @typedef {typeof __propDef.events}  SiRaylibEvents */
+/** @typedef {typeof __propDef.slots}  SiRaylibSlots */
+export default class SiRaylib extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRaylibProps = typeof __propDef.props;
+export type SiRaylibEvents = typeof __propDef.events;
+export type SiRaylibSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

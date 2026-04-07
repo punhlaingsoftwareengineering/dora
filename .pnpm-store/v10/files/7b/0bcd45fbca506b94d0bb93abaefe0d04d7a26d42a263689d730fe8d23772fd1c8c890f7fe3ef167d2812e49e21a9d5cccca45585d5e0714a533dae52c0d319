@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCairographicsProps */
+/** @typedef {typeof __propDef.events}  SiCairographicsEvents */
+/** @typedef {typeof __propDef.slots}  SiCairographicsSlots */
+export default class SiCairographics extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCairographicsProps = typeof __propDef.props;
+export type SiCairographicsEvents = typeof __propDef.events;
+export type SiCairographicsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

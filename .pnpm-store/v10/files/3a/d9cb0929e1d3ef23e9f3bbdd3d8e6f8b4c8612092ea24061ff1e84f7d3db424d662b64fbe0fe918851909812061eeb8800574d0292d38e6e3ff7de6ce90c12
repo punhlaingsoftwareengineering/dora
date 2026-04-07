@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiHomebridgeProps */
+/** @typedef {typeof __propDef.events}  SiHomebridgeEvents */
+/** @typedef {typeof __propDef.slots}  SiHomebridgeSlots */
+export default class SiHomebridge extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiHomebridgeProps = typeof __propDef.props;
+export type SiHomebridgeEvents = typeof __propDef.events;
+export type SiHomebridgeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

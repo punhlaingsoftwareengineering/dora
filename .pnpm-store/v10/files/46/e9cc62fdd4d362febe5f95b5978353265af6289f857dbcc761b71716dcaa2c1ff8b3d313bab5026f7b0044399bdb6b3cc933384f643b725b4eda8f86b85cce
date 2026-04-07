@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiVimeolivestreamProps */
+/** @typedef {typeof __propDef.events}  SiVimeolivestreamEvents */
+/** @typedef {typeof __propDef.slots}  SiVimeolivestreamSlots */
+export default class SiVimeolivestream extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiVimeolivestreamProps = typeof __propDef.props;
+export type SiVimeolivestreamEvents = typeof __propDef.events;
+export type SiVimeolivestreamSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

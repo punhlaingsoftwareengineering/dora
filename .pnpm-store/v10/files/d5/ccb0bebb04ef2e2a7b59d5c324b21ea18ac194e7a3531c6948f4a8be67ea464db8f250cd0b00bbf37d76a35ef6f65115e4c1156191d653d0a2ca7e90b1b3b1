@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiShortcutProps */
+/** @typedef {typeof __propDef.events}  SiShortcutEvents */
+/** @typedef {typeof __propDef.slots}  SiShortcutSlots */
+export default class SiShortcut extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiShortcutProps = typeof __propDef.props;
+export type SiShortcutEvents = typeof __propDef.events;
+export type SiShortcutSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

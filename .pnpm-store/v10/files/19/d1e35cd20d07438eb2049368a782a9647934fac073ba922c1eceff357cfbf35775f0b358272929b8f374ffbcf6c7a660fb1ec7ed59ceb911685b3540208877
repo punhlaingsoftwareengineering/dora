@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTumblrProps */
+/** @typedef {typeof __propDef.events}  SiTumblrEvents */
+/** @typedef {typeof __propDef.slots}  SiTumblrSlots */
+export default class SiTumblr extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTumblrProps = typeof __propDef.props;
+export type SiTumblrEvents = typeof __propDef.events;
+export type SiTumblrSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

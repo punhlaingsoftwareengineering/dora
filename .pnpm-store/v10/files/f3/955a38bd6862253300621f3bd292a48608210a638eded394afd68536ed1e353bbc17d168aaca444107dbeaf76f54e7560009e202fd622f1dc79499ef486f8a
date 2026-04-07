@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPurismProps */
+/** @typedef {typeof __propDef.events}  SiPurismEvents */
+/** @typedef {typeof __propDef.slots}  SiPurismSlots */
+export default class SiPurism extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPurismProps = typeof __propDef.props;
+export type SiPurismEvents = typeof __propDef.events;
+export type SiPurismSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

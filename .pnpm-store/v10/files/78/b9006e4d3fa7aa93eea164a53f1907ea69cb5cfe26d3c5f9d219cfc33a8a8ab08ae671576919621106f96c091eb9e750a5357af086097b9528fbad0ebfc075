@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRetoolProps */
+/** @typedef {typeof __propDef.events}  SiRetoolEvents */
+/** @typedef {typeof __propDef.slots}  SiRetoolSlots */
+export default class SiRetool extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRetoolProps = typeof __propDef.props;
+export type SiRetoolEvents = typeof __propDef.events;
+export type SiRetoolSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

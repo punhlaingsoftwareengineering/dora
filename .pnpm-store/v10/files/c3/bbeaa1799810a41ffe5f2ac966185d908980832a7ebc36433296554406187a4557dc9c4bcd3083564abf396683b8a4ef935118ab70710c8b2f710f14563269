@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiHotwireProps */
+/** @typedef {typeof __propDef.events}  SiHotwireEvents */
+/** @typedef {typeof __propDef.slots}  SiHotwireSlots */
+export default class SiHotwire extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiHotwireProps = typeof __propDef.props;
+export type SiHotwireEvents = typeof __propDef.events;
+export type SiHotwireSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

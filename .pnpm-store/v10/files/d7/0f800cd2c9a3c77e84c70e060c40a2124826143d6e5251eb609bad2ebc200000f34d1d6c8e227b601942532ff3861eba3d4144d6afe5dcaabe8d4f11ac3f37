@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBlazorProps */
+/** @typedef {typeof __propDef.events}  SiBlazorEvents */
+/** @typedef {typeof __propDef.slots}  SiBlazorSlots */
+export default class SiBlazor extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBlazorProps = typeof __propDef.props;
+export type SiBlazorEvents = typeof __propDef.events;
+export type SiBlazorSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

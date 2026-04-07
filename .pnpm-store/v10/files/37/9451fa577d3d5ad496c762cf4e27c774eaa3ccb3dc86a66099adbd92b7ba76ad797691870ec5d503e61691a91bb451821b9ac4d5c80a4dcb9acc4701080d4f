@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMisskeyProps */
+/** @typedef {typeof __propDef.events}  SiMisskeyEvents */
+/** @typedef {typeof __propDef.slots}  SiMisskeySlots */
+export default class SiMisskey extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMisskeyProps = typeof __propDef.props;
+export type SiMisskeyEvents = typeof __propDef.events;
+export type SiMisskeySlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

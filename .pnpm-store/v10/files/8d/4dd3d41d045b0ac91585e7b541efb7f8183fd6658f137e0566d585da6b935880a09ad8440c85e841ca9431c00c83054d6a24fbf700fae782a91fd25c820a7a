@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiHitachiProps */
+/** @typedef {typeof __propDef.events}  SiHitachiEvents */
+/** @typedef {typeof __propDef.slots}  SiHitachiSlots */
+export default class SiHitachi extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiHitachiProps = typeof __propDef.props;
+export type SiHitachiEvents = typeof __propDef.events;
+export type SiHitachiSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

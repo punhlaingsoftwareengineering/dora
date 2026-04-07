@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMonkeytieProps */
+/** @typedef {typeof __propDef.events}  SiMonkeytieEvents */
+/** @typedef {typeof __propDef.slots}  SiMonkeytieSlots */
+export default class SiMonkeytie extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMonkeytieProps = typeof __propDef.props;
+export type SiMonkeytieEvents = typeof __propDef.events;
+export type SiMonkeytieSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

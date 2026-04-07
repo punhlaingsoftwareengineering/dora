@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPinboardProps */
+/** @typedef {typeof __propDef.events}  SiPinboardEvents */
+/** @typedef {typeof __propDef.slots}  SiPinboardSlots */
+export default class SiPinboard extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPinboardProps = typeof __propDef.props;
+export type SiPinboardEvents = typeof __propDef.events;
+export type SiPinboardSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

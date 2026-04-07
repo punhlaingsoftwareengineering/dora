@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGooglecardboardProps */
+/** @typedef {typeof __propDef.events}  SiGooglecardboardEvents */
+/** @typedef {typeof __propDef.slots}  SiGooglecardboardSlots */
+export default class SiGooglecardboard extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGooglecardboardProps = typeof __propDef.props;
+export type SiGooglecardboardEvents = typeof __propDef.events;
+export type SiGooglecardboardSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRootsProps */
+/** @typedef {typeof __propDef.events}  SiRootsEvents */
+/** @typedef {typeof __propDef.slots}  SiRootsSlots */
+export default class SiRoots extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRootsProps = typeof __propDef.props;
+export type SiRootsEvents = typeof __propDef.events;
+export type SiRootsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

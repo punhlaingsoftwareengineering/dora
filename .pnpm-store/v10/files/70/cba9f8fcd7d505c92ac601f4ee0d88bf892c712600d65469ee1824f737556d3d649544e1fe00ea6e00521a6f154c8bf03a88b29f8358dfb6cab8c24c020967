@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCiliumProps */
+/** @typedef {typeof __propDef.events}  SiCiliumEvents */
+/** @typedef {typeof __propDef.slots}  SiCiliumSlots */
+export default class SiCilium extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCiliumProps = typeof __propDef.props;
+export type SiCiliumEvents = typeof __propDef.events;
+export type SiCiliumSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

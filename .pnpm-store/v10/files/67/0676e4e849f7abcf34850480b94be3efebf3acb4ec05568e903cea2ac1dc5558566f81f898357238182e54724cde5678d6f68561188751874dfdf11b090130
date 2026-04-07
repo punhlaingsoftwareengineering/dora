@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiHandlebarsdotjsProps */
+/** @typedef {typeof __propDef.events}  SiHandlebarsdotjsEvents */
+/** @typedef {typeof __propDef.slots}  SiHandlebarsdotjsSlots */
+export default class SiHandlebarsdotjs extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiHandlebarsdotjsProps = typeof __propDef.props;
+export type SiHandlebarsdotjsEvents = typeof __propDef.events;
+export type SiHandlebarsdotjsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

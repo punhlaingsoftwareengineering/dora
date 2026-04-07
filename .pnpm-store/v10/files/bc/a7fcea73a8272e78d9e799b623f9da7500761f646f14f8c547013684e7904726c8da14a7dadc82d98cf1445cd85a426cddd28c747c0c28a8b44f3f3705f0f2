@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiDailymotionProps */
+/** @typedef {typeof __propDef.events}  SiDailymotionEvents */
+/** @typedef {typeof __propDef.slots}  SiDailymotionSlots */
+export default class SiDailymotion extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiDailymotionProps = typeof __propDef.props;
+export type SiDailymotionEvents = typeof __propDef.events;
+export type SiDailymotionSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

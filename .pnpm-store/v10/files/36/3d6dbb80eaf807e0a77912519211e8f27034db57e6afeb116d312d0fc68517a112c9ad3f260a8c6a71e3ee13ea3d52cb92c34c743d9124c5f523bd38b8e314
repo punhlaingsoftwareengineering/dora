@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSteamProps */
+/** @typedef {typeof __propDef.events}  SiSteamEvents */
+/** @typedef {typeof __propDef.slots}  SiSteamSlots */
+export default class SiSteam extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSteamProps = typeof __propDef.props;
+export type SiSteamEvents = typeof __propDef.events;
+export type SiSteamSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

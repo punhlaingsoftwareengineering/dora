@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTheweatherchannelProps */
+/** @typedef {typeof __propDef.events}  SiTheweatherchannelEvents */
+/** @typedef {typeof __propDef.slots}  SiTheweatherchannelSlots */
+export default class SiTheweatherchannel extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTheweatherchannelProps = typeof __propDef.props;
+export type SiTheweatherchannelEvents = typeof __propDef.events;
+export type SiTheweatherchannelSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

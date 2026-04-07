@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCoreldrawProps */
+/** @typedef {typeof __propDef.events}  SiCoreldrawEvents */
+/** @typedef {typeof __propDef.slots}  SiCoreldrawSlots */
+export default class SiCoreldraw extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCoreldrawProps = typeof __propDef.props;
+export type SiCoreldrawEvents = typeof __propDef.events;
+export type SiCoreldrawSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

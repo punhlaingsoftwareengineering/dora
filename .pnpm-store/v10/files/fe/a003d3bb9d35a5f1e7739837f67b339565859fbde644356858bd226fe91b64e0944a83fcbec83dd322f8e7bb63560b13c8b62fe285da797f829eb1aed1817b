@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNetimProps */
+/** @typedef {typeof __propDef.events}  SiNetimEvents */
+/** @typedef {typeof __propDef.slots}  SiNetimSlots */
+export default class SiNetim extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNetimProps = typeof __propDef.props;
+export type SiNetimEvents = typeof __propDef.events;
+export type SiNetimSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

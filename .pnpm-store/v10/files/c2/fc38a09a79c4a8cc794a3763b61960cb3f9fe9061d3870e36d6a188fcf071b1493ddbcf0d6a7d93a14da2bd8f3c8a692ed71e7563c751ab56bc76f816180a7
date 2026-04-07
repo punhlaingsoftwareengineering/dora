@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMermaidProps */
+/** @typedef {typeof __propDef.events}  SiMermaidEvents */
+/** @typedef {typeof __propDef.slots}  SiMermaidSlots */
+export default class SiMermaid extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMermaidProps = typeof __propDef.props;
+export type SiMermaidEvents = typeof __propDef.events;
+export type SiMermaidSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

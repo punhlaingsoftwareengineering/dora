@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCircleProps */
+/** @typedef {typeof __propDef.events}  SiCircleEvents */
+/** @typedef {typeof __propDef.slots}  SiCircleSlots */
+export default class SiCircle extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCircleProps = typeof __propDef.props;
+export type SiCircleEvents = typeof __propDef.events;
+export type SiCircleSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

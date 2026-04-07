@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiVintedProps */
+/** @typedef {typeof __propDef.events}  SiVintedEvents */
+/** @typedef {typeof __propDef.slots}  SiVintedSlots */
+export default class SiVinted extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiVintedProps = typeof __propDef.props;
+export type SiVintedEvents = typeof __propDef.events;
+export type SiVintedSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

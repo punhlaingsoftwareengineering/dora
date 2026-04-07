@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiChinasouthernairlinesProps */
+/** @typedef {typeof __propDef.events}  SiChinasouthernairlinesEvents */
+/** @typedef {typeof __propDef.slots}  SiChinasouthernairlinesSlots */
+export default class SiChinasouthernairlines extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiChinasouthernairlinesProps = typeof __propDef.props;
+export type SiChinasouthernairlinesEvents = typeof __propDef.events;
+export type SiChinasouthernairlinesSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

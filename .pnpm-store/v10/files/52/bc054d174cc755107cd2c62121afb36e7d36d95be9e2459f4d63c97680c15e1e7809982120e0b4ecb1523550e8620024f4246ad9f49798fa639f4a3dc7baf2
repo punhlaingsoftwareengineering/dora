@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiVercelProps */
+/** @typedef {typeof __propDef.events}  SiVercelEvents */
+/** @typedef {typeof __propDef.slots}  SiVercelSlots */
+export default class SiVercel extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiVercelProps = typeof __propDef.props;
+export type SiVercelEvents = typeof __propDef.events;
+export type SiVercelSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

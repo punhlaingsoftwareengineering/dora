@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiReverbnationProps */
+/** @typedef {typeof __propDef.events}  SiReverbnationEvents */
+/** @typedef {typeof __propDef.slots}  SiReverbnationSlots */
+export default class SiReverbnation extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiReverbnationProps = typeof __propDef.props;
+export type SiReverbnationEvents = typeof __propDef.events;
+export type SiReverbnationSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

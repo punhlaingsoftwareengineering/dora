@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCheckioProps */
+/** @typedef {typeof __propDef.events}  SiCheckioEvents */
+/** @typedef {typeof __propDef.slots}  SiCheckioSlots */
+export default class SiCheckio extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCheckioProps = typeof __propDef.props;
+export type SiCheckioEvents = typeof __propDef.events;
+export type SiCheckioSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

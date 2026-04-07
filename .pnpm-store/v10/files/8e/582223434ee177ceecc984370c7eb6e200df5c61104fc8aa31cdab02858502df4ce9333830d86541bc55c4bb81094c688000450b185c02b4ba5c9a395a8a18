@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiHibernateProps */
+/** @typedef {typeof __propDef.events}  SiHibernateEvents */
+/** @typedef {typeof __propDef.slots}  SiHibernateSlots */
+export default class SiHibernate extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiHibernateProps = typeof __propDef.props;
+export type SiHibernateEvents = typeof __propDef.events;
+export type SiHibernateSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

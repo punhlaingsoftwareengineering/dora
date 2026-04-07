@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPadletProps */
+/** @typedef {typeof __propDef.events}  SiPadletEvents */
+/** @typedef {typeof __propDef.slots}  SiPadletSlots */
+export default class SiPadlet extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPadletProps = typeof __propDef.props;
+export type SiPadletEvents = typeof __propDef.events;
+export type SiPadletSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

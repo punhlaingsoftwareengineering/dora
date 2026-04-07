@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMoqProps */
+/** @typedef {typeof __propDef.events}  SiMoqEvents */
+/** @typedef {typeof __propDef.slots}  SiMoqSlots */
+export default class SiMoq extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMoqProps = typeof __propDef.props;
+export type SiMoqEvents = typeof __propDef.events;
+export type SiMoqSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

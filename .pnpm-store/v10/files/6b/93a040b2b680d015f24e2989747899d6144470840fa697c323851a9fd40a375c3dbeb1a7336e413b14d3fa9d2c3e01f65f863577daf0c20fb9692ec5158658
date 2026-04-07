@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGutenbergProps */
+/** @typedef {typeof __propDef.events}  SiGutenbergEvents */
+/** @typedef {typeof __propDef.slots}  SiGutenbergSlots */
+export default class SiGutenberg extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGutenbergProps = typeof __propDef.props;
+export type SiGutenbergEvents = typeof __propDef.events;
+export type SiGutenbergSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

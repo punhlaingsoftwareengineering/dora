@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFareharborProps */
+/** @typedef {typeof __propDef.events}  SiFareharborEvents */
+/** @typedef {typeof __propDef.slots}  SiFareharborSlots */
+export default class SiFareharbor extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFareharborProps = typeof __propDef.props;
+export type SiFareharborEvents = typeof __propDef.events;
+export type SiFareharborSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

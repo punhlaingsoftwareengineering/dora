@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMonicaProps */
+/** @typedef {typeof __propDef.events}  SiMonicaEvents */
+/** @typedef {typeof __propDef.slots}  SiMonicaSlots */
+export default class SiMonica extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMonicaProps = typeof __propDef.props;
+export type SiMonicaEvents = typeof __propDef.events;
+export type SiMonicaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

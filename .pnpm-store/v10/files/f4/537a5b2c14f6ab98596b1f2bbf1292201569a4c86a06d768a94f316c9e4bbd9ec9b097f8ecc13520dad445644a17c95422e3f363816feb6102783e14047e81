@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTorizonProps */
+/** @typedef {typeof __propDef.events}  SiTorizonEvents */
+/** @typedef {typeof __propDef.slots}  SiTorizonSlots */
+export default class SiTorizon extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTorizonProps = typeof __propDef.props;
+export type SiTorizonEvents = typeof __propDef.events;
+export type SiTorizonSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

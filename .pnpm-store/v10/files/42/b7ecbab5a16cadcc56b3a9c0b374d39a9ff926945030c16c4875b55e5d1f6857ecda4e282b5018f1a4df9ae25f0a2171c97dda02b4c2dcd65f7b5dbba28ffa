@@ -1,0 +1,29 @@
+/** @typedef {typeof __propDef.props}  SiWoocommerceProps */
+/** @typedef {typeof __propDef.events}  SiWoocommerceEvents */
+/** @typedef {typeof __propDef.slots}  SiWoocommerceSlots */
+export default class SiWoocommerce extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiWoocommerceProps = typeof __propDef.props;
+export type SiWoocommerceEvents = typeof __propDef.events;
+export type SiWoocommerceSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    /** @typedef {typeof __propDef.events}  SiWoocommerceEvents */
+    /** @typedef {typeof __propDef.slots}  SiWoocommerceSlots */
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

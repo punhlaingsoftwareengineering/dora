@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRubymineProps */
+/** @typedef {typeof __propDef.events}  SiRubymineEvents */
+/** @typedef {typeof __propDef.slots}  SiRubymineSlots */
+export default class SiRubymine extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRubymineProps = typeof __propDef.props;
+export type SiRubymineEvents = typeof __propDef.events;
+export type SiRubymineSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

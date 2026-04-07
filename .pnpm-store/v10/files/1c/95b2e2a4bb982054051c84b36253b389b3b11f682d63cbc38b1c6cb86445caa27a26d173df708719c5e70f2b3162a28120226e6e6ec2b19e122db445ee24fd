@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMetasploitProps */
+/** @typedef {typeof __propDef.events}  SiMetasploitEvents */
+/** @typedef {typeof __propDef.slots}  SiMetasploitSlots */
+export default class SiMetasploit extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMetasploitProps = typeof __propDef.props;
+export type SiMetasploitEvents = typeof __propDef.events;
+export type SiMetasploitSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

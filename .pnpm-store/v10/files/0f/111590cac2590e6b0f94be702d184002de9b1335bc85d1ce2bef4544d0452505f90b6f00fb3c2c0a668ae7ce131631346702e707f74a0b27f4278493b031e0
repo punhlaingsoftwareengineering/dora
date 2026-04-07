@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPhoenixframeworkProps */
+/** @typedef {typeof __propDef.events}  SiPhoenixframeworkEvents */
+/** @typedef {typeof __propDef.slots}  SiPhoenixframeworkSlots */
+export default class SiPhoenixframework extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPhoenixframeworkProps = typeof __propDef.props;
+export type SiPhoenixframeworkEvents = typeof __propDef.events;
+export type SiPhoenixframeworkSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

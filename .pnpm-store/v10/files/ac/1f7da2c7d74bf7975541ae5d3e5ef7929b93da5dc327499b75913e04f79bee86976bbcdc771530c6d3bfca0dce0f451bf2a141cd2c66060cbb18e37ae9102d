@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRumbleProps */
+/** @typedef {typeof __propDef.events}  SiRumbleEvents */
+/** @typedef {typeof __propDef.slots}  SiRumbleSlots */
+export default class SiRumble extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRumbleProps = typeof __propDef.props;
+export type SiRumbleEvents = typeof __propDef.events;
+export type SiRumbleSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

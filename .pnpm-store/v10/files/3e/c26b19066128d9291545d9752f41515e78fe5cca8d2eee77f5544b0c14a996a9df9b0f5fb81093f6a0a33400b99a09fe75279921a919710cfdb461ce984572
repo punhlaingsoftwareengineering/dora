@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMambauiProps */
+/** @typedef {typeof __propDef.events}  SiMambauiEvents */
+/** @typedef {typeof __propDef.slots}  SiMambauiSlots */
+export default class SiMambaui extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMambauiProps = typeof __propDef.props;
+export type SiMambauiEvents = typeof __propDef.events;
+export type SiMambauiSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

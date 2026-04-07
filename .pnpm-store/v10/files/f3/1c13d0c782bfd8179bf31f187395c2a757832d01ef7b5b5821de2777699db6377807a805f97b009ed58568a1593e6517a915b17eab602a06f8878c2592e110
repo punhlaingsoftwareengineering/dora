@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBrandfetchProps */
+/** @typedef {typeof __propDef.events}  SiBrandfetchEvents */
+/** @typedef {typeof __propDef.slots}  SiBrandfetchSlots */
+export default class SiBrandfetch extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBrandfetchProps = typeof __propDef.props;
+export type SiBrandfetchEvents = typeof __propDef.events;
+export type SiBrandfetchSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

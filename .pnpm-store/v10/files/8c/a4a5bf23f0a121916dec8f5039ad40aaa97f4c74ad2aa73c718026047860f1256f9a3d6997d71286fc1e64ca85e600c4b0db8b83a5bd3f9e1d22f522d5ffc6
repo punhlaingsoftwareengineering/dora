@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiIcons8Props */
+/** @typedef {typeof __propDef.events}  SiIcons8Events */
+/** @typedef {typeof __propDef.slots}  SiIcons8Slots */
+export default class SiIcons8 extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiIcons8Props = typeof __propDef.props;
+export type SiIcons8Events = typeof __propDef.events;
+export type SiIcons8Slots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

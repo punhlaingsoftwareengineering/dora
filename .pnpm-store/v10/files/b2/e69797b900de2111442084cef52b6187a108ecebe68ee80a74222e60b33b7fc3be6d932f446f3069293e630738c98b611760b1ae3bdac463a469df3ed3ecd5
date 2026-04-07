@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiApachemavenProps */
+/** @typedef {typeof __propDef.events}  SiApachemavenEvents */
+/** @typedef {typeof __propDef.slots}  SiApachemavenSlots */
+export default class SiApachemaven extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiApachemavenProps = typeof __propDef.props;
+export type SiApachemavenEvents = typeof __propDef.events;
+export type SiApachemavenSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

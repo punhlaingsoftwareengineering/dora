@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTampermonkeyProps */
+/** @typedef {typeof __propDef.events}  SiTampermonkeyEvents */
+/** @typedef {typeof __propDef.slots}  SiTampermonkeySlots */
+export default class SiTampermonkey extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTampermonkeyProps = typeof __propDef.props;
+export type SiTampermonkeyEvents = typeof __propDef.events;
+export type SiTampermonkeySlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

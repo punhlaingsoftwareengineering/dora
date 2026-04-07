@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiWinampProps */
+/** @typedef {typeof __propDef.events}  SiWinampEvents */
+/** @typedef {typeof __propDef.slots}  SiWinampSlots */
+export default class SiWinamp extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiWinampProps = typeof __propDef.props;
+export type SiWinampEvents = typeof __propDef.events;
+export type SiWinampSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

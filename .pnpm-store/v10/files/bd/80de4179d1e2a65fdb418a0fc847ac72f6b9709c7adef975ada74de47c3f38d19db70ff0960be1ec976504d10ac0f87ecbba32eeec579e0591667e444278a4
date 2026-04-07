@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGuitarproProps */
+/** @typedef {typeof __propDef.events}  SiGuitarproEvents */
+/** @typedef {typeof __propDef.slots}  SiGuitarproSlots */
+export default class SiGuitarpro extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGuitarproProps = typeof __propDef.props;
+export type SiGuitarproEvents = typeof __propDef.events;
+export type SiGuitarproSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiQbittorrentProps */
+/** @typedef {typeof __propDef.events}  SiQbittorrentEvents */
+/** @typedef {typeof __propDef.slots}  SiQbittorrentSlots */
+export default class SiQbittorrent extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiQbittorrentProps = typeof __propDef.props;
+export type SiQbittorrentEvents = typeof __propDef.events;
+export type SiQbittorrentSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

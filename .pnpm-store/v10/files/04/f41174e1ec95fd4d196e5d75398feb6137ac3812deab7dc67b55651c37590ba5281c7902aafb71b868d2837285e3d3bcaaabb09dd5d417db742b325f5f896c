@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGoogleauthenticatorProps */
+/** @typedef {typeof __propDef.events}  SiGoogleauthenticatorEvents */
+/** @typedef {typeof __propDef.slots}  SiGoogleauthenticatorSlots */
+export default class SiGoogleauthenticator extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGoogleauthenticatorProps = typeof __propDef.props;
+export type SiGoogleauthenticatorEvents = typeof __propDef.events;
+export type SiGoogleauthenticatorSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

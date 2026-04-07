@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSubversionProps */
+/** @typedef {typeof __propDef.events}  SiSubversionEvents */
+/** @typedef {typeof __propDef.slots}  SiSubversionSlots */
+export default class SiSubversion extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSubversionProps = typeof __propDef.props;
+export type SiSubversionEvents = typeof __propDef.events;
+export type SiSubversionSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

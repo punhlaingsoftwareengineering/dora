@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBspwmProps */
+/** @typedef {typeof __propDef.events}  SiBspwmEvents */
+/** @typedef {typeof __propDef.slots}  SiBspwmSlots */
+export default class SiBspwm extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBspwmProps = typeof __propDef.props;
+export type SiBspwmEvents = typeof __propDef.events;
+export type SiBspwmSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

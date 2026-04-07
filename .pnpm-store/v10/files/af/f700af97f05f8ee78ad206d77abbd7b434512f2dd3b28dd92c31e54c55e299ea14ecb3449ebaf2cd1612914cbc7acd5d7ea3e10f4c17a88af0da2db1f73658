@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNewjapanprowrestlingProps */
+/** @typedef {typeof __propDef.events}  SiNewjapanprowrestlingEvents */
+/** @typedef {typeof __propDef.slots}  SiNewjapanprowrestlingSlots */
+export default class SiNewjapanprowrestling extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNewjapanprowrestlingProps = typeof __propDef.props;
+export type SiNewjapanprowrestlingEvents = typeof __propDef.events;
+export type SiNewjapanprowrestlingSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAudiobookshelfProps */
+/** @typedef {typeof __propDef.events}  SiAudiobookshelfEvents */
+/** @typedef {typeof __propDef.slots}  SiAudiobookshelfSlots */
+export default class SiAudiobookshelf extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAudiobookshelfProps = typeof __propDef.props;
+export type SiAudiobookshelfEvents = typeof __propDef.events;
+export type SiAudiobookshelfSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

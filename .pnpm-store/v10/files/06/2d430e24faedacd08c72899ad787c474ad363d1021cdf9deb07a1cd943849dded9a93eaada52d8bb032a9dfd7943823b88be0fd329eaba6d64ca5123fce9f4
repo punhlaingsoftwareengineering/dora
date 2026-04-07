@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFreelancermapProps */
+/** @typedef {typeof __propDef.events}  SiFreelancermapEvents */
+/** @typedef {typeof __propDef.slots}  SiFreelancermapSlots */
+export default class SiFreelancermap extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFreelancermapProps = typeof __propDef.props;
+export type SiFreelancermapEvents = typeof __propDef.events;
+export type SiFreelancermapSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

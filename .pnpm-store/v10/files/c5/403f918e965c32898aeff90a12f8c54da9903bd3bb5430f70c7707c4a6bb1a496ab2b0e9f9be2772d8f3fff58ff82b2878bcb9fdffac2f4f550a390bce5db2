@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTubiProps */
+/** @typedef {typeof __propDef.events}  SiTubiEvents */
+/** @typedef {typeof __propDef.slots}  SiTubiSlots */
+export default class SiTubi extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTubiProps = typeof __propDef.props;
+export type SiTubiEvents = typeof __propDef.events;
+export type SiTubiSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

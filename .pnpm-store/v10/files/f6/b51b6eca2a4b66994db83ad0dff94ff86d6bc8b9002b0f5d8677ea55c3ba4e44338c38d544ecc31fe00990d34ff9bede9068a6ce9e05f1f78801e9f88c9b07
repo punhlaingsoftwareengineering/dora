@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBorgbackupProps */
+/** @typedef {typeof __propDef.events}  SiBorgbackupEvents */
+/** @typedef {typeof __propDef.slots}  SiBorgbackupSlots */
+export default class SiBorgbackup extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBorgbackupProps = typeof __propDef.props;
+export type SiBorgbackupEvents = typeof __propDef.events;
+export type SiBorgbackupSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

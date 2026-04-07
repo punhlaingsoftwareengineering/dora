@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGreasyforkProps */
+/** @typedef {typeof __propDef.events}  SiGreasyforkEvents */
+/** @typedef {typeof __propDef.slots}  SiGreasyforkSlots */
+export default class SiGreasyfork extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGreasyforkProps = typeof __propDef.props;
+export type SiGreasyforkEvents = typeof __propDef.events;
+export type SiGreasyforkSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

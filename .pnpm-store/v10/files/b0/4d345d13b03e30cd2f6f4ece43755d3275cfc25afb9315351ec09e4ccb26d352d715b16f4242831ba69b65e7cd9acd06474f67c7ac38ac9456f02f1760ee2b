@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiArmkeilProps */
+/** @typedef {typeof __propDef.events}  SiArmkeilEvents */
+/** @typedef {typeof __propDef.slots}  SiArmkeilSlots */
+export default class SiArmkeil extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiArmkeilProps = typeof __propDef.props;
+export type SiArmkeilEvents = typeof __propDef.events;
+export type SiArmkeilSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

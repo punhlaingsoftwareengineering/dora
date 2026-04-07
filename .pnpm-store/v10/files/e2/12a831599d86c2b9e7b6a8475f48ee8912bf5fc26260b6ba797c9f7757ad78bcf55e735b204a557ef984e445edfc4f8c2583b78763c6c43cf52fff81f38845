@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAegisauthenticatorProps */
+/** @typedef {typeof __propDef.events}  SiAegisauthenticatorEvents */
+/** @typedef {typeof __propDef.slots}  SiAegisauthenticatorSlots */
+export default class SiAegisauthenticator extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAegisauthenticatorProps = typeof __propDef.props;
+export type SiAegisauthenticatorEvents = typeof __propDef.events;
+export type SiAegisauthenticatorSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

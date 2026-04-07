@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiLaravelhorizonProps */
+/** @typedef {typeof __propDef.events}  SiLaravelhorizonEvents */
+/** @typedef {typeof __propDef.slots}  SiLaravelhorizonSlots */
+export default class SiLaravelhorizon extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiLaravelhorizonProps = typeof __propDef.props;
+export type SiLaravelhorizonEvents = typeof __propDef.events;
+export type SiLaravelhorizonSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

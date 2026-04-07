@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAiohttpProps */
+/** @typedef {typeof __propDef.events}  SiAiohttpEvents */
+/** @typedef {typeof __propDef.slots}  SiAiohttpSlots */
+export default class SiAiohttp extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAiohttpProps = typeof __propDef.props;
+export type SiAiohttpEvents = typeof __propDef.events;
+export type SiAiohttpSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

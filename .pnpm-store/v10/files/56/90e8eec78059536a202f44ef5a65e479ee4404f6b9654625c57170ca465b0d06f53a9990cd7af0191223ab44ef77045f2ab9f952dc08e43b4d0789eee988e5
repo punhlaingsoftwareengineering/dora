@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiVivawalletProps */
+/** @typedef {typeof __propDef.events}  SiVivawalletEvents */
+/** @typedef {typeof __propDef.slots}  SiVivawalletSlots */
+export default class SiVivawallet extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiVivawalletProps = typeof __propDef.props;
+export type SiVivawalletEvents = typeof __propDef.events;
+export type SiVivawalletSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

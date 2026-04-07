@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCucumberProps */
+/** @typedef {typeof __propDef.events}  SiCucumberEvents */
+/** @typedef {typeof __propDef.slots}  SiCucumberSlots */
+export default class SiCucumber extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCucumberProps = typeof __propDef.props;
+export type SiCucumberEvents = typeof __propDef.events;
+export type SiCucumberSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

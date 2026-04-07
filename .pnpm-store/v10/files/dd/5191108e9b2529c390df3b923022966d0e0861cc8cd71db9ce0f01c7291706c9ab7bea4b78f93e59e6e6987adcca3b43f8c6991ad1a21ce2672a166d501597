@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPlaystation4Props */
+/** @typedef {typeof __propDef.events}  SiPlaystation4Events */
+/** @typedef {typeof __propDef.slots}  SiPlaystation4Slots */
+export default class SiPlaystation4 extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPlaystation4Props = typeof __propDef.props;
+export type SiPlaystation4Events = typeof __propDef.events;
+export type SiPlaystation4Slots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

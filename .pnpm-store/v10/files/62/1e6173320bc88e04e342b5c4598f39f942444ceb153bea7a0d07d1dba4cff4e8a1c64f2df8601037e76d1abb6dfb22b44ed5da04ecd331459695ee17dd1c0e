@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiLabviewProps */
+/** @typedef {typeof __propDef.events}  SiLabviewEvents */
+/** @typedef {typeof __propDef.slots}  SiLabviewSlots */
+export default class SiLabview extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiLabviewProps = typeof __propDef.props;
+export type SiLabviewEvents = typeof __propDef.events;
+export type SiLabviewSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

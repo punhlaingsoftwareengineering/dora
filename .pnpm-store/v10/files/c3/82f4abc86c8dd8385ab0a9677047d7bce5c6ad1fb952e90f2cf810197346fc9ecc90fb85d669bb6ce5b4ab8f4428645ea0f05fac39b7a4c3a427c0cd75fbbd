@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiApplearcadeProps */
+/** @typedef {typeof __propDef.events}  SiApplearcadeEvents */
+/** @typedef {typeof __propDef.slots}  SiApplearcadeSlots */
+export default class SiApplearcade extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiApplearcadeProps = typeof __propDef.props;
+export type SiApplearcadeEvents = typeof __propDef.events;
+export type SiApplearcadeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

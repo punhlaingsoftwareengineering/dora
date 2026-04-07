@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBlazemeterProps */
+/** @typedef {typeof __propDef.events}  SiBlazemeterEvents */
+/** @typedef {typeof __propDef.slots}  SiBlazemeterSlots */
+export default class SiBlazemeter extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBlazemeterProps = typeof __propDef.props;
+export type SiBlazemeterEvents = typeof __propDef.events;
+export type SiBlazemeterSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

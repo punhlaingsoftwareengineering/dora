@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGdalProps */
+/** @typedef {typeof __propDef.events}  SiGdalEvents */
+/** @typedef {typeof __propDef.slots}  SiGdalSlots */
+export default class SiGdal extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGdalProps = typeof __propDef.props;
+export type SiGdalEvents = typeof __propDef.events;
+export type SiGdalSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

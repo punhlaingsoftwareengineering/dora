@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiDocusaurusProps */
+/** @typedef {typeof __propDef.events}  SiDocusaurusEvents */
+/** @typedef {typeof __propDef.slots}  SiDocusaurusSlots */
+export default class SiDocusaurus extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiDocusaurusProps = typeof __propDef.props;
+export type SiDocusaurusEvents = typeof __propDef.events;
+export type SiDocusaurusSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

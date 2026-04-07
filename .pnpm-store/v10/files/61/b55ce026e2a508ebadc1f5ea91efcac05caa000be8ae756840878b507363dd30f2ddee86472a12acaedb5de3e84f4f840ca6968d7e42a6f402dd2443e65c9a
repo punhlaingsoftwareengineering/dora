@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiEclipsevertdotxProps */
+/** @typedef {typeof __propDef.events}  SiEclipsevertdotxEvents */
+/** @typedef {typeof __propDef.slots}  SiEclipsevertdotxSlots */
+export default class SiEclipsevertdotx extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiEclipsevertdotxProps = typeof __propDef.props;
+export type SiEclipsevertdotxEvents = typeof __propDef.events;
+export type SiEclipsevertdotxSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTrelloProps */
+/** @typedef {typeof __propDef.events}  SiTrelloEvents */
+/** @typedef {typeof __propDef.slots}  SiTrelloSlots */
+export default class SiTrello extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTrelloProps = typeof __propDef.props;
+export type SiTrelloEvents = typeof __propDef.events;
+export type SiTrelloSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

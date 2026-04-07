@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiWolframmathematicaProps */
+/** @typedef {typeof __propDef.events}  SiWolframmathematicaEvents */
+/** @typedef {typeof __propDef.slots}  SiWolframmathematicaSlots */
+export default class SiWolframmathematica extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiWolframmathematicaProps = typeof __propDef.props;
+export type SiWolframmathematicaEvents = typeof __propDef.events;
+export type SiWolframmathematicaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTraefikmeshProps */
+/** @typedef {typeof __propDef.events}  SiTraefikmeshEvents */
+/** @typedef {typeof __propDef.slots}  SiTraefikmeshSlots */
+export default class SiTraefikmesh extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTraefikmeshProps = typeof __propDef.props;
+export type SiTraefikmeshEvents = typeof __propDef.events;
+export type SiTraefikmeshSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

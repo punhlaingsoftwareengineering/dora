@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPytorchProps */
+/** @typedef {typeof __propDef.events}  SiPytorchEvents */
+/** @typedef {typeof __propDef.slots}  SiPytorchSlots */
+export default class SiPytorch extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPytorchProps = typeof __propDef.props;
+export type SiPytorchEvents = typeof __propDef.events;
+export type SiPytorchSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

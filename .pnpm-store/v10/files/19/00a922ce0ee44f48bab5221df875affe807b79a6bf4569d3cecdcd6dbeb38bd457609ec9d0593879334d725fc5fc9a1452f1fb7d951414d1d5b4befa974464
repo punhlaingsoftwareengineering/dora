@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTeradataProps */
+/** @typedef {typeof __propDef.events}  SiTeradataEvents */
+/** @typedef {typeof __propDef.slots}  SiTeradataSlots */
+export default class SiTeradata extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTeradataProps = typeof __propDef.props;
+export type SiTeradataEvents = typeof __propDef.events;
+export type SiTeradataSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,54 @@
+### OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+### Node / JS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tsbuildinfo
+
+### Env / secrets (NEVER commit these)
+.env
+.env.*
+!.env.example
+!.env.template
+
+### SvelteKit / Vite
+.svelte-kit/
+.vercel/
+.netlify/
+dist/
+build/
+.vite/
+vite.config.*.timestamp-*
+
+### Playwright
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+### Tauri / Rust
+**/src-tauri/target/
+**/src-tauri/gen/
+**/src-tauri/.tauri/
+*.dSYM/
+
+### Logs / runtime data
+logs/
+*.log
+
+### Local data / caches
+.cache/
+.turbo/
+.eslintcache
+
+### Cursor
+.cursor/

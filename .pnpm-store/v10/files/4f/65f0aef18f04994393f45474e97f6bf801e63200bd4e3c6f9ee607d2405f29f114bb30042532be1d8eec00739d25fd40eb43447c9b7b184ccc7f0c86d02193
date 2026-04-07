@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiApachecloudstackProps */
+/** @typedef {typeof __propDef.events}  SiApachecloudstackEvents */
+/** @typedef {typeof __propDef.slots}  SiApachecloudstackSlots */
+export default class SiApachecloudstack extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiApachecloudstackProps = typeof __propDef.props;
+export type SiApachecloudstackEvents = typeof __propDef.events;
+export type SiApachecloudstackSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

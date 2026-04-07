@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRossmannProps */
+/** @typedef {typeof __propDef.events}  SiRossmannEvents */
+/** @typedef {typeof __propDef.slots}  SiRossmannSlots */
+export default class SiRossmann extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRossmannProps = typeof __propDef.props;
+export type SiRossmannEvents = typeof __propDef.events;
+export type SiRossmannSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

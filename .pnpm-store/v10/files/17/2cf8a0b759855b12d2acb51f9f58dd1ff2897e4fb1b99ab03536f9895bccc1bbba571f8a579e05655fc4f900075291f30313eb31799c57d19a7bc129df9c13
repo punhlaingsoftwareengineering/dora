@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiHackerrankProps */
+/** @typedef {typeof __propDef.events}  SiHackerrankEvents */
+/** @typedef {typeof __propDef.slots}  SiHackerrankSlots */
+export default class SiHackerrank extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiHackerrankProps = typeof __propDef.props;
+export type SiHackerrankEvents = typeof __propDef.events;
+export type SiHackerrankSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

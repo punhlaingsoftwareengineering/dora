@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFurrynetworkProps */
+/** @typedef {typeof __propDef.events}  SiFurrynetworkEvents */
+/** @typedef {typeof __propDef.slots}  SiFurrynetworkSlots */
+export default class SiFurrynetwork extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFurrynetworkProps = typeof __propDef.props;
+export type SiFurrynetworkEvents = typeof __propDef.events;
+export type SiFurrynetworkSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

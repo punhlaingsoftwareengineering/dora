@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiModelcontextprotocolProps */
+/** @typedef {typeof __propDef.events}  SiModelcontextprotocolEvents */
+/** @typedef {typeof __propDef.slots}  SiModelcontextprotocolSlots */
+export default class SiModelcontextprotocol extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiModelcontextprotocolProps = typeof __propDef.props;
+export type SiModelcontextprotocolEvents = typeof __propDef.events;
+export type SiModelcontextprotocolSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

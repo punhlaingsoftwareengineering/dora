@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBrenntagProps */
+/** @typedef {typeof __propDef.events}  SiBrenntagEvents */
+/** @typedef {typeof __propDef.slots}  SiBrenntagSlots */
+export default class SiBrenntag extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBrenntagProps = typeof __propDef.props;
+export type SiBrenntagEvents = typeof __propDef.events;
+export type SiBrenntagSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

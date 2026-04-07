@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRetroarchProps */
+/** @typedef {typeof __propDef.events}  SiRetroarchEvents */
+/** @typedef {typeof __propDef.slots}  SiRetroarchSlots */
+export default class SiRetroarch extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRetroarchProps = typeof __propDef.props;
+export type SiRetroarchEvents = typeof __propDef.events;
+export type SiRetroarchSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

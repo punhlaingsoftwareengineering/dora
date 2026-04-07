@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCurseforgeProps */
+/** @typedef {typeof __propDef.events}  SiCurseforgeEvents */
+/** @typedef {typeof __propDef.slots}  SiCurseforgeSlots */
+export default class SiCurseforge extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCurseforgeProps = typeof __propDef.props;
+export type SiCurseforgeEvents = typeof __propDef.events;
+export type SiCurseforgeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

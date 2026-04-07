@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAdblockplusProps */
+/** @typedef {typeof __propDef.events}  SiAdblockplusEvents */
+/** @typedef {typeof __propDef.slots}  SiAdblockplusSlots */
+export default class SiAdblockplus extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAdblockplusProps = typeof __propDef.props;
+export type SiAdblockplusEvents = typeof __propDef.events;
+export type SiAdblockplusSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

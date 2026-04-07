@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAuchanProps */
+/** @typedef {typeof __propDef.events}  SiAuchanEvents */
+/** @typedef {typeof __propDef.slots}  SiAuchanSlots */
+export default class SiAuchan extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAuchanProps = typeof __propDef.props;
+export type SiAuchanEvents = typeof __propDef.events;
+export type SiAuchanSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

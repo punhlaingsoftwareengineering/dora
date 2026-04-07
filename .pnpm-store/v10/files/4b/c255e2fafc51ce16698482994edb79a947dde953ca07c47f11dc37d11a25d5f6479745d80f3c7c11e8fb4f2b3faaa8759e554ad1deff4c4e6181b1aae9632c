@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiArkecosystemProps */
+/** @typedef {typeof __propDef.events}  SiArkecosystemEvents */
+/** @typedef {typeof __propDef.slots}  SiArkecosystemSlots */
+export default class SiArkecosystem extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiArkecosystemProps = typeof __propDef.props;
+export type SiArkecosystemEvents = typeof __propDef.events;
+export type SiArkecosystemSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

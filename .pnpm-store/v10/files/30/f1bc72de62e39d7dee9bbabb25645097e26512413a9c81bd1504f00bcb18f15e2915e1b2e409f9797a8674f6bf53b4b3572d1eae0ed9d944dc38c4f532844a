@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCanonicalProps */
+/** @typedef {typeof __propDef.events}  SiCanonicalEvents */
+/** @typedef {typeof __propDef.slots}  SiCanonicalSlots */
+export default class SiCanonical extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCanonicalProps = typeof __propDef.props;
+export type SiCanonicalEvents = typeof __propDef.events;
+export type SiCanonicalSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

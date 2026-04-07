@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRubygemsProps */
+/** @typedef {typeof __propDef.events}  SiRubygemsEvents */
+/** @typedef {typeof __propDef.slots}  SiRubygemsSlots */
+export default class SiRubygems extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRubygemsProps = typeof __propDef.props;
+export type SiRubygemsEvents = typeof __propDef.events;
+export type SiRubygemsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

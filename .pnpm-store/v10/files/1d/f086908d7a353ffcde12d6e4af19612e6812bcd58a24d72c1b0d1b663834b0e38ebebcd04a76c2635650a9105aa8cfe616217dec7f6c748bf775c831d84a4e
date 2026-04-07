@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiApachekylinProps */
+/** @typedef {typeof __propDef.events}  SiApachekylinEvents */
+/** @typedef {typeof __propDef.slots}  SiApachekylinSlots */
+export default class SiApachekylin extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiApachekylinProps = typeof __propDef.props;
+export type SiApachekylinEvents = typeof __propDef.events;
+export type SiApachekylinSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

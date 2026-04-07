@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSubtitleeditProps */
+/** @typedef {typeof __propDef.events}  SiSubtitleeditEvents */
+/** @typedef {typeof __propDef.slots}  SiSubtitleeditSlots */
+export default class SiSubtitleedit extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSubtitleeditProps = typeof __propDef.props;
+export type SiSubtitleeditEvents = typeof __propDef.events;
+export type SiSubtitleeditSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

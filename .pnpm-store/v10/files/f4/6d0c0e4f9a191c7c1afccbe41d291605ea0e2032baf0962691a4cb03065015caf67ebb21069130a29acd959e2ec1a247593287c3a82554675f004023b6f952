@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRedcandlegamesProps */
+/** @typedef {typeof __propDef.events}  SiRedcandlegamesEvents */
+/** @typedef {typeof __propDef.slots}  SiRedcandlegamesSlots */
+export default class SiRedcandlegames extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRedcandlegamesProps = typeof __propDef.props;
+export type SiRedcandlegamesEvents = typeof __propDef.events;
+export type SiRedcandlegamesSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

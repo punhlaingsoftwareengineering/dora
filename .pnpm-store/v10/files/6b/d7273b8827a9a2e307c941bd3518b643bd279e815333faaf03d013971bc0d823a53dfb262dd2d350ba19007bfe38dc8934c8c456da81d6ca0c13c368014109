@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSecurityscorecardProps */
+/** @typedef {typeof __propDef.events}  SiSecurityscorecardEvents */
+/** @typedef {typeof __propDef.slots}  SiSecurityscorecardSlots */
+export default class SiSecurityscorecard extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSecurityscorecardProps = typeof __propDef.props;
+export type SiSecurityscorecardEvents = typeof __propDef.events;
+export type SiSecurityscorecardSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

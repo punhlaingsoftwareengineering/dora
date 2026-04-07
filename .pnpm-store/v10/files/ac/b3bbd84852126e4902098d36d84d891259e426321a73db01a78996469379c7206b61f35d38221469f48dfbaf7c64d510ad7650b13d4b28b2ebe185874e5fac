@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPosthogProps */
+/** @typedef {typeof __propDef.events}  SiPosthogEvents */
+/** @typedef {typeof __propDef.slots}  SiPosthogSlots */
+export default class SiPosthog extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPosthogProps = typeof __propDef.props;
+export type SiPosthogEvents = typeof __propDef.events;
+export type SiPosthogSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiScikitlearnProps */
+/** @typedef {typeof __propDef.events}  SiScikitlearnEvents */
+/** @typedef {typeof __propDef.slots}  SiScikitlearnSlots */
+export default class SiScikitlearn extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiScikitlearnProps = typeof __propDef.props;
+export type SiScikitlearnEvents = typeof __propDef.events;
+export type SiScikitlearnSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

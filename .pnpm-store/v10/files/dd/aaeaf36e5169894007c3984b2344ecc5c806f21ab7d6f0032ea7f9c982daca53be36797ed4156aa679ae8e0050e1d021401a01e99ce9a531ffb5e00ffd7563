@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGooglechromeProps */
+/** @typedef {typeof __propDef.events}  SiGooglechromeEvents */
+/** @typedef {typeof __propDef.slots}  SiGooglechromeSlots */
+export default class SiGooglechrome extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGooglechromeProps = typeof __propDef.props;
+export type SiGooglechromeEvents = typeof __propDef.events;
+export type SiGooglechromeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

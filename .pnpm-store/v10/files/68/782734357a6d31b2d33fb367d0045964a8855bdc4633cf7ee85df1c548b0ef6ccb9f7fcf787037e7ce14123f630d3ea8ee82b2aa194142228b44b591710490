@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTheplanetarysocietyProps */
+/** @typedef {typeof __propDef.events}  SiTheplanetarysocietyEvents */
+/** @typedef {typeof __propDef.slots}  SiTheplanetarysocietySlots */
+export default class SiTheplanetarysociety extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTheplanetarysocietyProps = typeof __propDef.props;
+export type SiTheplanetarysocietyEvents = typeof __propDef.events;
+export type SiTheplanetarysocietySlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

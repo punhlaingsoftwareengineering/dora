@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiWacomProps */
+/** @typedef {typeof __propDef.events}  SiWacomEvents */
+/** @typedef {typeof __propDef.slots}  SiWacomSlots */
+export default class SiWacom extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiWacomProps = typeof __propDef.props;
+export type SiWacomEvents = typeof __propDef.events;
+export type SiWacomSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

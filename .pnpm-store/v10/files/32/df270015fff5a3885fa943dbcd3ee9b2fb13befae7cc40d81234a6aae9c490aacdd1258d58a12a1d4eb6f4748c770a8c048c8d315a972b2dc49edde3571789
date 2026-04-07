@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGitpodProps */
+/** @typedef {typeof __propDef.events}  SiGitpodEvents */
+/** @typedef {typeof __propDef.slots}  SiGitpodSlots */
+export default class SiGitpod extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGitpodProps = typeof __propDef.props;
+export type SiGitpodEvents = typeof __propDef.events;
+export type SiGitpodSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

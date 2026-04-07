@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRockstargamesProps */
+/** @typedef {typeof __propDef.events}  SiRockstargamesEvents */
+/** @typedef {typeof __propDef.slots}  SiRockstargamesSlots */
+export default class SiRockstargames extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRockstargamesProps = typeof __propDef.props;
+export type SiRockstargamesEvents = typeof __propDef.events;
+export type SiRockstargamesSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

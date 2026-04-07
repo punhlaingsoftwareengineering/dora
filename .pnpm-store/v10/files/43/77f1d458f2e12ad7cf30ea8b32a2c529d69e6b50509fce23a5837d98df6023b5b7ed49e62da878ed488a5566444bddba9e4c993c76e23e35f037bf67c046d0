@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTaichigraphicsProps */
+/** @typedef {typeof __propDef.events}  SiTaichigraphicsEvents */
+/** @typedef {typeof __propDef.slots}  SiTaichigraphicsSlots */
+export default class SiTaichigraphics extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTaichigraphicsProps = typeof __propDef.props;
+export type SiTaichigraphicsEvents = typeof __propDef.events;
+export type SiTaichigraphicsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMediatekProps */
+/** @typedef {typeof __propDef.events}  SiMediatekEvents */
+/** @typedef {typeof __propDef.slots}  SiMediatekSlots */
+export default class SiMediatek extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMediatekProps = typeof __propDef.props;
+export type SiMediatekEvents = typeof __propDef.events;
+export type SiMediatekSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

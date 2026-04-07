@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiApachecassandraProps */
+/** @typedef {typeof __propDef.events}  SiApachecassandraEvents */
+/** @typedef {typeof __propDef.slots}  SiApachecassandraSlots */
+export default class SiApachecassandra extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiApachecassandraProps = typeof __propDef.props;
+export type SiApachecassandraEvents = typeof __propDef.events;
+export type SiApachecassandraSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

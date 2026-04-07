@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGamebananaProps */
+/** @typedef {typeof __propDef.events}  SiGamebananaEvents */
+/** @typedef {typeof __propDef.slots}  SiGamebananaSlots */
+export default class SiGamebanana extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGamebananaProps = typeof __propDef.props;
+export type SiGamebananaEvents = typeof __propDef.events;
+export type SiGamebananaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

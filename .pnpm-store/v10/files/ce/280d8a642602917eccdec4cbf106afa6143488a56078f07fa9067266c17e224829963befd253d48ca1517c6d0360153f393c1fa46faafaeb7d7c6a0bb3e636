@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGnuicecatProps */
+/** @typedef {typeof __propDef.events}  SiGnuicecatEvents */
+/** @typedef {typeof __propDef.slots}  SiGnuicecatSlots */
+export default class SiGnuicecat extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGnuicecatProps = typeof __propDef.props;
+export type SiGnuicecatEvents = typeof __propDef.events;
+export type SiGnuicecatSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

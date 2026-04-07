@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiLivejournalProps */
+/** @typedef {typeof __propDef.events}  SiLivejournalEvents */
+/** @typedef {typeof __propDef.slots}  SiLivejournalSlots */
+export default class SiLivejournal extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiLivejournalProps = typeof __propDef.props;
+export type SiLivejournalEvents = typeof __propDef.events;
+export type SiLivejournalSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

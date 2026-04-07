@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMarkdownProps */
+/** @typedef {typeof __propDef.events}  SiMarkdownEvents */
+/** @typedef {typeof __propDef.slots}  SiMarkdownSlots */
+export default class SiMarkdown extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMarkdownProps = typeof __propDef.props;
+export type SiMarkdownEvents = typeof __propDef.events;
+export type SiMarkdownSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

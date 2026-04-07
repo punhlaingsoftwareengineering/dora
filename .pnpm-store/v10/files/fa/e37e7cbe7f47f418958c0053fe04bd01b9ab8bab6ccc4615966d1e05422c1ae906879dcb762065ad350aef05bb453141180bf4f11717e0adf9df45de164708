@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  Si7zipProps */
+/** @typedef {typeof __propDef.events}  Si7zipEvents */
+/** @typedef {typeof __propDef.slots}  Si7zipSlots */
+export default class Si7zip extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type Si7zipProps = typeof __propDef.props;
+export type Si7zipEvents = typeof __propDef.events;
+export type Si7zipSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

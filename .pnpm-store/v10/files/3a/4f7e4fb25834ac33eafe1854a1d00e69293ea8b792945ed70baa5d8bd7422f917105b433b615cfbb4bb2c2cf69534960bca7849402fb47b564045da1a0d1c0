@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFreepikProps */
+/** @typedef {typeof __propDef.events}  SiFreepikEvents */
+/** @typedef {typeof __propDef.slots}  SiFreepikSlots */
+export default class SiFreepik extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFreepikProps = typeof __propDef.props;
+export type SiFreepikEvents = typeof __propDef.events;
+export type SiFreepikSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

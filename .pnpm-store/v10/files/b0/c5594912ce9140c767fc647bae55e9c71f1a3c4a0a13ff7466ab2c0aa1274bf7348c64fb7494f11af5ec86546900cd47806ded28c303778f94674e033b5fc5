@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCampaignmonitorProps */
+/** @typedef {typeof __propDef.events}  SiCampaignmonitorEvents */
+/** @typedef {typeof __propDef.slots}  SiCampaignmonitorSlots */
+export default class SiCampaignmonitor extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCampaignmonitorProps = typeof __propDef.props;
+export type SiCampaignmonitorEvents = typeof __propDef.events;
+export type SiCampaignmonitorSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

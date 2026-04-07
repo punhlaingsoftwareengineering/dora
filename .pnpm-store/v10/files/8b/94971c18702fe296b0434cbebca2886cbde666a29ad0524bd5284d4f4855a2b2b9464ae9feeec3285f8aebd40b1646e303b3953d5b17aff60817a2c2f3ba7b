@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPostgresqlProps */
+/** @typedef {typeof __propDef.events}  SiPostgresqlEvents */
+/** @typedef {typeof __propDef.slots}  SiPostgresqlSlots */
+export default class SiPostgresql extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPostgresqlProps = typeof __propDef.props;
+export type SiPostgresqlEvents = typeof __propDef.events;
+export type SiPostgresqlSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

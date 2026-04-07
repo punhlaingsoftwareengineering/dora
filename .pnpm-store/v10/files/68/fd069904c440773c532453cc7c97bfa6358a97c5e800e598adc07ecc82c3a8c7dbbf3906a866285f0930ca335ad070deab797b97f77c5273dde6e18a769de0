@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiLaragonProps */
+/** @typedef {typeof __propDef.events}  SiLaragonEvents */
+/** @typedef {typeof __propDef.slots}  SiLaragonSlots */
+export default class SiLaragon extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiLaragonProps = typeof __propDef.props;
+export type SiLaragonEvents = typeof __propDef.events;
+export type SiLaragonSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

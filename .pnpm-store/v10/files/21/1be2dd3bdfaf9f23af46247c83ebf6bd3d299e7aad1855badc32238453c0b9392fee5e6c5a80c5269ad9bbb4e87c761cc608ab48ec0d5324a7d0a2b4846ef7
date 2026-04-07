@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNexusmodsProps */
+/** @typedef {typeof __propDef.events}  SiNexusmodsEvents */
+/** @typedef {typeof __propDef.slots}  SiNexusmodsSlots */
+export default class SiNexusmods extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNexusmodsProps = typeof __propDef.props;
+export type SiNexusmodsEvents = typeof __propDef.events;
+export type SiNexusmodsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

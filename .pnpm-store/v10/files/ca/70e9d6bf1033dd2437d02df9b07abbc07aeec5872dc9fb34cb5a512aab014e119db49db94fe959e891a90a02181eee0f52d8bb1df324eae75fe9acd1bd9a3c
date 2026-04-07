@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBungieProps */
+/** @typedef {typeof __propDef.events}  SiBungieEvents */
+/** @typedef {typeof __propDef.slots}  SiBungieSlots */
+export default class SiBungie extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBungieProps = typeof __propDef.props;
+export type SiBungieEvents = typeof __propDef.events;
+export type SiBungieSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

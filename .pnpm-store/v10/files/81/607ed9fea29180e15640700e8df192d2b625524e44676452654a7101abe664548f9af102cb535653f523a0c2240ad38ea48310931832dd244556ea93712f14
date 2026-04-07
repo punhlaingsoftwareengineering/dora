@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiElixirProps */
+/** @typedef {typeof __propDef.events}  SiElixirEvents */
+/** @typedef {typeof __propDef.slots}  SiElixirSlots */
+export default class SiElixir extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiElixirProps = typeof __propDef.props;
+export type SiElixirEvents = typeof __propDef.events;
+export type SiElixirSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

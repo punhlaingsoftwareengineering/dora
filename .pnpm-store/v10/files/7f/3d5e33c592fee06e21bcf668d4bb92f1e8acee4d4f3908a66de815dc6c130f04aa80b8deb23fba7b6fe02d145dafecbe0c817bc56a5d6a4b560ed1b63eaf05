@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOreillyProps */
+/** @typedef {typeof __propDef.events}  SiOreillyEvents */
+/** @typedef {typeof __propDef.slots}  SiOreillySlots */
+export default class SiOreilly extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOreillyProps = typeof __propDef.props;
+export type SiOreillyEvents = typeof __propDef.events;
+export type SiOreillySlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

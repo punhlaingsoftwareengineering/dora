@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOmadacloudProps */
+/** @typedef {typeof __propDef.events}  SiOmadacloudEvents */
+/** @typedef {typeof __propDef.slots}  SiOmadacloudSlots */
+export default class SiOmadacloud extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOmadacloudProps = typeof __propDef.props;
+export type SiOmadacloudEvents = typeof __propDef.events;
+export type SiOmadacloudSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

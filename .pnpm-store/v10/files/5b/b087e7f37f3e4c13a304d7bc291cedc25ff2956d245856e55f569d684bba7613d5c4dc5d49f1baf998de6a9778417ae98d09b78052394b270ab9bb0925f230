@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSanfranciscomunicipalrailwayProps */
+/** @typedef {typeof __propDef.events}  SiSanfranciscomunicipalrailwayEvents */
+/** @typedef {typeof __propDef.slots}  SiSanfranciscomunicipalrailwaySlots */
+export default class SiSanfranciscomunicipalrailway extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSanfranciscomunicipalrailwayProps = typeof __propDef.props;
+export type SiSanfranciscomunicipalrailwayEvents = typeof __propDef.events;
+export type SiSanfranciscomunicipalrailwaySlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

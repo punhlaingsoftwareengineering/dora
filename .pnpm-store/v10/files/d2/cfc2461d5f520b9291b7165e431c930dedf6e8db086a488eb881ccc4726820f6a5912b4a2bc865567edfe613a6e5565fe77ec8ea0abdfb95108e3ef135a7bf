@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiJinjaProps */
+/** @typedef {typeof __propDef.events}  SiJinjaEvents */
+/** @typedef {typeof __propDef.slots}  SiJinjaSlots */
+export default class SiJinja extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiJinjaProps = typeof __propDef.props;
+export type SiJinjaEvents = typeof __propDef.events;
+export type SiJinjaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

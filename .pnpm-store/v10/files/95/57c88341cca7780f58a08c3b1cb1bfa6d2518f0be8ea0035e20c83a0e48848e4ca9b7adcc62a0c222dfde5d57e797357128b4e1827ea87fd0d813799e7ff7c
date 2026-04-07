@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCrunchbaseProps */
+/** @typedef {typeof __propDef.events}  SiCrunchbaseEvents */
+/** @typedef {typeof __propDef.slots}  SiCrunchbaseSlots */
+export default class SiCrunchbase extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCrunchbaseProps = typeof __propDef.props;
+export type SiCrunchbaseEvents = typeof __propDef.events;
+export type SiCrunchbaseSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

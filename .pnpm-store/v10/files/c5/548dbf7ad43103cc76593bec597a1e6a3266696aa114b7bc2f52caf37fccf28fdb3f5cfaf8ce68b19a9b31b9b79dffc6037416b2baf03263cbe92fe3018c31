@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCorsairProps */
+/** @typedef {typeof __propDef.events}  SiCorsairEvents */
+/** @typedef {typeof __propDef.slots}  SiCorsairSlots */
+export default class SiCorsair extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCorsairProps = typeof __propDef.props;
+export type SiCorsairEvents = typeof __propDef.events;
+export type SiCorsairSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiWebgpuProps */
+/** @typedef {typeof __propDef.events}  SiWebgpuEvents */
+/** @typedef {typeof __propDef.slots}  SiWebgpuSlots */
+export default class SiWebgpu extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiWebgpuProps = typeof __propDef.props;
+export type SiWebgpuEvents = typeof __propDef.events;
+export type SiWebgpuSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

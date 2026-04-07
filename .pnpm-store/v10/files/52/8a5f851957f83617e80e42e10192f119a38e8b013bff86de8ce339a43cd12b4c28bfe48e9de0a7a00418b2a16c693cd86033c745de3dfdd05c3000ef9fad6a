@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiEuropeanunionProps */
+/** @typedef {typeof __propDef.events}  SiEuropeanunionEvents */
+/** @typedef {typeof __propDef.slots}  SiEuropeanunionSlots */
+export default class SiEuropeanunion extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiEuropeanunionProps = typeof __propDef.props;
+export type SiEuropeanunionEvents = typeof __propDef.events;
+export type SiEuropeanunionSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

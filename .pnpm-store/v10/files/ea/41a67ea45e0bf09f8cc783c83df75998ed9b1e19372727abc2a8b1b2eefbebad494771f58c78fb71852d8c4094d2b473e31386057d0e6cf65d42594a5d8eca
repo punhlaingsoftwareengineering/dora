@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNearProps */
+/** @typedef {typeof __propDef.events}  SiNearEvents */
+/** @typedef {typeof __propDef.slots}  SiNearSlots */
+export default class SiNear extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNearProps = typeof __propDef.props;
+export type SiNearEvents = typeof __propDef.events;
+export type SiNearSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiProtonmailProps */
+/** @typedef {typeof __propDef.events}  SiProtonmailEvents */
+/** @typedef {typeof __propDef.slots}  SiProtonmailSlots */
+export default class SiProtonmail extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiProtonmailProps = typeof __propDef.props;
+export type SiProtonmailEvents = typeof __propDef.events;
+export type SiProtonmailSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

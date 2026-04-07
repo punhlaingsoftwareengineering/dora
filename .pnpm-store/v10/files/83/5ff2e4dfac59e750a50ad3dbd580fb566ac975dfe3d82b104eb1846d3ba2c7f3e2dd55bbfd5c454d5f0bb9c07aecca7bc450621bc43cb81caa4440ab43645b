@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGofundmeProps */
+/** @typedef {typeof __propDef.events}  SiGofundmeEvents */
+/** @typedef {typeof __propDef.slots}  SiGofundmeSlots */
+export default class SiGofundme extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGofundmeProps = typeof __propDef.props;
+export type SiGofundmeEvents = typeof __propDef.events;
+export type SiGofundmeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

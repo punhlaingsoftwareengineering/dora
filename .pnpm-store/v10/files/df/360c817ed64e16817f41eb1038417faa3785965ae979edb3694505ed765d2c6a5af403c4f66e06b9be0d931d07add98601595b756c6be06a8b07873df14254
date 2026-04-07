@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOctoprintProps */
+/** @typedef {typeof __propDef.events}  SiOctoprintEvents */
+/** @typedef {typeof __propDef.slots}  SiOctoprintSlots */
+export default class SiOctoprint extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOctoprintProps = typeof __propDef.props;
+export type SiOctoprintEvents = typeof __propDef.events;
+export type SiOctoprintSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

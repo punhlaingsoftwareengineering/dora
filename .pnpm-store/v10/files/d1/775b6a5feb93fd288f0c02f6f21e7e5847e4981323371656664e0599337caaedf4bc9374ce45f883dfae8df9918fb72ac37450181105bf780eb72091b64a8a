@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiDtubeProps */
+/** @typedef {typeof __propDef.events}  SiDtubeEvents */
+/** @typedef {typeof __propDef.slots}  SiDtubeSlots */
+export default class SiDtube extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiDtubeProps = typeof __propDef.props;
+export type SiDtubeEvents = typeof __propDef.events;
+export type SiDtubeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

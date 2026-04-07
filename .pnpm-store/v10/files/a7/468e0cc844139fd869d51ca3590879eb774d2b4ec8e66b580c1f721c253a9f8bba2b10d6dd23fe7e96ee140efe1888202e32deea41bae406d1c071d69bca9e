@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiChatwootProps */
+/** @typedef {typeof __propDef.events}  SiChatwootEvents */
+/** @typedef {typeof __propDef.slots}  SiChatwootSlots */
+export default class SiChatwoot extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiChatwootProps = typeof __propDef.props;
+export type SiChatwootEvents = typeof __propDef.events;
+export type SiChatwootSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNgrxProps */
+/** @typedef {typeof __propDef.events}  SiNgrxEvents */
+/** @typedef {typeof __propDef.slots}  SiNgrxSlots */
+export default class SiNgrx extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNgrxProps = typeof __propDef.props;
+export type SiNgrxEvents = typeof __propDef.events;
+export type SiNgrxSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiHusqvarnaProps */
+/** @typedef {typeof __propDef.events}  SiHusqvarnaEvents */
+/** @typedef {typeof __propDef.slots}  SiHusqvarnaSlots */
+export default class SiHusqvarna extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiHusqvarnaProps = typeof __propDef.props;
+export type SiHusqvarnaEvents = typeof __propDef.events;
+export type SiHusqvarnaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

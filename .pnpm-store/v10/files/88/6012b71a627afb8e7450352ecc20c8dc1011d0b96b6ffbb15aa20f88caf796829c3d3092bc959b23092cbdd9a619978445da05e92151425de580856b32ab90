@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAlpinelinuxProps */
+/** @typedef {typeof __propDef.events}  SiAlpinelinuxEvents */
+/** @typedef {typeof __propDef.slots}  SiAlpinelinuxSlots */
+export default class SiAlpinelinux extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAlpinelinuxProps = typeof __propDef.props;
+export type SiAlpinelinuxEvents = typeof __propDef.events;
+export type SiAlpinelinuxSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

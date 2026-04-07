@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiInvoiceninjaProps */
+/** @typedef {typeof __propDef.events}  SiInvoiceninjaEvents */
+/** @typedef {typeof __propDef.slots}  SiInvoiceninjaSlots */
+export default class SiInvoiceninja extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiInvoiceninjaProps = typeof __propDef.props;
+export type SiInvoiceninjaEvents = typeof __propDef.events;
+export type SiInvoiceninjaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

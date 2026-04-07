@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiApachesolrProps */
+/** @typedef {typeof __propDef.events}  SiApachesolrEvents */
+/** @typedef {typeof __propDef.slots}  SiApachesolrSlots */
+export default class SiApachesolr extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiApachesolrProps = typeof __propDef.props;
+export type SiApachesolrEvents = typeof __propDef.events;
+export type SiApachesolrSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

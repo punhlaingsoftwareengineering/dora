@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGitkrakenProps */
+/** @typedef {typeof __propDef.events}  SiGitkrakenEvents */
+/** @typedef {typeof __propDef.slots}  SiGitkrakenSlots */
+export default class SiGitkraken extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGitkrakenProps = typeof __propDef.props;
+export type SiGitkrakenEvents = typeof __propDef.events;
+export type SiGitkrakenSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

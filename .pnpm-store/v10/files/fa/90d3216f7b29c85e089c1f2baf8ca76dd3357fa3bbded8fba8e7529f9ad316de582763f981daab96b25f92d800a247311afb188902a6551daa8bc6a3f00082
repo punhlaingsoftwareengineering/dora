@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFreebsdProps */
+/** @typedef {typeof __propDef.events}  SiFreebsdEvents */
+/** @typedef {typeof __propDef.slots}  SiFreebsdSlots */
+export default class SiFreebsd extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFreebsdProps = typeof __propDef.props;
+export type SiFreebsdEvents = typeof __propDef.events;
+export type SiFreebsdSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

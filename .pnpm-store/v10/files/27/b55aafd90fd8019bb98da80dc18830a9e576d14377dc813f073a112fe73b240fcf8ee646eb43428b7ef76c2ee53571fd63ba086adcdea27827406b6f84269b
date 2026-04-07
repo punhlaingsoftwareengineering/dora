@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRobloxProps */
+/** @typedef {typeof __propDef.events}  SiRobloxEvents */
+/** @typedef {typeof __propDef.slots}  SiRobloxSlots */
+export default class SiRoblox extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRobloxProps = typeof __propDef.props;
+export type SiRobloxEvents = typeof __propDef.events;
+export type SiRobloxSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

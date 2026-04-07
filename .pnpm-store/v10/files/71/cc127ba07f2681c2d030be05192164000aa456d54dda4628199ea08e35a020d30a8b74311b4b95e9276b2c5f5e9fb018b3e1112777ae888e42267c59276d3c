@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFilezillaProps */
+/** @typedef {typeof __propDef.events}  SiFilezillaEvents */
+/** @typedef {typeof __propDef.slots}  SiFilezillaSlots */
+export default class SiFilezilla extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFilezillaProps = typeof __propDef.props;
+export type SiFilezillaEvents = typeof __propDef.events;
+export type SiFilezillaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

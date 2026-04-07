@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiForgejoProps */
+/** @typedef {typeof __propDef.events}  SiForgejoEvents */
+/** @typedef {typeof __propDef.slots}  SiForgejoSlots */
+export default class SiForgejo extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiForgejoProps = typeof __propDef.props;
+export type SiForgejoEvents = typeof __propDef.events;
+export type SiForgejoSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

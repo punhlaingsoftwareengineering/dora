@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNetflixProps */
+/** @typedef {typeof __propDef.events}  SiNetflixEvents */
+/** @typedef {typeof __propDef.slots}  SiNetflixSlots */
+export default class SiNetflix extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNetflixProps = typeof __propDef.props;
+export type SiNetflixEvents = typeof __propDef.events;
+export type SiNetflixSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAriakitProps */
+/** @typedef {typeof __propDef.events}  SiAriakitEvents */
+/** @typedef {typeof __propDef.slots}  SiAriakitSlots */
+export default class SiAriakit extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAriakitProps = typeof __propDef.props;
+export type SiAriakitEvents = typeof __propDef.events;
+export type SiAriakitSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

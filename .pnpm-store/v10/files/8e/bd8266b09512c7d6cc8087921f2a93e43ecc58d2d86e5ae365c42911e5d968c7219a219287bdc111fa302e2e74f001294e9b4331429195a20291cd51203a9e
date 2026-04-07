@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPhotopeaProps */
+/** @typedef {typeof __propDef.events}  SiPhotopeaEvents */
+/** @typedef {typeof __propDef.slots}  SiPhotopeaSlots */
+export default class SiPhotopea extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPhotopeaProps = typeof __propDef.props;
+export type SiPhotopeaEvents = typeof __propDef.events;
+export type SiPhotopeaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiHearthisdotatProps */
+/** @typedef {typeof __propDef.events}  SiHearthisdotatEvents */
+/** @typedef {typeof __propDef.slots}  SiHearthisdotatSlots */
+export default class SiHearthisdotat extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiHearthisdotatProps = typeof __propDef.props;
+export type SiHearthisdotatEvents = typeof __propDef.events;
+export type SiHearthisdotatSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

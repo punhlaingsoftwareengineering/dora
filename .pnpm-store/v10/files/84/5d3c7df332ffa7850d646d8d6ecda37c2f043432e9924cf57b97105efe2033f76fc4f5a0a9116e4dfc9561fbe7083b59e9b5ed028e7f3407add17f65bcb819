@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGeocachingProps */
+/** @typedef {typeof __propDef.events}  SiGeocachingEvents */
+/** @typedef {typeof __propDef.slots}  SiGeocachingSlots */
+export default class SiGeocaching extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGeocachingProps = typeof __propDef.props;
+export type SiGeocachingEvents = typeof __propDef.events;
+export type SiGeocachingSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

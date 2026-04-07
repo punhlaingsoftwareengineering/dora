@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMixcloudProps */
+/** @typedef {typeof __propDef.events}  SiMixcloudEvents */
+/** @typedef {typeof __propDef.slots}  SiMixcloudSlots */
+export default class SiMixcloud extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMixcloudProps = typeof __propDef.props;
+export type SiMixcloudEvents = typeof __propDef.events;
+export type SiMixcloudSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

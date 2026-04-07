@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNederlandsespoorwegenProps */
+/** @typedef {typeof __propDef.events}  SiNederlandsespoorwegenEvents */
+/** @typedef {typeof __propDef.slots}  SiNederlandsespoorwegenSlots */
+export default class SiNederlandsespoorwegen extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNederlandsespoorwegenProps = typeof __propDef.props;
+export type SiNederlandsespoorwegenEvents = typeof __propDef.events;
+export type SiNederlandsespoorwegenSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

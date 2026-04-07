@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiDiagramsdotnetProps */
+/** @typedef {typeof __propDef.events}  SiDiagramsdotnetEvents */
+/** @typedef {typeof __propDef.slots}  SiDiagramsdotnetSlots */
+export default class SiDiagramsdotnet extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiDiagramsdotnetProps = typeof __propDef.props;
+export type SiDiagramsdotnetEvents = typeof __propDef.events;
+export type SiDiagramsdotnetSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

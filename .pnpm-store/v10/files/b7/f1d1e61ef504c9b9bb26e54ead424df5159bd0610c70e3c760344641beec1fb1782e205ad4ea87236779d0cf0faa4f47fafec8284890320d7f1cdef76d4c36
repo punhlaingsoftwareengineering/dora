@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSeafileProps */
+/** @typedef {typeof __propDef.events}  SiSeafileEvents */
+/** @typedef {typeof __propDef.slots}  SiSeafileSlots */
+export default class SiSeafile extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSeafileProps = typeof __propDef.props;
+export type SiSeafileEvents = typeof __propDef.events;
+export type SiSeafileSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

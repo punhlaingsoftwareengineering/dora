@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAutocadProps */
+/** @typedef {typeof __propDef.events}  SiAutocadEvents */
+/** @typedef {typeof __propDef.slots}  SiAutocadSlots */
+export default class SiAutocad extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAutocadProps = typeof __propDef.props;
+export type SiAutocadEvents = typeof __propDef.events;
+export type SiAutocadSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

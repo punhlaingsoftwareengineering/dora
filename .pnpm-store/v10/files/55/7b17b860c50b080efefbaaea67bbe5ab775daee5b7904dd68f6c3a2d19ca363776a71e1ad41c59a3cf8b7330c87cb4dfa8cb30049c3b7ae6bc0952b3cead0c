@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGoogleadsenseProps */
+/** @typedef {typeof __propDef.events}  SiGoogleadsenseEvents */
+/** @typedef {typeof __propDef.slots}  SiGoogleadsenseSlots */
+export default class SiGoogleadsense extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGoogleadsenseProps = typeof __propDef.props;
+export type SiGoogleadsenseEvents = typeof __propDef.events;
+export type SiGoogleadsenseSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

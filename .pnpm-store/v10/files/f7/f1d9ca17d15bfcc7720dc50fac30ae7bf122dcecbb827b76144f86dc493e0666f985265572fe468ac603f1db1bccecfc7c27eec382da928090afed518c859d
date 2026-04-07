@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFraunhofergesellschaftProps */
+/** @typedef {typeof __propDef.events}  SiFraunhofergesellschaftEvents */
+/** @typedef {typeof __propDef.slots}  SiFraunhofergesellschaftSlots */
+export default class SiFraunhofergesellschaft extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFraunhofergesellschaftProps = typeof __propDef.props;
+export type SiFraunhofergesellschaftEvents = typeof __propDef.events;
+export type SiFraunhofergesellschaftSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

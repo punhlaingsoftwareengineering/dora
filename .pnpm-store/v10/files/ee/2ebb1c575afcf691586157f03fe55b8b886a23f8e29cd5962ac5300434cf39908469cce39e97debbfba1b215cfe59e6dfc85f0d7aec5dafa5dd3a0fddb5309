@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGooglemarketingplatformProps */
+/** @typedef {typeof __propDef.events}  SiGooglemarketingplatformEvents */
+/** @typedef {typeof __propDef.slots}  SiGooglemarketingplatformSlots */
+export default class SiGooglemarketingplatform extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGooglemarketingplatformProps = typeof __propDef.props;
+export type SiGooglemarketingplatformEvents = typeof __propDef.events;
+export type SiGooglemarketingplatformSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

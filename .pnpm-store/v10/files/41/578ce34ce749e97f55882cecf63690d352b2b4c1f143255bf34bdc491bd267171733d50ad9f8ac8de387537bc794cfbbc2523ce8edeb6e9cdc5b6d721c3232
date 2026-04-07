@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiLaravelnovaProps */
+/** @typedef {typeof __propDef.events}  SiLaravelnovaEvents */
+/** @typedef {typeof __propDef.slots}  SiLaravelnovaSlots */
+export default class SiLaravelnova extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiLaravelnovaProps = typeof __propDef.props;
+export type SiLaravelnovaEvents = typeof __propDef.events;
+export type SiLaravelnovaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAutocannonProps */
+/** @typedef {typeof __propDef.events}  SiAutocannonEvents */
+/** @typedef {typeof __propDef.slots}  SiAutocannonSlots */
+export default class SiAutocannon extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAutocannonProps = typeof __propDef.props;
+export type SiAutocannonEvents = typeof __propDef.events;
+export type SiAutocannonSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiZensarProps */
+/** @typedef {typeof __propDef.events}  SiZensarEvents */
+/** @typedef {typeof __propDef.slots}  SiZensarSlots */
+export default class SiZensar extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiZensarProps = typeof __propDef.props;
+export type SiZensarEvents = typeof __propDef.events;
+export type SiZensarSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

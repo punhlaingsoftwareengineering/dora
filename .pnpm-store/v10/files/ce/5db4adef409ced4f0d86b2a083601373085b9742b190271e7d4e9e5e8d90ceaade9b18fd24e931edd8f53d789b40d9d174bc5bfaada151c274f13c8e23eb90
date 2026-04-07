@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTwilioProps */
+/** @typedef {typeof __propDef.events}  SiTwilioEvents */
+/** @typedef {typeof __propDef.slots}  SiTwilioSlots */
+export default class SiTwilio extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTwilioProps = typeof __propDef.props;
+export type SiTwilioEvents = typeof __propDef.events;
+export type SiTwilioSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

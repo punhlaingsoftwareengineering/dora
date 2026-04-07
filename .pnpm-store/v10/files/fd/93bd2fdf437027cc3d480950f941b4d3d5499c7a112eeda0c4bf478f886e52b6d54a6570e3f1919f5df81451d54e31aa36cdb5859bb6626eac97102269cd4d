@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiHackerearthProps */
+/** @typedef {typeof __propDef.events}  SiHackerearthEvents */
+/** @typedef {typeof __propDef.slots}  SiHackerearthSlots */
+export default class SiHackerearth extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiHackerearthProps = typeof __propDef.props;
+export type SiHackerearthEvents = typeof __propDef.events;
+export type SiHackerearthSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

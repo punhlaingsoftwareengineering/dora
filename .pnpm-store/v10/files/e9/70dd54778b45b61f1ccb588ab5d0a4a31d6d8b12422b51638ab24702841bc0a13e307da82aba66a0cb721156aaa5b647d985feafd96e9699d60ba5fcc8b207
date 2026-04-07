@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiKinopoiskProps */
+/** @typedef {typeof __propDef.events}  SiKinopoiskEvents */
+/** @typedef {typeof __propDef.slots}  SiKinopoiskSlots */
+export default class SiKinopoisk extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiKinopoiskProps = typeof __propDef.props;
+export type SiKinopoiskEvents = typeof __propDef.events;
+export type SiKinopoiskSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

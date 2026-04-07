@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCairometroProps */
+/** @typedef {typeof __propDef.events}  SiCairometroEvents */
+/** @typedef {typeof __propDef.slots}  SiCairometroSlots */
+export default class SiCairometro extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCairometroProps = typeof __propDef.props;
+export type SiCairometroEvents = typeof __propDef.events;
+export type SiCairometroSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

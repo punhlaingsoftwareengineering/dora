@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGeopandasProps */
+/** @typedef {typeof __propDef.events}  SiGeopandasEvents */
+/** @typedef {typeof __propDef.slots}  SiGeopandasSlots */
+export default class SiGeopandas extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGeopandasProps = typeof __propDef.props;
+export type SiGeopandasEvents = typeof __propDef.events;
+export type SiGeopandasSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

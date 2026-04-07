@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiItchdotioProps */
+/** @typedef {typeof __propDef.events}  SiItchdotioEvents */
+/** @typedef {typeof __propDef.slots}  SiItchdotioSlots */
+export default class SiItchdotio extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiItchdotioProps = typeof __propDef.props;
+export type SiItchdotioEvents = typeof __propDef.events;
+export type SiItchdotioSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

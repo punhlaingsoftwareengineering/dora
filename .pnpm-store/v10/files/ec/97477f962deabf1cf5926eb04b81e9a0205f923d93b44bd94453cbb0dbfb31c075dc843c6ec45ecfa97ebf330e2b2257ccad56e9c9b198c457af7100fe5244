@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiManjaroProps */
+/** @typedef {typeof __propDef.events}  SiManjaroEvents */
+/** @typedef {typeof __propDef.slots}  SiManjaroSlots */
+export default class SiManjaro extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiManjaroProps = typeof __propDef.props;
+export type SiManjaroEvents = typeof __propDef.events;
+export type SiManjaroSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

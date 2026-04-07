@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiApachefreemarkerProps */
+/** @typedef {typeof __propDef.events}  SiApachefreemarkerEvents */
+/** @typedef {typeof __propDef.slots}  SiApachefreemarkerSlots */
+export default class SiApachefreemarker extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiApachefreemarkerProps = typeof __propDef.props;
+export type SiApachefreemarkerEvents = typeof __propDef.events;
+export type SiApachefreemarkerSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

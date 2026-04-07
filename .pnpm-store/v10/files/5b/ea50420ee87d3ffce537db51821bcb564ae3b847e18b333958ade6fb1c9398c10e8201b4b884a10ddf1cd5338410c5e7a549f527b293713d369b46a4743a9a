@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiLinkfireProps */
+/** @typedef {typeof __propDef.events}  SiLinkfireEvents */
+/** @typedef {typeof __propDef.slots}  SiLinkfireSlots */
+export default class SiLinkfire extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiLinkfireProps = typeof __propDef.props;
+export type SiLinkfireEvents = typeof __propDef.events;
+export type SiLinkfireSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

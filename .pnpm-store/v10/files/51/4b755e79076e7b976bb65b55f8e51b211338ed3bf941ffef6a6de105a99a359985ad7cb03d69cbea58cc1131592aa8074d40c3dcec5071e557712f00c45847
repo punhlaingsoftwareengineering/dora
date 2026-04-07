@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSharexProps */
+/** @typedef {typeof __propDef.events}  SiSharexEvents */
+/** @typedef {typeof __propDef.slots}  SiSharexSlots */
+export default class SiSharex extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSharexProps = typeof __propDef.props;
+export type SiSharexEvents = typeof __propDef.events;
+export type SiSharexSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

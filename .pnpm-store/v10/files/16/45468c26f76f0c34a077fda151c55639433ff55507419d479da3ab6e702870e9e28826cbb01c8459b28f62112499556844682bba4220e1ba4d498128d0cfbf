@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOrganicmapsProps */
+/** @typedef {typeof __propDef.events}  SiOrganicmapsEvents */
+/** @typedef {typeof __propDef.slots}  SiOrganicmapsSlots */
+export default class SiOrganicmaps extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOrganicmapsProps = typeof __propDef.props;
+export type SiOrganicmapsEvents = typeof __propDef.events;
+export type SiOrganicmapsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

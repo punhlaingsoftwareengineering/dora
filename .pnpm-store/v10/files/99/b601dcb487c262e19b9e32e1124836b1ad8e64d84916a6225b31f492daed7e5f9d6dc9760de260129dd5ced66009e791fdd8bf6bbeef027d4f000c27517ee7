@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiKalilinuxProps */
+/** @typedef {typeof __propDef.events}  SiKalilinuxEvents */
+/** @typedef {typeof __propDef.slots}  SiKalilinuxSlots */
+export default class SiKalilinux extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiKalilinuxProps = typeof __propDef.props;
+export type SiKalilinuxEvents = typeof __propDef.events;
+export type SiKalilinuxSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

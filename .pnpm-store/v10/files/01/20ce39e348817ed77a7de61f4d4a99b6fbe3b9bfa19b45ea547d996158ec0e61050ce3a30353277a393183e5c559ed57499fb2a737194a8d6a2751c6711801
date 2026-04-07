@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiApplepodcastsProps */
+/** @typedef {typeof __propDef.events}  SiApplepodcastsEvents */
+/** @typedef {typeof __propDef.slots}  SiApplepodcastsSlots */
+export default class SiApplepodcasts extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiApplepodcastsProps = typeof __propDef.props;
+export type SiApplepodcastsEvents = typeof __propDef.events;
+export type SiApplepodcastsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

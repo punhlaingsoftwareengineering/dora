@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCoppelProps */
+/** @typedef {typeof __propDef.events}  SiCoppelEvents */
+/** @typedef {typeof __propDef.slots}  SiCoppelSlots */
+export default class SiCoppel extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCoppelProps = typeof __propDef.props;
+export type SiCoppelEvents = typeof __propDef.events;
+export type SiCoppelSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

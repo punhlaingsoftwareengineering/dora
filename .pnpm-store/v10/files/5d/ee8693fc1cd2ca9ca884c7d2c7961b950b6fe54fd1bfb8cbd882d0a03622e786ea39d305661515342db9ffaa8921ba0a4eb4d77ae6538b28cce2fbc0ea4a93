@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSimplelocalizeProps */
+/** @typedef {typeof __propDef.events}  SiSimplelocalizeEvents */
+/** @typedef {typeof __propDef.slots}  SiSimplelocalizeSlots */
+export default class SiSimplelocalize extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSimplelocalizeProps = typeof __propDef.props;
+export type SiSimplelocalizeEvents = typeof __propDef.events;
+export type SiSimplelocalizeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

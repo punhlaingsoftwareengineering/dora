@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNvidiaProps */
+/** @typedef {typeof __propDef.events}  SiNvidiaEvents */
+/** @typedef {typeof __propDef.slots}  SiNvidiaSlots */
+export default class SiNvidia extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNvidiaProps = typeof __propDef.props;
+export type SiNvidiaEvents = typeof __propDef.events;
+export type SiNvidiaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,12 @@
+
+    <script>
+      export let color = 'currentColor';
+      export let size = 24;
+      export let title = "siBackstage_casting";
+    </script>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} fill={color} viewBox="0 0 24 24">
+      <title>{title}</title>
+      <path d="M10.2 0v.056a5.997 5.997 0 0 1 0 11.886v.113a5.997 5.997 0 0 1 0 11.886v.056h12.552V0ZM1.248 0v24H9.54V0Z" />
+    </svg>
+  

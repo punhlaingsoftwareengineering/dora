@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMongooseProps */
+/** @typedef {typeof __propDef.events}  SiMongooseEvents */
+/** @typedef {typeof __propDef.slots}  SiMongooseSlots */
+export default class SiMongoose extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMongooseProps = typeof __propDef.props;
+export type SiMongooseEvents = typeof __propDef.events;
+export type SiMongooseSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

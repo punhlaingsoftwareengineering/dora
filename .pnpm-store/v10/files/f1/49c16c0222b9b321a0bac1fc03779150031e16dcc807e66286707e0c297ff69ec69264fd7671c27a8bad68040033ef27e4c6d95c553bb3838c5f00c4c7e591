@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBaserowProps */
+/** @typedef {typeof __propDef.events}  SiBaserowEvents */
+/** @typedef {typeof __propDef.slots}  SiBaserowSlots */
+export default class SiBaserow extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBaserowProps = typeof __propDef.props;
+export type SiBaserowEvents = typeof __propDef.events;
+export type SiBaserowSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

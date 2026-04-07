@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAutodeskmayaProps */
+/** @typedef {typeof __propDef.events}  SiAutodeskmayaEvents */
+/** @typedef {typeof __propDef.slots}  SiAutodeskmayaSlots */
+export default class SiAutodeskmaya extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAutodeskmayaProps = typeof __propDef.props;
+export type SiAutodeskmayaEvents = typeof __propDef.events;
+export type SiAutodeskmayaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

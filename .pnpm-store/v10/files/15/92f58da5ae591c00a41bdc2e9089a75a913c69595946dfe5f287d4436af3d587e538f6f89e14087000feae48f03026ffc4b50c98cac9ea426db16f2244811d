@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSendgridProps */
+/** @typedef {typeof __propDef.events}  SiSendgridEvents */
+/** @typedef {typeof __propDef.slots}  SiSendgridSlots */
+export default class SiSendgrid extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSendgridProps = typeof __propDef.props;
+export type SiSendgridEvents = typeof __propDef.events;
+export type SiSendgridSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

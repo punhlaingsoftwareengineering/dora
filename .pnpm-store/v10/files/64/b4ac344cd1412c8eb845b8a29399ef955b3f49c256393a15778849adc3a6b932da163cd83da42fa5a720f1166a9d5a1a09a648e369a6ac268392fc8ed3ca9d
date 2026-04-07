@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNrwlProps */
+/** @typedef {typeof __propDef.events}  SiNrwlEvents */
+/** @typedef {typeof __propDef.slots}  SiNrwlSlots */
+export default class SiNrwl extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNrwlProps = typeof __propDef.props;
+export type SiNrwlEvents = typeof __propDef.events;
+export type SiNrwlSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

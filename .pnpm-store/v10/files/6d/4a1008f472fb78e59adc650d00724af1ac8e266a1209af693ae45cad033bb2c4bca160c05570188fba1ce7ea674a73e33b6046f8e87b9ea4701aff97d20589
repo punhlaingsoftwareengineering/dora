@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiDatacampProps */
+/** @typedef {typeof __propDef.events}  SiDatacampEvents */
+/** @typedef {typeof __propDef.slots}  SiDatacampSlots */
+export default class SiDatacamp extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiDatacampProps = typeof __propDef.props;
+export type SiDatacampEvents = typeof __propDef.events;
+export type SiDatacampSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

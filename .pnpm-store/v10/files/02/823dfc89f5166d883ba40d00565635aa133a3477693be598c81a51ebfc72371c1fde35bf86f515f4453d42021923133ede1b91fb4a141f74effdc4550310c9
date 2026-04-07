@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFlashforgeProps */
+/** @typedef {typeof __propDef.events}  SiFlashforgeEvents */
+/** @typedef {typeof __propDef.slots}  SiFlashforgeSlots */
+export default class SiFlashforge extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFlashforgeProps = typeof __propDef.props;
+export type SiFlashforgeEvents = typeof __propDef.events;
+export type SiFlashforgeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

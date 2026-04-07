@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFnacProps */
+/** @typedef {typeof __propDef.events}  SiFnacEvents */
+/** @typedef {typeof __propDef.slots}  SiFnacSlots */
+export default class SiFnac extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFnacProps = typeof __propDef.props;
+export type SiFnacEvents = typeof __propDef.events;
+export type SiFnacSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

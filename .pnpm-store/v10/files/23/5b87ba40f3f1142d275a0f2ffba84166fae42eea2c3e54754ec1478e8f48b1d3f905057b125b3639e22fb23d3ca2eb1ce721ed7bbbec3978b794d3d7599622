@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMcafeeProps */
+/** @typedef {typeof __propDef.events}  SiMcafeeEvents */
+/** @typedef {typeof __propDef.slots}  SiMcafeeSlots */
+export default class SiMcafee extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMcafeeProps = typeof __propDef.props;
+export type SiMcafeeEvents = typeof __propDef.events;
+export type SiMcafeeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

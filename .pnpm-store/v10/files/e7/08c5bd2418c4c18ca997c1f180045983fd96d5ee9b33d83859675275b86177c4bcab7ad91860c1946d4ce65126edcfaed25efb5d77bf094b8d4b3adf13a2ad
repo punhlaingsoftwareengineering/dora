@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiProtonvpnProps */
+/** @typedef {typeof __propDef.events}  SiProtonvpnEvents */
+/** @typedef {typeof __propDef.slots}  SiProtonvpnSlots */
+export default class SiProtonvpn extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiProtonvpnProps = typeof __propDef.props;
+export type SiProtonvpnEvents = typeof __propDef.events;
+export type SiProtonvpnSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

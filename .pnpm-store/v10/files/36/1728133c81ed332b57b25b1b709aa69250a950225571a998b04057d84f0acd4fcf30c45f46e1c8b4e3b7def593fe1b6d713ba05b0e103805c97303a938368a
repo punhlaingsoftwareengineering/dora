@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRollupdotjsProps */
+/** @typedef {typeof __propDef.events}  SiRollupdotjsEvents */
+/** @typedef {typeof __propDef.slots}  SiRollupdotjsSlots */
+export default class SiRollupdotjs extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRollupdotjsProps = typeof __propDef.props;
+export type SiRollupdotjsEvents = typeof __propDef.events;
+export type SiRollupdotjsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

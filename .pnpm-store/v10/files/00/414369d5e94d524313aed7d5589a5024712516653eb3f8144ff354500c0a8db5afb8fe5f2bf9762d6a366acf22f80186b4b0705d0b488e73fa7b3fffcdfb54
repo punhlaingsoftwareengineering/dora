@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBisecthostingProps */
+/** @typedef {typeof __propDef.events}  SiBisecthostingEvents */
+/** @typedef {typeof __propDef.slots}  SiBisecthostingSlots */
+export default class SiBisecthosting extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBisecthostingProps = typeof __propDef.props;
+export type SiBisecthostingEvents = typeof __propDef.events;
+export type SiBisecthostingSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

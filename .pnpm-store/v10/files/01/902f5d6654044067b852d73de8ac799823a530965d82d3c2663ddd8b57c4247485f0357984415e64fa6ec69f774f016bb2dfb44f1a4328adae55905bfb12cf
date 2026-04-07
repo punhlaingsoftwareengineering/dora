@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAnsibleProps */
+/** @typedef {typeof __propDef.events}  SiAnsibleEvents */
+/** @typedef {typeof __propDef.slots}  SiAnsibleSlots */
+export default class SiAnsible extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAnsibleProps = typeof __propDef.props;
+export type SiAnsibleEvents = typeof __propDef.events;
+export type SiAnsibleSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

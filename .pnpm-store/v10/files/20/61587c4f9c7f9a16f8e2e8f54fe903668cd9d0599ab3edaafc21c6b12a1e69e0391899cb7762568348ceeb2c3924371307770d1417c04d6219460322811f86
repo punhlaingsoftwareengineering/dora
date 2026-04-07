@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCryengineProps */
+/** @typedef {typeof __propDef.events}  SiCryengineEvents */
+/** @typedef {typeof __propDef.slots}  SiCryengineSlots */
+export default class SiCryengine extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCryengineProps = typeof __propDef.props;
+export type SiCryengineEvents = typeof __propDef.events;
+export type SiCryengineSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

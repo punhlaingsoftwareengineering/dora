@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFranprixProps */
+/** @typedef {typeof __propDef.events}  SiFranprixEvents */
+/** @typedef {typeof __propDef.slots}  SiFranprixSlots */
+export default class SiFranprix extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFranprixProps = typeof __propDef.props;
+export type SiFranprixEvents = typeof __propDef.events;
+export type SiFranprixSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

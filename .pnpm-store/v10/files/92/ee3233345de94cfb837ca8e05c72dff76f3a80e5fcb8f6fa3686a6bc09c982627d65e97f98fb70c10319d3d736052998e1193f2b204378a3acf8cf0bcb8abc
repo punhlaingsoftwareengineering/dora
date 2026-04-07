@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOpensourcehardwareProps */
+/** @typedef {typeof __propDef.events}  SiOpensourcehardwareEvents */
+/** @typedef {typeof __propDef.slots}  SiOpensourcehardwareSlots */
+export default class SiOpensourcehardware extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOpensourcehardwareProps = typeof __propDef.props;
+export type SiOpensourcehardwareEvents = typeof __propDef.events;
+export type SiOpensourcehardwareSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

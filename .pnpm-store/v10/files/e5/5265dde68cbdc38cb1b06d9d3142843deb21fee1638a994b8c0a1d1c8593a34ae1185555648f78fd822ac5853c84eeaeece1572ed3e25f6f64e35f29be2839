@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTutaProps */
+/** @typedef {typeof __propDef.events}  SiTutaEvents */
+/** @typedef {typeof __propDef.slots}  SiTutaSlots */
+export default class SiTuta extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTutaProps = typeof __propDef.props;
+export type SiTutaEvents = typeof __propDef.events;
+export type SiTutaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

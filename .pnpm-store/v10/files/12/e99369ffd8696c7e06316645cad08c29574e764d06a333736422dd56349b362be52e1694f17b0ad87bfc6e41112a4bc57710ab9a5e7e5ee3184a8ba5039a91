@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGoogleearthengineProps */
+/** @typedef {typeof __propDef.events}  SiGoogleearthengineEvents */
+/** @typedef {typeof __propDef.slots}  SiGoogleearthengineSlots */
+export default class SiGoogleearthengine extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGoogleearthengineProps = typeof __propDef.props;
+export type SiGoogleearthengineEvents = typeof __propDef.events;
+export type SiGoogleearthengineSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

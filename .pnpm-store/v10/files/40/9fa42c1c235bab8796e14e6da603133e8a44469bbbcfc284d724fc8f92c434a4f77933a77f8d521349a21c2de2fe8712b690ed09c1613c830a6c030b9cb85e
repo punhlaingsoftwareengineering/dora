@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiWhat3wordsProps */
+/** @typedef {typeof __propDef.events}  SiWhat3wordsEvents */
+/** @typedef {typeof __propDef.slots}  SiWhat3wordsSlots */
+export default class SiWhat3words extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiWhat3wordsProps = typeof __propDef.props;
+export type SiWhat3wordsEvents = typeof __propDef.events;
+export type SiWhat3wordsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

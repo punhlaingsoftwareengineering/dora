@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGooglecontaineroptimizedosProps */
+/** @typedef {typeof __propDef.events}  SiGooglecontaineroptimizedosEvents */
+/** @typedef {typeof __propDef.slots}  SiGooglecontaineroptimizedosSlots */
+export default class SiGooglecontaineroptimizedos extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGooglecontaineroptimizedosProps = typeof __propDef.props;
+export type SiGooglecontaineroptimizedosEvents = typeof __propDef.events;
+export type SiGooglecontaineroptimizedosSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

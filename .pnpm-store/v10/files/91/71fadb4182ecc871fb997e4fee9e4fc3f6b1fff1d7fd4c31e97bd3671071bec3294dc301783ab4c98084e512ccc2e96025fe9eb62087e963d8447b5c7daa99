@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiArchiveofourownProps */
+/** @typedef {typeof __propDef.events}  SiArchiveofourownEvents */
+/** @typedef {typeof __propDef.slots}  SiArchiveofourownSlots */
+export default class SiArchiveofourown extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiArchiveofourownProps = typeof __propDef.props;
+export type SiArchiveofourownEvents = typeof __propDef.events;
+export type SiArchiveofourownSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

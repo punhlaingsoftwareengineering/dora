@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPinterestProps */
+/** @typedef {typeof __propDef.events}  SiPinterestEvents */
+/** @typedef {typeof __propDef.slots}  SiPinterestSlots */
+export default class SiPinterest extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPinterestProps = typeof __propDef.props;
+export type SiPinterestEvents = typeof __propDef.events;
+export type SiPinterestSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

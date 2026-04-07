@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMuralProps */
+/** @typedef {typeof __propDef.events}  SiMuralEvents */
+/** @typedef {typeof __propDef.slots}  SiMuralSlots */
+export default class SiMural extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMuralProps = typeof __propDef.props;
+export type SiMuralEvents = typeof __propDef.events;
+export type SiMuralSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

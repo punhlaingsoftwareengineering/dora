@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiLydiaProps */
+/** @typedef {typeof __propDef.events}  SiLydiaEvents */
+/** @typedef {typeof __propDef.slots}  SiLydiaSlots */
+export default class SiLydia extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiLydiaProps = typeof __propDef.props;
+export type SiLydiaEvents = typeof __propDef.events;
+export type SiLydiaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

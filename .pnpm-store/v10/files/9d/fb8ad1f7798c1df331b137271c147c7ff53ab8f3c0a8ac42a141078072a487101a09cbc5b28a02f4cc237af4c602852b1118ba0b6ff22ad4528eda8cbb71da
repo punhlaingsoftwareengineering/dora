@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMakerbotProps */
+/** @typedef {typeof __propDef.events}  SiMakerbotEvents */
+/** @typedef {typeof __propDef.slots}  SiMakerbotSlots */
+export default class SiMakerbot extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMakerbotProps = typeof __propDef.props;
+export type SiMakerbotEvents = typeof __propDef.events;
+export type SiMakerbotSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

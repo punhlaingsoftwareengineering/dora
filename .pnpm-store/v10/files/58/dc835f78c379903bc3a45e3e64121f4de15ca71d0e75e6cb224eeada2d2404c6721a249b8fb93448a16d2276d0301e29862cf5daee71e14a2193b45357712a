@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGnometerminalProps */
+/** @typedef {typeof __propDef.events}  SiGnometerminalEvents */
+/** @typedef {typeof __propDef.slots}  SiGnometerminalSlots */
+export default class SiGnometerminal extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGnometerminalProps = typeof __propDef.props;
+export type SiGnometerminalEvents = typeof __propDef.events;
+export type SiGnometerminalSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

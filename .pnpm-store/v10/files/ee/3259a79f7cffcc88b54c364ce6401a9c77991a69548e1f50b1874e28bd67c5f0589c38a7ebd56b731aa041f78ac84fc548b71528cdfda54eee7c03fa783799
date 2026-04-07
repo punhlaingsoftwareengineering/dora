@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGrouponProps */
+/** @typedef {typeof __propDef.events}  SiGrouponEvents */
+/** @typedef {typeof __propDef.slots}  SiGrouponSlots */
+export default class SiGroupon extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGrouponProps = typeof __propDef.props;
+export type SiGrouponEvents = typeof __propDef.events;
+export type SiGrouponSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiReacthookformProps */
+/** @typedef {typeof __propDef.events}  SiReacthookformEvents */
+/** @typedef {typeof __propDef.slots}  SiReacthookformSlots */
+export default class SiReacthookform extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiReacthookformProps = typeof __propDef.props;
+export type SiReacthookformEvents = typeof __propDef.events;
+export type SiReacthookformSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

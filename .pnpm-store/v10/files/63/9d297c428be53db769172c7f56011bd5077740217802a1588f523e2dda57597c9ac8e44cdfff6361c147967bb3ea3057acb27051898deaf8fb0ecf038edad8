@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRancherProps */
+/** @typedef {typeof __propDef.events}  SiRancherEvents */
+/** @typedef {typeof __propDef.slots}  SiRancherSlots */
+export default class SiRancher extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRancherProps = typeof __propDef.props;
+export type SiRancherEvents = typeof __propDef.events;
+export type SiRancherSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

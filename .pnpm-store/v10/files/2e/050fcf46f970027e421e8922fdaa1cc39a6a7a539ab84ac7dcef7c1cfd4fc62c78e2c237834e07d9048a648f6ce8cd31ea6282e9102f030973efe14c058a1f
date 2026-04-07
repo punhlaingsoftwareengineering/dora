@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAvaloniauiProps */
+/** @typedef {typeof __propDef.events}  SiAvaloniauiEvents */
+/** @typedef {typeof __propDef.slots}  SiAvaloniauiSlots */
+export default class SiAvaloniaui extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAvaloniauiProps = typeof __propDef.props;
+export type SiAvaloniauiEvents = typeof __propDef.events;
+export type SiAvaloniauiSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

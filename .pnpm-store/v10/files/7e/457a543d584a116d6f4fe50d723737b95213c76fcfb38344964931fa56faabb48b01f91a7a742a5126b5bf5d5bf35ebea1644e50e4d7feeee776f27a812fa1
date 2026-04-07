@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOpenzfsProps */
+/** @typedef {typeof __propDef.events}  SiOpenzfsEvents */
+/** @typedef {typeof __propDef.slots}  SiOpenzfsSlots */
+export default class SiOpenzfs extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOpenzfsProps = typeof __propDef.props;
+export type SiOpenzfsEvents = typeof __propDef.events;
+export type SiOpenzfsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

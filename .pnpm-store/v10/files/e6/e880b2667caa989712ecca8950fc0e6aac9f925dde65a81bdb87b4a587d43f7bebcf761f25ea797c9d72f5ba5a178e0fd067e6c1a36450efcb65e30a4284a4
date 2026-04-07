@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAutoprefixerProps */
+/** @typedef {typeof __propDef.events}  SiAutoprefixerEvents */
+/** @typedef {typeof __propDef.slots}  SiAutoprefixerSlots */
+export default class SiAutoprefixer extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAutoprefixerProps = typeof __propDef.props;
+export type SiAutoprefixerEvents = typeof __propDef.events;
+export type SiAutoprefixerSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

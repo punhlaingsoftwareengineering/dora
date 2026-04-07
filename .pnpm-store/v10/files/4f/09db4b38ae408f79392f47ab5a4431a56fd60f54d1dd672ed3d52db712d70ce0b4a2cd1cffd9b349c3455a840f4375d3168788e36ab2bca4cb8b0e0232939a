@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGodotengineProps */
+/** @typedef {typeof __propDef.events}  SiGodotengineEvents */
+/** @typedef {typeof __propDef.slots}  SiGodotengineSlots */
+export default class SiGodotengine extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGodotengineProps = typeof __propDef.props;
+export type SiGodotengineEvents = typeof __propDef.events;
+export type SiGodotengineSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

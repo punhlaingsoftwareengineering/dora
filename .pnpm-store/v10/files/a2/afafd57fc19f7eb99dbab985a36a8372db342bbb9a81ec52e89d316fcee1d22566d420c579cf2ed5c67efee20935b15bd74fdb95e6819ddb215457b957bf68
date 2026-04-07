@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCodesandboxProps */
+/** @typedef {typeof __propDef.events}  SiCodesandboxEvents */
+/** @typedef {typeof __propDef.slots}  SiCodesandboxSlots */
+export default class SiCodesandbox extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCodesandboxProps = typeof __propDef.props;
+export type SiCodesandboxEvents = typeof __propDef.events;
+export type SiCodesandboxSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

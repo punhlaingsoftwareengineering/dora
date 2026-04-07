@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTresoritProps */
+/** @typedef {typeof __propDef.events}  SiTresoritEvents */
+/** @typedef {typeof __propDef.slots}  SiTresoritSlots */
+export default class SiTresorit extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTresoritProps = typeof __propDef.props;
+export type SiTresoritEvents = typeof __propDef.events;
+export type SiTresoritSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

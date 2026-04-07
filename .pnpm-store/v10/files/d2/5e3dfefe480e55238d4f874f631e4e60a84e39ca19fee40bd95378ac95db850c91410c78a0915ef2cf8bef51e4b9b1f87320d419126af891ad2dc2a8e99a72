@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAkiflowProps */
+/** @typedef {typeof __propDef.events}  SiAkiflowEvents */
+/** @typedef {typeof __propDef.slots}  SiAkiflowSlots */
+export default class SiAkiflow extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAkiflowProps = typeof __propDef.props;
+export type SiAkiflowEvents = typeof __propDef.events;
+export type SiAkiflowSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTorbrowserProps */
+/** @typedef {typeof __propDef.events}  SiTorbrowserEvents */
+/** @typedef {typeof __propDef.slots}  SiTorbrowserSlots */
+export default class SiTorbrowser extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTorbrowserProps = typeof __propDef.props;
+export type SiTorbrowserEvents = typeof __propDef.events;
+export type SiTorbrowserSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

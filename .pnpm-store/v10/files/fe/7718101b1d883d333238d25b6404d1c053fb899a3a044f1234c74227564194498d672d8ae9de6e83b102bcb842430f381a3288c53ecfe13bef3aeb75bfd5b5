@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiStrykerProps */
+/** @typedef {typeof __propDef.events}  SiStrykerEvents */
+/** @typedef {typeof __propDef.slots}  SiStrykerSlots */
+export default class SiStryker extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiStrykerProps = typeof __propDef.props;
+export type SiStrykerEvents = typeof __propDef.events;
+export type SiStrykerSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

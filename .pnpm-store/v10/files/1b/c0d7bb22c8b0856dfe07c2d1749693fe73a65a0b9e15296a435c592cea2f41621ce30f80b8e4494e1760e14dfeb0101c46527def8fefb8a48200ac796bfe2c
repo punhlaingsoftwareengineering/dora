@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPeakdesignProps */
+/** @typedef {typeof __propDef.events}  SiPeakdesignEvents */
+/** @typedef {typeof __propDef.slots}  SiPeakdesignSlots */
+export default class SiPeakdesign extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPeakdesignProps = typeof __propDef.props;
+export type SiPeakdesignEvents = typeof __propDef.events;
+export type SiPeakdesignSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

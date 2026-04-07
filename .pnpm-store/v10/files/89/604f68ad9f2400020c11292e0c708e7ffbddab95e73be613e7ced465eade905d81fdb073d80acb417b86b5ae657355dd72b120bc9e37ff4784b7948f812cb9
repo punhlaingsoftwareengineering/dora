@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGoogletagmanagerProps */
+/** @typedef {typeof __propDef.events}  SiGoogletagmanagerEvents */
+/** @typedef {typeof __propDef.slots}  SiGoogletagmanagerSlots */
+export default class SiGoogletagmanager extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGoogletagmanagerProps = typeof __propDef.props;
+export type SiGoogletagmanagerEvents = typeof __propDef.events;
+export type SiGoogletagmanagerSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

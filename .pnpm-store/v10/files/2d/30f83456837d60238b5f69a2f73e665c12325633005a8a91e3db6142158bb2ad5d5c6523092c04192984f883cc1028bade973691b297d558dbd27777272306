@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNukeProps */
+/** @typedef {typeof __propDef.events}  SiNukeEvents */
+/** @typedef {typeof __propDef.slots}  SiNukeSlots */
+export default class SiNuke extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNukeProps = typeof __propDef.props;
+export type SiNukeEvents = typeof __propDef.events;
+export type SiNukeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

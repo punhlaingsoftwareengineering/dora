@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPiniaProps */
+/** @typedef {typeof __propDef.events}  SiPiniaEvents */
+/** @typedef {typeof __propDef.slots}  SiPiniaSlots */
+export default class SiPinia extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPiniaProps = typeof __propDef.props;
+export type SiPiniaEvents = typeof __propDef.events;
+export type SiPiniaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

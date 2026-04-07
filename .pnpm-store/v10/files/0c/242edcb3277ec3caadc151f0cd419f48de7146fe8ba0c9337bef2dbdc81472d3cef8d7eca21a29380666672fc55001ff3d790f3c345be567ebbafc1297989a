@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiApachenetbeansideProps */
+/** @typedef {typeof __propDef.events}  SiApachenetbeansideEvents */
+/** @typedef {typeof __propDef.slots}  SiApachenetbeansideSlots */
+export default class SiApachenetbeanside extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiApachenetbeansideProps = typeof __propDef.props;
+export type SiApachenetbeansideEvents = typeof __propDef.events;
+export type SiApachenetbeansideSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

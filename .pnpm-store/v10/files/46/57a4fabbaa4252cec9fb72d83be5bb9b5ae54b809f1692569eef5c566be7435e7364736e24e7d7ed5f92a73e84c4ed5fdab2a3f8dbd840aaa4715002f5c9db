@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBitbucketProps */
+/** @typedef {typeof __propDef.events}  SiBitbucketEvents */
+/** @typedef {typeof __propDef.slots}  SiBitbucketSlots */
+export default class SiBitbucket extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBitbucketProps = typeof __propDef.props;
+export type SiBitbucketEvents = typeof __propDef.events;
+export type SiBitbucketSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

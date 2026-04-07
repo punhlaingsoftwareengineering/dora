@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRakutenkoboProps */
+/** @typedef {typeof __propDef.events}  SiRakutenkoboEvents */
+/** @typedef {typeof __propDef.slots}  SiRakutenkoboSlots */
+export default class SiRakutenkobo extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRakutenkoboProps = typeof __propDef.props;
+export type SiRakutenkoboEvents = typeof __propDef.events;
+export type SiRakutenkoboSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

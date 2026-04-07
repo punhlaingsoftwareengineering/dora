@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMailgunProps */
+/** @typedef {typeof __propDef.events}  SiMailgunEvents */
+/** @typedef {typeof __propDef.slots}  SiMailgunSlots */
+export default class SiMailgun extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMailgunProps = typeof __propDef.props;
+export type SiMailgunEvents = typeof __propDef.events;
+export type SiMailgunSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

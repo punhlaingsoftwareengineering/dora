@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMajorleaguehackingProps */
+/** @typedef {typeof __propDef.events}  SiMajorleaguehackingEvents */
+/** @typedef {typeof __propDef.slots}  SiMajorleaguehackingSlots */
+export default class SiMajorleaguehacking extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMajorleaguehackingProps = typeof __propDef.props;
+export type SiMajorleaguehackingEvents = typeof __propDef.events;
+export type SiMajorleaguehackingSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  Si365datascienceProps */
+/** @typedef {typeof __propDef.events}  Si365datascienceEvents */
+/** @typedef {typeof __propDef.slots}  Si365datascienceSlots */
+export default class Si365datascience extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type Si365datascienceProps = typeof __propDef.props;
+export type Si365datascienceEvents = typeof __propDef.events;
+export type Si365datascienceSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

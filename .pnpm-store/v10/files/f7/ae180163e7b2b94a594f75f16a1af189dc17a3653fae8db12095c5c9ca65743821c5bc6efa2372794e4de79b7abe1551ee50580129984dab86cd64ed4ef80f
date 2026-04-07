@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiZendProps */
+/** @typedef {typeof __propDef.events}  SiZendEvents */
+/** @typedef {typeof __propDef.slots}  SiZendSlots */
+export default class SiZend extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiZendProps = typeof __propDef.props;
+export type SiZendEvents = typeof __propDef.events;
+export type SiZendSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

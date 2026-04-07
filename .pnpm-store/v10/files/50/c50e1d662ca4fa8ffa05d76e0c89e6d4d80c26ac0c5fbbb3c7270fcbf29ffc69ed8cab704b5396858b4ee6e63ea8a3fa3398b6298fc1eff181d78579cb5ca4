@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFlatpakProps */
+/** @typedef {typeof __propDef.events}  SiFlatpakEvents */
+/** @typedef {typeof __propDef.slots}  SiFlatpakSlots */
+export default class SiFlatpak extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFlatpakProps = typeof __propDef.props;
+export type SiFlatpakEvents = typeof __propDef.events;
+export type SiFlatpakSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

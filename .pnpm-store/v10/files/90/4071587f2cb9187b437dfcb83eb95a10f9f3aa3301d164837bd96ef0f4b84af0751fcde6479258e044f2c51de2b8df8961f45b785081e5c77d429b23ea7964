@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSnowpackProps */
+/** @typedef {typeof __propDef.events}  SiSnowpackEvents */
+/** @typedef {typeof __propDef.slots}  SiSnowpackSlots */
+export default class SiSnowpack extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSnowpackProps = typeof __propDef.props;
+export type SiSnowpackEvents = typeof __propDef.events;
+export type SiSnowpackSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

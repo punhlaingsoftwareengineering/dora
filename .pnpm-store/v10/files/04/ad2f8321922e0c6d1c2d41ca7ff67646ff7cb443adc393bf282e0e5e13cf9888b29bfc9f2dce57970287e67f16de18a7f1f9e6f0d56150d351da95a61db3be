@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNextbilliondotaiProps */
+/** @typedef {typeof __propDef.events}  SiNextbilliondotaiEvents */
+/** @typedef {typeof __propDef.slots}  SiNextbilliondotaiSlots */
+export default class SiNextbilliondotai extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNextbilliondotaiProps = typeof __propDef.props;
+export type SiNextbilliondotaiEvents = typeof __propDef.events;
+export type SiNextbilliondotaiSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

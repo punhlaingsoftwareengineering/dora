@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTailscaleProps */
+/** @typedef {typeof __propDef.events}  SiTailscaleEvents */
+/** @typedef {typeof __propDef.slots}  SiTailscaleSlots */
+export default class SiTailscale extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTailscaleProps = typeof __propDef.props;
+export type SiTailscaleEvents = typeof __propDef.events;
+export type SiTailscaleSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

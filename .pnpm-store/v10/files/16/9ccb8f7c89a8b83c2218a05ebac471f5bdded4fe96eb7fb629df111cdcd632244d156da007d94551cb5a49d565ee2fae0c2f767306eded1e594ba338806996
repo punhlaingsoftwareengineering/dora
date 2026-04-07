@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNuxtProps */
+/** @typedef {typeof __propDef.events}  SiNuxtEvents */
+/** @typedef {typeof __propDef.slots}  SiNuxtSlots */
+export default class SiNuxt extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNuxtProps = typeof __propDef.props;
+export type SiNuxtEvents = typeof __propDef.events;
+export type SiNuxtSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPaperlessngxProps */
+/** @typedef {typeof __propDef.events}  SiPaperlessngxEvents */
+/** @typedef {typeof __propDef.slots}  SiPaperlessngxSlots */
+export default class SiPaperlessngx extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPaperlessngxProps = typeof __propDef.props;
+export type SiPaperlessngxEvents = typeof __propDef.events;
+export type SiPaperlessngxSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

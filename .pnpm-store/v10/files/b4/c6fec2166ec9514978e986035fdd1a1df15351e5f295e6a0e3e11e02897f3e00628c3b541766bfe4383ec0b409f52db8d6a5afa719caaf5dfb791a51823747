@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOpenbadgesProps */
+/** @typedef {typeof __propDef.events}  SiOpenbadgesEvents */
+/** @typedef {typeof __propDef.slots}  SiOpenbadgesSlots */
+export default class SiOpenbadges extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOpenbadgesProps = typeof __propDef.props;
+export type SiOpenbadgesEvents = typeof __propDef.events;
+export type SiOpenbadgesSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

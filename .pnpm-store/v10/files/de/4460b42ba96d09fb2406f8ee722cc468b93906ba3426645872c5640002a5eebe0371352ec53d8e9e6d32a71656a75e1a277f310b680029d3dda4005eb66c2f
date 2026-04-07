@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiLimesurveyProps */
+/** @typedef {typeof __propDef.events}  SiLimesurveyEvents */
+/** @typedef {typeof __propDef.slots}  SiLimesurveySlots */
+export default class SiLimesurvey extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiLimesurveyProps = typeof __propDef.props;
+export type SiLimesurveyEvents = typeof __propDef.events;
+export type SiLimesurveySlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

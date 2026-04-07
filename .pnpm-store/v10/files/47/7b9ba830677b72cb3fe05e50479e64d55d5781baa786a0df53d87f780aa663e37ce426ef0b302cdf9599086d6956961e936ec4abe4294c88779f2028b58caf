@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiUblockoriginProps */
+/** @typedef {typeof __propDef.events}  SiUblockoriginEvents */
+/** @typedef {typeof __propDef.slots}  SiUblockoriginSlots */
+export default class SiUblockorigin extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiUblockoriginProps = typeof __propDef.props;
+export type SiUblockoriginEvents = typeof __propDef.events;
+export type SiUblockoriginSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

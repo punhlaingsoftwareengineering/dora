@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOpenjsfoundationProps */
+/** @typedef {typeof __propDef.events}  SiOpenjsfoundationEvents */
+/** @typedef {typeof __propDef.slots}  SiOpenjsfoundationSlots */
+export default class SiOpenjsfoundation extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOpenjsfoundationProps = typeof __propDef.props;
+export type SiOpenjsfoundationEvents = typeof __propDef.events;
+export type SiOpenjsfoundationSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

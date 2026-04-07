@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOpensearchProps */
+/** @typedef {typeof __propDef.events}  SiOpensearchEvents */
+/** @typedef {typeof __propDef.slots}  SiOpensearchSlots */
+export default class SiOpensearch extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOpensearchProps = typeof __propDef.props;
+export type SiOpensearchEvents = typeof __propDef.events;
+export type SiOpensearchSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

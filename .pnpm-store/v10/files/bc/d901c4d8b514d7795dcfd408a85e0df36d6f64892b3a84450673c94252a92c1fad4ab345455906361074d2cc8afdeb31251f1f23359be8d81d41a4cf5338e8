@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiNextcloudProps */
+/** @typedef {typeof __propDef.events}  SiNextcloudEvents */
+/** @typedef {typeof __propDef.slots}  SiNextcloudSlots */
+export default class SiNextcloud extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiNextcloudProps = typeof __propDef.props;
+export type SiNextcloudEvents = typeof __propDef.events;
+export type SiNextcloudSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

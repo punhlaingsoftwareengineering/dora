@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFortranProps */
+/** @typedef {typeof __propDef.events}  SiFortranEvents */
+/** @typedef {typeof __propDef.slots}  SiFortranSlots */
+export default class SiFortran extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFortranProps = typeof __propDef.props;
+export type SiFortranEvents = typeof __propDef.events;
+export type SiFortranSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

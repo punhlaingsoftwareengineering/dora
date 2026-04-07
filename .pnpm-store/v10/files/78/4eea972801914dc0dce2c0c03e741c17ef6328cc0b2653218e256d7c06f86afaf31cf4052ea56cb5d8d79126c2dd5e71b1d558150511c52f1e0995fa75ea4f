@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiApachedruidProps */
+/** @typedef {typeof __propDef.events}  SiApachedruidEvents */
+/** @typedef {typeof __propDef.slots}  SiApachedruidSlots */
+export default class SiApachedruid extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiApachedruidProps = typeof __propDef.props;
+export type SiApachedruidEvents = typeof __propDef.events;
+export type SiApachedruidSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

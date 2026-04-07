@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCookiecutterProps */
+/** @typedef {typeof __propDef.events}  SiCookiecutterEvents */
+/** @typedef {typeof __propDef.slots}  SiCookiecutterSlots */
+export default class SiCookiecutter extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCookiecutterProps = typeof __propDef.props;
+export type SiCookiecutterEvents = typeof __propDef.events;
+export type SiCookiecutterSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

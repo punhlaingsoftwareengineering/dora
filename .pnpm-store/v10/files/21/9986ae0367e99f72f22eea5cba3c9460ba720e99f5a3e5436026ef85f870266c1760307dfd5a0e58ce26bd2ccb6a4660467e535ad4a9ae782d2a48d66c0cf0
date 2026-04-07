@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTinkercadProps */
+/** @typedef {typeof __propDef.events}  SiTinkercadEvents */
+/** @typedef {typeof __propDef.slots}  SiTinkercadSlots */
+export default class SiTinkercad extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTinkercadProps = typeof __propDef.props;
+export type SiTinkercadEvents = typeof __propDef.events;
+export type SiTinkercadSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

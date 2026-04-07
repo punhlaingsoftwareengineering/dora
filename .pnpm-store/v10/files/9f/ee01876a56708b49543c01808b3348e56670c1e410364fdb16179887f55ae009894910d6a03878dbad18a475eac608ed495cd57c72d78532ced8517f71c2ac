@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiRoamresearchProps */
+/** @typedef {typeof __propDef.events}  SiRoamresearchEvents */
+/** @typedef {typeof __propDef.slots}  SiRoamresearchSlots */
+export default class SiRoamresearch extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiRoamresearchProps = typeof __propDef.props;
+export type SiRoamresearchEvents = typeof __propDef.events;
+export type SiRoamresearchSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

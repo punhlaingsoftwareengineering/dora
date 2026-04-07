@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiObbProps */
+/** @typedef {typeof __propDef.events}  SiObbEvents */
+/** @typedef {typeof __propDef.slots}  SiObbSlots */
+export default class SiObb extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiObbProps = typeof __propDef.props;
+export type SiObbEvents = typeof __propDef.events;
+export type SiObbSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

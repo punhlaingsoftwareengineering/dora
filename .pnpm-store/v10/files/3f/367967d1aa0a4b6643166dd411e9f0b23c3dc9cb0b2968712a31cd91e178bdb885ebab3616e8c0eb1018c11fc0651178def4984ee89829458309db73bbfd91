@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMicrostrategyProps */
+/** @typedef {typeof __propDef.events}  SiMicrostrategyEvents */
+/** @typedef {typeof __propDef.slots}  SiMicrostrategySlots */
+export default class SiMicrostrategy extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMicrostrategyProps = typeof __propDef.props;
+export type SiMicrostrategyEvents = typeof __propDef.events;
+export type SiMicrostrategySlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

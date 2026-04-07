@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGimpProps */
+/** @typedef {typeof __propDef.events}  SiGimpEvents */
+/** @typedef {typeof __propDef.slots}  SiGimpSlots */
+export default class SiGimp extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGimpProps = typeof __propDef.props;
+export type SiGimpEvents = typeof __propDef.events;
+export type SiGimpSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiArangodbProps */
+/** @typedef {typeof __propDef.events}  SiArangodbEvents */
+/** @typedef {typeof __propDef.slots}  SiArangodbSlots */
+export default class SiArangodb extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiArangodbProps = typeof __propDef.props;
+export type SiArangodbEvents = typeof __propDef.events;
+export type SiArangodbSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

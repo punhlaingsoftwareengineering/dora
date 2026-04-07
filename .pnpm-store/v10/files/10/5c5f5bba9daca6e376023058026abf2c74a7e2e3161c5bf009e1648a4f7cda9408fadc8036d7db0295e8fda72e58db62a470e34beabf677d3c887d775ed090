@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPerforceProps */
+/** @typedef {typeof __propDef.events}  SiPerforceEvents */
+/** @typedef {typeof __propDef.slots}  SiPerforceSlots */
+export default class SiPerforce extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPerforceProps = typeof __propDef.props;
+export type SiPerforceEvents = typeof __propDef.events;
+export type SiPerforceSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

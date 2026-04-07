@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiHeadlessuiProps */
+/** @typedef {typeof __propDef.events}  SiHeadlessuiEvents */
+/** @typedef {typeof __propDef.slots}  SiHeadlessuiSlots */
+export default class SiHeadlessui extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiHeadlessuiProps = typeof __propDef.props;
+export type SiHeadlessuiEvents = typeof __propDef.events;
+export type SiHeadlessuiSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

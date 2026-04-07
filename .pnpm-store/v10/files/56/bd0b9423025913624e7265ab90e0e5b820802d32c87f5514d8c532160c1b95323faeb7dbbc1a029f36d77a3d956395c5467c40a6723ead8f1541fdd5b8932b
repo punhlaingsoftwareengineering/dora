@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBoehringeringelheimProps */
+/** @typedef {typeof __propDef.events}  SiBoehringeringelheimEvents */
+/** @typedef {typeof __propDef.slots}  SiBoehringeringelheimSlots */
+export default class SiBoehringeringelheim extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBoehringeringelheimProps = typeof __propDef.props;
+export type SiBoehringeringelheimEvents = typeof __propDef.events;
+export type SiBoehringeringelheimSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

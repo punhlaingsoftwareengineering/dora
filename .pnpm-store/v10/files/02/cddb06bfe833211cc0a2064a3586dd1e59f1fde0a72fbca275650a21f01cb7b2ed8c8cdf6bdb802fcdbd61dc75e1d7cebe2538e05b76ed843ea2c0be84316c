@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBrandfolderProps */
+/** @typedef {typeof __propDef.events}  SiBrandfolderEvents */
+/** @typedef {typeof __propDef.slots}  SiBrandfolderSlots */
+export default class SiBrandfolder extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBrandfolderProps = typeof __propDef.props;
+export type SiBrandfolderEvents = typeof __propDef.events;
+export type SiBrandfolderSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

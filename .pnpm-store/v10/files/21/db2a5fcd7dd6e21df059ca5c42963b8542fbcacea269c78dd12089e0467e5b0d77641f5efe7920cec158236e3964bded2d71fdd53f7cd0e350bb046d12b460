@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiMongoosedotwsProps */
+/** @typedef {typeof __propDef.events}  SiMongoosedotwsEvents */
+/** @typedef {typeof __propDef.slots}  SiMongoosedotwsSlots */
+export default class SiMongoosedotws extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiMongoosedotwsProps = typeof __propDef.props;
+export type SiMongoosedotwsEvents = typeof __propDef.events;
+export type SiMongoosedotwsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

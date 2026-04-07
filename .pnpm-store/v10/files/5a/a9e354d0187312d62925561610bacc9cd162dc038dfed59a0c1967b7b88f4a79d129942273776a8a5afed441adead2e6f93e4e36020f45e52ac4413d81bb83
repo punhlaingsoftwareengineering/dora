@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiOdooProps */
+/** @typedef {typeof __propDef.events}  SiOdooEvents */
+/** @typedef {typeof __propDef.slots}  SiOdooSlots */
+export default class SiOdoo extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiOdooProps = typeof __propDef.props;
+export type SiOdooEvents = typeof __propDef.events;
+export type SiOdooSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

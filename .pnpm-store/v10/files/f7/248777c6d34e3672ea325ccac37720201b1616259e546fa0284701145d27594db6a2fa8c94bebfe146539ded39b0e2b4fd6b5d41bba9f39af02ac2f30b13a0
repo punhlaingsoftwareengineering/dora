@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTheodinprojectProps */
+/** @typedef {typeof __propDef.events}  SiTheodinprojectEvents */
+/** @typedef {typeof __propDef.slots}  SiTheodinprojectSlots */
+export default class SiTheodinproject extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTheodinprojectProps = typeof __propDef.props;
+export type SiTheodinprojectEvents = typeof __propDef.events;
+export type SiTheodinprojectSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

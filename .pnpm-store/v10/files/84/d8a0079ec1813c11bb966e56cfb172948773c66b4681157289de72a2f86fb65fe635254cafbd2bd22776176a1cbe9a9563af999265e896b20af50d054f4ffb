@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGarudalinuxProps */
+/** @typedef {typeof __propDef.events}  SiGarudalinuxEvents */
+/** @typedef {typeof __propDef.slots}  SiGarudalinuxSlots */
+export default class SiGarudalinux extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGarudalinuxProps = typeof __propDef.props;
+export type SiGarudalinuxEvents = typeof __propDef.events;
+export type SiGarudalinuxSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

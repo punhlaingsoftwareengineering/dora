@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiArcgisProps */
+/** @typedef {typeof __propDef.events}  SiArcgisEvents */
+/** @typedef {typeof __propDef.slots}  SiArcgisSlots */
+export default class SiArcgis extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiArcgisProps = typeof __propDef.props;
+export type SiArcgisEvents = typeof __propDef.events;
+export type SiArcgisSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

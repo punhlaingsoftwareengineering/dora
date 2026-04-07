@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiImagedotscProps */
+/** @typedef {typeof __propDef.events}  SiImagedotscEvents */
+/** @typedef {typeof __propDef.slots}  SiImagedotscSlots */
+export default class SiImagedotsc extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiImagedotscProps = typeof __propDef.props;
+export type SiImagedotscEvents = typeof __propDef.events;
+export type SiImagedotscSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

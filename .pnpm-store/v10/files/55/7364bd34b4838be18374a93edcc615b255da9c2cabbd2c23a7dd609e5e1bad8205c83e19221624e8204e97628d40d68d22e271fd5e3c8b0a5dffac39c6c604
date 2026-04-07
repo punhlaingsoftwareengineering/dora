@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiKofiProps */
+/** @typedef {typeof __propDef.events}  SiKofiEvents */
+/** @typedef {typeof __propDef.slots}  SiKofiSlots */
+export default class SiKofi extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiKofiProps = typeof __propDef.props;
+export type SiKofiEvents = typeof __propDef.events;
+export type SiKofiSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

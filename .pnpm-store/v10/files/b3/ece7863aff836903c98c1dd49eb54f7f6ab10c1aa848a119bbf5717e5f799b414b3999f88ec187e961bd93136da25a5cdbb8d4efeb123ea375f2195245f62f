@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiEsriProps */
+/** @typedef {typeof __propDef.events}  SiEsriEvents */
+/** @typedef {typeof __propDef.slots}  SiEsriSlots */
+export default class SiEsri extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiEsriProps = typeof __propDef.props;
+export type SiEsriEvents = typeof __propDef.events;
+export type SiEsriSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

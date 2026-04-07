@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBeekeeperstudioProps */
+/** @typedef {typeof __propDef.events}  SiBeekeeperstudioEvents */
+/** @typedef {typeof __propDef.slots}  SiBeekeeperstudioSlots */
+export default class SiBeekeeperstudio extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBeekeeperstudioProps = typeof __propDef.props;
+export type SiBeekeeperstudioEvents = typeof __propDef.events;
+export type SiBeekeeperstudioSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

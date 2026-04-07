@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiIcloudProps */
+/** @typedef {typeof __propDef.events}  SiIcloudEvents */
+/** @typedef {typeof __propDef.slots}  SiIcloudSlots */
+export default class SiIcloud extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiIcloudProps = typeof __propDef.props;
+export type SiIcloudEvents = typeof __propDef.events;
+export type SiIcloudSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

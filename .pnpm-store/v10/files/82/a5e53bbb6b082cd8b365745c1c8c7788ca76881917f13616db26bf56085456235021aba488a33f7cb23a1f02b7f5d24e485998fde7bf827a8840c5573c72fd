@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiSlackProps */
+/** @typedef {typeof __propDef.events}  SiSlackEvents */
+/** @typedef {typeof __propDef.slots}  SiSlackSlots */
+export default class SiSlack extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiSlackProps = typeof __propDef.props;
+export type SiSlackEvents = typeof __propDef.events;
+export type SiSlackSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

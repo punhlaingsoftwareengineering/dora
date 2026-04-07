@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiLivewireProps */
+/** @typedef {typeof __propDef.events}  SiLivewireEvents */
+/** @typedef {typeof __propDef.slots}  SiLivewireSlots */
+export default class SiLivewire extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiLivewireProps = typeof __propDef.props;
+export type SiLivewireEvents = typeof __propDef.events;
+export type SiLivewireSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

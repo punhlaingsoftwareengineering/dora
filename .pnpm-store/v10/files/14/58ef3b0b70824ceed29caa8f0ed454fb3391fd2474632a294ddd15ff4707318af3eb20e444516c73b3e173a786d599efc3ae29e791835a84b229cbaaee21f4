@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiHtml5Props */
+/** @typedef {typeof __propDef.events}  SiHtml5Events */
+/** @typedef {typeof __propDef.slots}  SiHtml5Slots */
+export default class SiHtml5 extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiHtml5Props = typeof __propDef.props;
+export type SiHtml5Events = typeof __propDef.events;
+export type SiHtml5Slots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

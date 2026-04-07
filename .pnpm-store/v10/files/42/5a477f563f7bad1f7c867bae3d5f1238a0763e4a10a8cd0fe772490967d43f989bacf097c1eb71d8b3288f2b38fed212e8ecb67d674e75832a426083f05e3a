@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiWindsurfProps */
+/** @typedef {typeof __propDef.events}  SiWindsurfEvents */
+/** @typedef {typeof __propDef.slots}  SiWindsurfSlots */
+export default class SiWindsurf extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiWindsurfProps = typeof __propDef.props;
+export type SiWindsurfEvents = typeof __propDef.events;
+export type SiWindsurfSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

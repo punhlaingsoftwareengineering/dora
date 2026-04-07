@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiUnstopProps */
+/** @typedef {typeof __propDef.events}  SiUnstopEvents */
+/** @typedef {typeof __propDef.slots}  SiUnstopSlots */
+export default class SiUnstop extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiUnstopProps = typeof __propDef.props;
+export type SiUnstopEvents = typeof __propDef.events;
+export type SiUnstopSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

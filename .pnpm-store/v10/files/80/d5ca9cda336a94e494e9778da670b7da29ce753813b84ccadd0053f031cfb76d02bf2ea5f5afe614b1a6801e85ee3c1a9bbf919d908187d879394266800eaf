@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGoogleformsProps */
+/** @typedef {typeof __propDef.events}  SiGoogleformsEvents */
+/** @typedef {typeof __propDef.slots}  SiGoogleformsSlots */
+export default class SiGoogleforms extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGoogleformsProps = typeof __propDef.props;
+export type SiGoogleformsEvents = typeof __propDef.events;
+export type SiGoogleformsSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

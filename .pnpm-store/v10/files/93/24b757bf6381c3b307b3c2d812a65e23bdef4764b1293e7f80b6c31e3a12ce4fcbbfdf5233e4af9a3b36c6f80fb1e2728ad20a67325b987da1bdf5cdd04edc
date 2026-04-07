@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFozzyProps */
+/** @typedef {typeof __propDef.events}  SiFozzyEvents */
+/** @typedef {typeof __propDef.slots}  SiFozzySlots */
+export default class SiFozzy extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFozzyProps = typeof __propDef.props;
+export type SiFozzyEvents = typeof __propDef.events;
+export type SiFozzySlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

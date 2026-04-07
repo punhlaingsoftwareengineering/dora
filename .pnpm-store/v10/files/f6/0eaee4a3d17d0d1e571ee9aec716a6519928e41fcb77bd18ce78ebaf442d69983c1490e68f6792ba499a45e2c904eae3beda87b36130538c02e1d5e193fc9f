@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiFastlaneProps */
+/** @typedef {typeof __propDef.events}  SiFastlaneEvents */
+/** @typedef {typeof __propDef.slots}  SiFastlaneSlots */
+export default class SiFastlane extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiFastlaneProps = typeof __propDef.props;
+export type SiFastlaneEvents = typeof __propDef.events;
+export type SiFastlaneSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiTurborepoProps */
+/** @typedef {typeof __propDef.events}  SiTurborepoEvents */
+/** @typedef {typeof __propDef.slots}  SiTurborepoSlots */
+export default class SiTurborepo extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiTurborepoProps = typeof __propDef.props;
+export type SiTurborepoEvents = typeof __propDef.events;
+export type SiTurborepoSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

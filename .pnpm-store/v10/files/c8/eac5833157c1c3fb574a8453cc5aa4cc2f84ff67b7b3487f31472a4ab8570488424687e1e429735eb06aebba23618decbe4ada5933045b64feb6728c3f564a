@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGamemakerProps */
+/** @typedef {typeof __propDef.events}  SiGamemakerEvents */
+/** @typedef {typeof __propDef.slots}  SiGamemakerSlots */
+export default class SiGamemaker extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGamemakerProps = typeof __propDef.props;
+export type SiGamemakerEvents = typeof __propDef.events;
+export type SiGamemakerSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

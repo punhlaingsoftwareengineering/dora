@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiBitriseProps */
+/** @typedef {typeof __propDef.events}  SiBitriseEvents */
+/** @typedef {typeof __propDef.slots}  SiBitriseSlots */
+export default class SiBitrise extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiBitriseProps = typeof __propDef.props;
+export type SiBitriseEvents = typeof __propDef.events;
+export type SiBitriseSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

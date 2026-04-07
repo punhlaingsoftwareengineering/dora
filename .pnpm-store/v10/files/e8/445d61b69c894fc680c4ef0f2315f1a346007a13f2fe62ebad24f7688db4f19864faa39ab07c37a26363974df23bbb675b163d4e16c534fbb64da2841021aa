@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiWemoProps */
+/** @typedef {typeof __propDef.events}  SiWemoEvents */
+/** @typedef {typeof __propDef.slots}  SiWemoSlots */
+export default class SiWemo extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiWemoProps = typeof __propDef.props;
+export type SiWemoEvents = typeof __propDef.events;
+export type SiWemoSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

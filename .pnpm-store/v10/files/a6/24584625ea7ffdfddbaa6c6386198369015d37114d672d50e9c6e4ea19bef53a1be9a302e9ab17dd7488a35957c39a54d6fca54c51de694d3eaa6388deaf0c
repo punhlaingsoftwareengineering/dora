@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiCcleanerProps */
+/** @typedef {typeof __propDef.events}  SiCcleanerEvents */
+/** @typedef {typeof __propDef.slots}  SiCcleanerSlots */
+export default class SiCcleaner extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiCcleanerProps = typeof __propDef.props;
+export type SiCcleanerEvents = typeof __propDef.events;
+export type SiCcleanerSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

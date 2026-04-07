@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiAutheliaProps */
+/** @typedef {typeof __propDef.events}  SiAutheliaEvents */
+/** @typedef {typeof __propDef.slots}  SiAutheliaSlots */
+export default class SiAuthelia extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiAutheliaProps = typeof __propDef.props;
+export type SiAutheliaEvents = typeof __propDef.events;
+export type SiAutheliaSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

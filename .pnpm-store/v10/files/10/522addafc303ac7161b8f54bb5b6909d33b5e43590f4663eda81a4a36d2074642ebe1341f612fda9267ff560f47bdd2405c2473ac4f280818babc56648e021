@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGameloftProps */
+/** @typedef {typeof __propDef.events}  SiGameloftEvents */
+/** @typedef {typeof __propDef.slots}  SiGameloftSlots */
+export default class SiGameloft extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGameloftProps = typeof __propDef.props;
+export type SiGameloftEvents = typeof __propDef.events;
+export type SiGameloftSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

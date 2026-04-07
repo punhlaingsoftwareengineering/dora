@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiDunzoProps */
+/** @typedef {typeof __propDef.events}  SiDunzoEvents */
+/** @typedef {typeof __propDef.slots}  SiDunzoSlots */
+export default class SiDunzo extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiDunzoProps = typeof __propDef.props;
+export type SiDunzoEvents = typeof __propDef.events;
+export type SiDunzoSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiThenorthfaceProps */
+/** @typedef {typeof __propDef.events}  SiThenorthfaceEvents */
+/** @typedef {typeof __propDef.slots}  SiThenorthfaceSlots */
+export default class SiThenorthface extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiThenorthfaceProps = typeof __propDef.props;
+export type SiThenorthfaceEvents = typeof __propDef.events;
+export type SiThenorthfaceSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

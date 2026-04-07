@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiPeerlistProps */
+/** @typedef {typeof __propDef.events}  SiPeerlistEvents */
+/** @typedef {typeof __propDef.slots}  SiPeerlistSlots */
+export default class SiPeerlist extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiPeerlistProps = typeof __propDef.props;
+export type SiPeerlistEvents = typeof __propDef.events;
+export type SiPeerlistSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

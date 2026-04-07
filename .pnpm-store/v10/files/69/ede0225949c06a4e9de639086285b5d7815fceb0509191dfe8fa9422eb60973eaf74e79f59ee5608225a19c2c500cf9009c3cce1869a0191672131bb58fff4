@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiReactiveresumeProps */
+/** @typedef {typeof __propDef.events}  SiReactiveresumeEvents */
+/** @typedef {typeof __propDef.slots}  SiReactiveresumeSlots */
+export default class SiReactiveresume extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiReactiveresumeProps = typeof __propDef.props;
+export type SiReactiveresumeEvents = typeof __propDef.events;
+export type SiReactiveresumeSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};

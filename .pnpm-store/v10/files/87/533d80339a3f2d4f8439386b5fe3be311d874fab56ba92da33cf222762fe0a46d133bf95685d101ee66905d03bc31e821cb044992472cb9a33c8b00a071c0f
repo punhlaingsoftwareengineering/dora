@@ -1,0 +1,27 @@
+/** @typedef {typeof __propDef.props}  SiGooglesearchconsoleProps */
+/** @typedef {typeof __propDef.events}  SiGooglesearchconsoleEvents */
+/** @typedef {typeof __propDef.slots}  SiGooglesearchconsoleSlots */
+export default class SiGooglesearchconsole extends SvelteComponent<{
+    color?: string | undefined;
+    size?: number | undefined;
+    title?: string | undefined;
+}, {
+    [evt: string]: CustomEvent<any>;
+}, {}> {
+}
+export type SiGooglesearchconsoleProps = typeof __propDef.props;
+export type SiGooglesearchconsoleEvents = typeof __propDef.events;
+export type SiGooglesearchconsoleSlots = typeof __propDef.slots;
+import { SvelteComponent } from "svelte";
+declare const __propDef: {
+    props: {
+        color?: string | undefined;
+        size?: number | undefined;
+        title?: string | undefined;
+    };
+    events: {
+        [evt: string]: CustomEvent<any>;
+    };
+    slots: {};
+};
+export {};
