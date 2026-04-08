@@ -45,6 +45,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
+        working-directory: source
         run: |
           set -euo pipefail
           TAG="${{ steps.ver.outputs.version }}"
