@@ -1,25 +1,19 @@
-# Builds whitelist-browser-desktop for Linux, Windows, and macOS (x64 + Apple Silicon),
-# uploads installers to a GitHub Release, and publishes latest.json for the Tauri updater.
+# Cross-platform Tauri build (Linux, Windows, macOS x64 + Apple Silicon).
+# - Windows: checkout under `source/` + `C:\repo` junction to avoid long path issues.
+# - macOS/Linux: checkout under `source/`; all paths use `source/whitelist-browser-desktop`.
 #
-# Prerequisites:
-# - Bump version in whitelist-browser-desktop/src-tauri/tauri.conf.json and src-tauri/Cargo.toml.
-# - Repository secrets (Settings → Secrets → Actions):
-#     TAURI_SIGNING_PRIVATE_KEY         — full contents of your minisign private key file (.key)
-#     TAURI_SIGNING_PRIVATE_KEY_PASSWORD — optional; omit or leave empty if the key has no password
-#
-# Trigger: push a tag matching v* (e.g. v0.2.0), or run the workflow manually.
+# Secrets: TAURI_SIGNING_PRIVATE_KEY, optional TAURI_SIGNING_PRIVATE_KEY_PASSWORD
 
-name: Tauri desktop release
+name: Desktop cross-platform build
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
   workflow_dispatch:
 
-defaults:
-  run:
-    working-directory: whitelist-browser-desktop
+env:
+  DESKTOP_REL: source/whitelist-browser-desktop
 
 jobs:
   publish-tauri:
@@ -40,25 +34,30 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
+      - name: Configure Git for long paths (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          git config --global core.longpaths true
+          Add-Content -Path $env:GITHUB_ENV -Value "EnableWin32LongPaths=1"
+
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
         with:
-          version: 10
+          path: source
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-          cache-dependency-path: whitelist-browser-desktop/pnpm-lock.yaml
+      - name: Short path symlink (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $target = (Resolve-Path "${{ github.workspace }}/source").Path
+          if (Test-Path 'C:\repo') { Remove-Item 'C:\repo' -Force }
+          New-Item -ItemType Junction -Path 'C:\repo' -Target $target
+          Add-Content -Path $env:GITHUB_ENV -Value "REPO_ROOT=C:\repo"
 
-      - name: Rust stable
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+      - name: Set repo root (Unix)
+        if: runner.os != 'Windows'
+        run: echo "REPO_ROOT=${{ github.workspace }}/source" >> "$GITHUB_ENV"
 
       - name: Linux dependencies (WebKitGTK)
         if: matrix.platform == 'ubuntu-22.04'
@@ -66,10 +65,34 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: pnpm
+          cache-dependency-path: ${{ env.DESKTOP_REL }}/pnpm-lock.yaml
+
       - name: Install frontend dependencies
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        working-directory: ${{ env.REPO_ROOT }}/whitelist-browser-desktop
         run: pnpm install --frozen-lockfile
+
+      - name: Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: ${{ env.DESKTOP_REL }}/src-tauri -> target
+          key: ${{ matrix.platform }}-${{ matrix.args }}
 
       - name: Build and upload to GitHub Release
         uses: tauri-apps/tauri-action@v0
@@ -78,14 +101,13 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
-          projectPath: whitelist-browser-desktop
+          projectPath: ${{ env.DESKTOP_REL }}
           tauriScript: pnpm exec tauri
-          tagName: v__VERSION__
-          releaseName: Whitelist Browser Desktop v__VERSION__
-          releaseBody: |
-            Installers and update bundles for Linux, Windows, and macOS.
-
-            **Auto-updates:** this release includes `latest.json` for the in-app updater (see `tauri.conf.json` endpoints).
+          tagName: __VERSION__
+          releaseName: '__VERSION__'
+          releaseBody: 'See the assets to download this version and install.'
+          releaseDraft: true
+          prerelease: false
           includeUpdaterJson: true
           updaterJsonPreferNsis: true
           args: ${{ matrix.args }}
