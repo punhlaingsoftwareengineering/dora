@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for heka on 2026-01-30T13:10:10+06:30
+# fly.toml app configuration file generated for whitelist-browser-server on 2026-04-08T08:59:21Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -20,4 +20,4 @@ primary_region = 'sin'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-  memory_mb = 1024
+  memory_mb = 256
