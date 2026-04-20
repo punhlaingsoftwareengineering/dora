@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { Palette, LogIn, UserPlus } from '@lucide/svelte';
 	import { page } from '$app/state';
+	import LogoMark from '$lib/ui/LogoMark.svelte';
 
 	const links = [
 		{ href: '/onboarding', label: 'Home' },
@@ -18,7 +19,10 @@
 
 <div class="navbar bg-base-100">
 	<div class="navbar-start">
-		<button class="btn btn-ghost text-xl" onclick={() => goto('/onboarding')}>Whitelist Browser</button>
+		<button class="btn btn-ghost gap-2 text-xl" onclick={() => goto('/onboarding')}>
+			<LogoMark size={28} class="shrink-0" />
+			<span>Whitelist Browser</span>
+		</button>
 	</div>
 
 	<div class="navbar-center hidden lg:flex">

@@ -5,6 +5,7 @@
 	import { checkForUpdate, relaunchApp, type DownloadEvent, type UpdateHandle } from '$lib/updater';
 	import { getDeviceOptionsWithTimeout } from '$lib/api';
 	import { resolveAppVersion } from '$lib/appVersion';
+	import LogoMark from '$lib/ui/LogoMark.svelte';
 
 	let { children } = $props();
 	let appVersion = $state<string | null>(null);
@@ -108,9 +109,13 @@
 
 	<header class="navbar border-b border-base-300/80 bg-base-100/90 px-2 shadow-sm backdrop-blur-sm sm:px-4">
 		<div class="navbar-start min-w-0 flex-1 gap-3">
-			<a class="btn btn-ghost shrink truncate px-2 text-lg font-semibold tracking-tight sm:text-xl" href="/home"
-				>Whitelist Browser</a
+			<a
+				class="btn btn-ghost shrink gap-2 truncate px-2 text-lg font-semibold tracking-tight sm:text-xl"
+				href="/home"
 			>
+				<LogoMark size={28} class="shrink-0" />
+				<span class="truncate">Whitelist Browser</span>
+			</a>
 			{#if appVersion}
 				<span class="hidden text-xs text-base-content/45 tabular-nums sm:inline">v{appVersion}</span>
 			{/if}

@@ -1,11 +1,16 @@
 <script lang="ts">
 	import { ShieldCheck, Globe, Network } from '@lucide/svelte';
+	import LogoMark from '$lib/ui/LogoMark.svelte';
 </script>
 
 <section class="mx-auto max-w-6xl px-6 py-12">
 	<div class="hero rounded-box bg-base-200">
 		<div class="hero-content flex-col gap-10 lg:flex-row">
 			<div class="max-w-xl">
+				<div class="mb-4 flex items-center gap-3">
+					<LogoMark size={48} class="shrink-0" />
+					<span class="text-sm font-semibold uppercase tracking-wide text-base-content/60">Whitelist Browser</span>
+				</div>
 				<h1 class="text-4xl font-bold leading-tight">Whitelist-only browsing for your organization.</h1>
 				<p class="py-6 text-base-content/80">
 					Control which websites are accessible, enforce proxy settings, and approve devices before they can

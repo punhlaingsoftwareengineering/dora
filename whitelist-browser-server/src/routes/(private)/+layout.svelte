@@ -1,12 +1,17 @@
 <script lang="ts">
 	import { LogOut, Home, Settings } from '@lucide/svelte';
+	import LogoMark from '$lib/ui/LogoMark.svelte';
+
 	let { data, children } = $props();
 </script>
 
 <div class="min-h-screen bg-base-200">
 	<div class="navbar bg-base-100">
 		<div class="navbar-start">
-			<a class="btn btn-ghost text-xl" href="/home">Whitelist Browser</a>
+			<a class="btn btn-ghost gap-2 text-xl" href="/home">
+				<LogoMark size={28} class="shrink-0" />
+				<span>Whitelist Browser</span>
+			</a>
 		</div>
 		<div class="navbar-center hidden lg:flex">
 			<ul class="menu menu-horizontal px-1">

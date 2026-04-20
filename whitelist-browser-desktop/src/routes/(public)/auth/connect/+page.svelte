@@ -1,11 +1,21 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import { getOrCreateFingerprint, saveConfig, saveConnection, loadConnection } from '$lib/deviceStorage';
+	import {
+		getOrCreateFingerprint,
+		saveConfig,
+		saveConnection,
+		loadConnection,
+		loadConnectCredentials,
+		saveConnectCredentials,
+		loadPendingRequestId,
+		savePendingRequestId
+	} from '$lib/deviceStorage';
 	import { postConnect, getRequestStatus } from '$lib/api';
 	import { page } from '$app/state';
 	import { resolveAppVersion } from '$lib/appVersion';
 	import { checkForUpdate, relaunchApp, type DownloadEvent, type UpdateHandle } from '$lib/updater';
+	import LogoMark from '$lib/ui/LogoMark.svelte';
 
 	let orgName = $state('');
 	let appVersion = $state<string | null>(null);
@@ -83,6 +93,7 @@
 			status = s.status;
 			if (s.status === 'APPROVED' && s.orgId && s.deviceId && s.sites) {
 				polling = false;
+				savePendingRequestId(null);
 				saveConnection({ orgId: s.orgId, deviceId: s.deviceId });
 				saveConfig({ proxy: s.proxy ?? null, sites: s.sites });
 				goto('/home');
@@ -90,6 +101,7 @@
 			}
 			if (s.status === 'REJECTED' || s.status === 'IGNORED') {
 				polling = false;
+				savePendingRequestId(null);
 			}
 		} catch (e) {
 			error = e instanceof Error ? e.message : 'Unexpected error';
@@ -122,6 +134,8 @@
 			deviceFingerprint,
 			deviceInfo: { userAgent: navigator.userAgent, platform: navigator.platform }
 		});
+		saveConnectCredentials({ orgName, secretKey });
+		savePendingRequestId(res.requestId);
 		requestId = res.requestId;
 		status = 'PENDING';
 		startPolling();
@@ -145,6 +159,17 @@
 			goto('/home');
 			return;
 		}
+		const saved = loadConnectCredentials();
+		if (saved) {
+			orgName = saved.orgName;
+			secretKey = saved.secretKey;
+		}
+		const pending = loadPendingRequestId();
+		if (pending) {
+			requestId = pending;
+			status = 'PENDING';
+			startPolling();
+		}
 		replayBannerFromUrl();
 		void resolveAppVersion().then((v) => (appVersion = v));
 	});
@@ -157,11 +182,14 @@
 		>
 			<div class="border-b border-base-200 bg-base-200/40 px-6 py-5 sm:px-8">
 				<div class="flex flex-wrap items-start justify-between gap-3">
-					<div>
+					<div class="flex min-w-0 items-start gap-3">
+						<LogoMark size={36} class="mt-0.5 shrink-0" />
+						<div class="min-w-0">
 						<h1 class="text-xl font-semibold tracking-tight sm:text-2xl">Connect</h1>
 						<p class="mt-1 max-w-md text-sm text-base-content/65">
 							Use the organization <span class="font-medium">code</span> and secret key from your admin.
 						</p>
+						</div>
 					</div>
 					<button
 						type="button"

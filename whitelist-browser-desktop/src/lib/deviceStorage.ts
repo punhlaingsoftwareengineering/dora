@@ -10,10 +10,18 @@ export type StoredConfig = {
 	sites: { id: string; label: string; urlPattern: string }[];
 };
 
+/** Organization code + secret from the connect form; persisted across restarts and updates. */
+export type StoredConnectCredentials = {
+	orgName: string;
+	secretKey: string;
+};
+
 type StorageBlob = {
 	connection: StoredConnection | null;
 	config: StoredConfig | null;
 	fingerprint: string | null;
+	connectCredentials: StoredConnectCredentials | null;
+	pendingRequestId: string | null;
 };
 
 const KEY_CONN = 'wb.connection';
@@ -23,7 +31,9 @@ const KEY_FINGERPRINT = 'wb.fingerprint';
 const emptyBlob = (): StorageBlob => ({
 	connection: null,
 	config: null,
-	fingerprint: null
+	fingerprint: null,
+	connectCredentials: null,
+	pendingRequestId: null
 });
 
 let blob: StorageBlob = emptyBlob();
@@ -55,6 +65,7 @@ function readLocalStorageIntoBlob() {
 	if (rawFp) blob.fingerprint = rawFp;
 }
 
+/** Never mirror secrets or pending device approval state to localStorage (WebView cache can be cleared). */
 function mirrorBlobToLocalStorage() {
 	if (!hasLocalStorage()) return;
 	if (blob.connection) localStorage.setItem(KEY_CONN, JSON.stringify(blob.connection));
@@ -72,12 +83,22 @@ async function persist() {
 			json: JSON.stringify({
 				connection: blob.connection,
 				config: blob.config,
-				fingerprint: blob.fingerprint
+				fingerprint: blob.fingerprint,
+				connectCredentials: blob.connectCredentials,
+				pendingRequestId: blob.pendingRequestId
 			})
 		});
 	} catch {
-		// Browser / dev without Tauri — localStorage only
+		// Browser / dev without Tauri — localStorage only (no connectCredentials in LS)
 	}
+}
+
+function mergeParsedBlob(o: Partial<StorageBlob>) {
+	blob.connection = o.connection ?? null;
+	blob.config = o.config ?? null;
+	blob.fingerprint = o.fingerprint ?? null;
+	blob.connectCredentials = o.connectCredentials ?? null;
+	blob.pendingRequestId = o.pendingRequestId ?? null;
 }
 
 /**
@@ -91,14 +112,13 @@ export async function initDeviceStorage(): Promise<void> {
 			const raw = await invoke<string | null>('wb_storage_load');
 			if (raw) {
 				const o = JSON.parse(raw) as Partial<StorageBlob>;
-				blob.connection = o.connection ?? null;
-				blob.config = o.config ?? null;
-				blob.fingerprint = o.fingerprint ?? null;
+				mergeParsedBlob(o);
 			}
 		} catch {
 			// Not running inside Tauri
 		}
-		if (!blob.connection && !blob.config && !blob.fingerprint) {
+
+		if (!blob.connection && !blob.config && !blob.fingerprint && !blob.connectCredentials && !blob.pendingRequestId) {
 			readLocalStorageIntoBlob();
 			if (blob.connection || blob.config || blob.fingerprint) {
 				await persist();
@@ -124,12 +144,14 @@ export function loadConnection(): StoredConnection | null {
 
 export function saveConnection(conn: StoredConnection) {
 	blob.connection = conn;
+	blob.pendingRequestId = null;
 	void persist();
 }
 
 export function clearConnection() {
 	blob.connection = null;
 	blob.config = null;
+	blob.pendingRequestId = null;
 	void persist();
 }
 
@@ -139,5 +161,28 @@ export function loadConfig(): StoredConfig | null {
 
 export function saveConfig(cfg: StoredConfig) {
 	blob.config = cfg;
+	void persist();
+}
+
+export function loadConnectCredentials(): StoredConnectCredentials | null {
+	return blob.connectCredentials;
+}
+
+export function saveConnectCredentials(creds: StoredConnectCredentials) {
+	blob.connectCredentials = creds;
+	void persist();
+}
+
+export function clearConnectCredentials() {
+	blob.connectCredentials = null;
+	void persist();
+}
+
+export function loadPendingRequestId(): string | null {
+	return blob.pendingRequestId;
+}
+
+export function savePendingRequestId(requestId: string | null) {
+	blob.pendingRequestId = requestId;
 	void persist();
 }

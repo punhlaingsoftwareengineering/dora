@@ -1,9 +1,20 @@
 use serde::Serialize;
 use std::fs;
 use std::path::PathBuf;
-#[cfg(windows)]
 use tauri::Manager;
 use tauri::{Url, WebviewUrl, WebviewWindowBuilder};
+
+fn app_device_storage_path(app: &tauri::AppHandle) -> Result<PathBuf, String> {
+  let dir = app.path().app_local_data_dir().map_err(|e| e.to_string())?;
+  fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
+  Ok(dir.join("device_storage.json"))
+}
+
+/// Older builds wrote here via `directories::ProjectDirs` (different from Tauri’s app data dir).
+fn legacy_device_storage_path() -> Option<PathBuf> {
+  directories::ProjectDirs::from("com", "punhlainghospital", "WhitelistBrowserDesktop")
+    .map(|d| d.data_local_dir().join("device_storage.json"))
+}
 
 #[derive(Serialize)]
 struct DeviceSpec {
@@ -32,26 +43,27 @@ fn get_device_spec() -> DeviceSpec {
   }
 }
 
-fn storage_file_path() -> Result<PathBuf, String> {
-  let dirs = directories::ProjectDirs::from("com", "punhlainghospital", "WhitelistBrowserDesktop")
-    .ok_or_else(|| "Could not resolve app data directory".to_string())?;
-  let dir = dirs.data_local_dir();
-  fs::create_dir_all(dir).map_err(|e| e.to_string())?;
-  Ok(dir.join("device_storage.json"))
-}
-
 #[tauri::command]
-fn wb_storage_load() -> Result<Option<String>, String> {
-  let path = storage_file_path()?;
-  if !path.exists() {
-    return Ok(None);
+fn wb_storage_load(app: tauri::AppHandle) -> Result<Option<String>, String> {
+  let path = app_device_storage_path(&app)?;
+  if path.exists() {
+    return fs::read_to_string(&path).map(Some).map_err(|e| e.to_string());
   }
-  fs::read_to_string(&path).map(Some).map_err(|e| e.to_string())
+  if let Some(legacy) = legacy_device_storage_path() {
+    if legacy.exists() {
+      let data = fs::read_to_string(&legacy).map_err(|e| e.to_string())?;
+      if let Err(e) = fs::write(&path, &data) {
+        log::warn!("device_storage migrate: could not write {}: {e}", path.display());
+      }
+      return Ok(Some(data));
+    }
+  }
+  Ok(None)
 }
 
 #[tauri::command]
-fn wb_storage_save(json: String) -> Result<(), String> {
-  let path = storage_file_path()?;
+fn wb_storage_save(app: tauri::AppHandle, json: String) -> Result<(), String> {
+  let path = app_device_storage_path(&app)?;
   fs::write(path, json).map_err(|e| e.to_string())
 }
 
