@@ -41,118 +41,42 @@ export function proxyUrlFromOrgProxy(proxy: OrgProxy | null | undefined): string
 	}
 }
 
-function isWindowsOs(): boolean {
-	if (typeof navigator === 'undefined') return false;
-	const nav = navigator as Navigator & { userAgentData?: { platform?: string } };
-	const p = nav.userAgentData?.platform;
-	if (p === 'Windows') return true;
-	const ua = navigator.userAgent ?? '';
-	return /Windows|Win32|Win64/i.test(ua);
-}
-
-async function resolveParentWindowLabel(): Promise<string> {
-	try {
-		const { getCurrentWindow } = await import('@tauri-apps/api/window');
-		return getCurrentWindow().label;
-	} catch {
-		return 'main';
-	}
-}
-
-async function browserWindowOptions(
-	url: string,
-	title: string | undefined,
-	proxy: OrgProxy | null | undefined
-) {
-	const proxyUrl = proxyUrlFromOrgProxy(proxy);
-	const base = {
-		url,
-		title: title ?? 'Whitelist Browser',
-		width: 1100,
-		height: 800,
-		resizable: true,
-		visible: true,
-		focus: true,
-		...(proxyUrl ? { proxyUrl } : {})
-	};
-
-	// Windows uses `wb_open_site_window` (Rust) instead of this path.
-	const parent = await resolveParentWindowLabel();
-	return { ...base, parent };
-}
-
 function newBrowserWindowLabel(): string {
 	// Webview labels: documented charset a-zA-Z-/:_ (avoid digits for strict backends).
 	return `browser-${randomAlphaSegment(4)}-${randomAlphaSegment(4)}-${randomAlphaSegment(8)}`;
 }
 
-function errorFromTauriEvent(e: unknown): Error {
-	if (e instanceof Error) return e;
-	if (typeof e === 'string') return new Error(e);
-	if (e && typeof e === 'object' && 'message' in e && typeof (e as { message: unknown }).message === 'string') {
-		return new Error((e as { message: string }).message);
-	}
-	try {
-		return new Error(JSON.stringify(e));
-	} catch {
-		return new Error('Failed to create browser window');
-	}
-}
-
 /**
  * Opens a new Tauri WebviewWindow for browsing (main app window stays single).
  *
- * Note: This is intentionally client-only; it no-ops during SSR.
- * When `proxy` is set, it is applied at webview creation (WebKitGTK / WebView2; macOS needs the
- * `macos-proxy` Cargo feature on the Tauri crate).
+ * Site windows are created in Rust (`wb_open_site_window`) so every platform gets the same behavior:
+ * org proxy, per-window data dir on Windows, allowlist checks, and handling of `window.open` /
+ * `target=_blank` by opening additional windows with the same policy.
  *
- * **Windows:** Uses the `wb_open_site_window` Rust command so the webview is created outside the
- * WebView2 UI event stack (wry#583) with an isolated `data_directory` and optional `http://` proxy
- * (same shape as Firefox “HTTP proxy” for HTTPS).
+ * Note: This is intentionally client-only; it no-ops during SSR.
  */
-export async function openBrowserWindow(url: string, title?: string, proxy?: OrgProxy | null) {
+export async function openBrowserWindow(
+	url: string,
+	title?: string,
+	proxy?: OrgProxy | null,
+	allowedUrlPatterns?: string[]
+) {
 	if (typeof window === 'undefined') return;
 
 	const label = newBrowserWindowLabel();
 	const proxyUrl = proxyUrlFromOrgProxy(proxy) ?? null;
-
-	if (isWindowsOs()) {
-		let invoke: typeof import('@tauri-apps/api/core').invoke;
-		try {
-			({ invoke } = await import('@tauri-apps/api/core'));
-		} catch {
-			throw new Error('Tauri API not available (are you running in the Tauri app window?)');
-		}
-		await invoke('wb_open_site_window', {
-			label,
-			url,
-			title: title ?? 'Whitelist Browser',
-			proxyUrl
-		});
-		return;
-	}
-
-	let WebviewWindow: typeof import('@tauri-apps/api/webviewWindow').WebviewWindow;
+	let invoke: typeof import('@tauri-apps/api/core').invoke;
 	try {
-		({ WebviewWindow } = await import('@tauri-apps/api/webviewWindow'));
+		({ invoke } = await import('@tauri-apps/api/core'));
 	} catch {
 		throw new Error('Tauri API not available (are you running in the Tauri app window?)');
 	}
 
-	const options = await browserWindowOptions(url, title, proxy);
-
-	// WebView2 reentrancy: creating a webview from the same stack as a webview event (e.g. click)
-	// can deadlock or never complete on Windows. Yield to the browser event loop first.
-	// See https://github.com/tauri-apps/wry/issues/583 and MS WebView2 threading docs.
-	await new Promise<void>((r) => {
-		window.setTimeout(() => r(), 0);
-	});
-
-	return new Promise<void>((resolve, reject) => {
-		const win = new WebviewWindow(label, options);
-		win.once('tauri://created', () => resolve());
-		win.once('tauri://error', (e: unknown) => {
-			reject(errorFromTauriEvent(e));
-		});
+	await invoke('wb_open_site_window', {
+		label,
+		url,
+		title: title ?? 'Dora',
+		proxyUrl,
+		allowedPatterns: allowedUrlPatterns?.length ? allowedUrlPatterns : null
 	});
 }

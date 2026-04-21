@@ -46,7 +46,7 @@
 			})
 			.catch(() => {
 				verifyError =
-					'Could not reach the server. You can keep using the last saved sites below, or retry. Use Disconnect to sign out.';
+					'Could not reach Dora. You can keep using the last saved sites below, or retry. Use Disconnect to sign out.';
 				verifying = false;
 			});
 	}
@@ -114,7 +114,7 @@
 				href="/home"
 			>
 				<LogoMark size={28} class="shrink-0" />
-				<span class="truncate">Whitelist Browser</span>
+				<span class="truncate">Dora</span>
 			</a>
 			{#if appVersion}
 				<span class="hidden text-xs text-base-content/45 tabular-nums sm:inline">v{appVersion}</span>
@@ -139,7 +139,7 @@
 		{#if verifying}
 			<div class="flex min-h-[45vh] flex-col items-center justify-center gap-3">
 				<span class="loading loading-spinner loading-lg text-primary" aria-label="Verifying"></span>
-				<p class="text-sm text-base-content/60">Checking with server…</p>
+				<p class="text-sm text-base-content/60">Checking with Dora…</p>
 			</div>
 		{:else}
 			{@render children()}

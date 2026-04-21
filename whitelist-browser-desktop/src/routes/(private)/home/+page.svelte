@@ -111,18 +111,20 @@
 	function open(url: string) {
 		uiError = null;
 		if (!allowed(url)) {
-			uiError = 'Blocked navigation (not in allowlist).';
+			uiError = 'Blocked navigation (not on your allowed sites).';
 			return;
 		}
 		current = url;
 		const siteLabel =
 			cfg?.sites.find((s) => patternToStartUrl(s.urlPattern) === url)?.label ??
 			new URL(url).hostname.replace(/^www\./, '');
-		const title = `${siteLabel} - Whitelist Browser`;
+		const title = `${siteLabel} - Dora`;
 
-		openBrowserWindow(url, title, cfg?.proxy ?? null).catch((e) => {
-			uiError = e instanceof Error ? e.message : 'Failed to open browser window';
-		});
+		openBrowserWindow(url, title, cfg?.proxy ?? null, cfg?.sites.map((s) => s.urlPattern) ?? []).catch(
+			(e) => {
+				uiError = e instanceof Error ? e.message : 'Failed to open browser window';
+			}
+		);
 	}
 
 	function faviconUrlForPattern(pattern: string) {
@@ -156,7 +158,7 @@
 			saveConfig(cfg);
 			if (!current) current = cfg.sites?.[0] ? patternToStartUrl(cfg.sites[0].urlPattern) : null;
 		} catch (e) {
-			refreshMessage = e instanceof Error ? e.message : 'Could not refresh from server.';
+			refreshMessage = e instanceof Error ? e.message : 'Could not refresh settings from Dora.';
 		} finally {
 			refreshBusy = false;
 		}
@@ -173,7 +175,7 @@
 			<div>
 				<h1 class="text-2xl font-semibold tracking-tight sm:text-3xl">Allowed sites</h1>
 				<p class="mt-1 max-w-xl text-sm leading-relaxed text-base-content/65">
-					Choose a site to open it in a separate secured window. Only allowlisted destinations load.
+					Choose a site to open it in a separate secured window. Only allowed destinations load.
 				</p>
 			</div>
 			<button
@@ -213,7 +215,7 @@
 		</div>
 	{:else if cfg.sites.length === 0}
 		<div class="rounded-2xl border border-base-300/60 bg-base-100 p-8 text-center shadow-sm">
-			<p class="text-sm text-base-content/65">No allowlisted sites for this organization yet.</p>
+			<p class="text-sm text-base-content/65">No allowed sites for this organization yet.</p>
 		</div>
 	{:else}
 		<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

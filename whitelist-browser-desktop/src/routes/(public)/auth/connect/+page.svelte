@@ -78,7 +78,7 @@
 		const s = page.url.searchParams.get('status');
 		if (s === 'server_unreachable') {
 			statusBanner =
-				'Could not reach the server. Check your network, or try again — the app tries local dev and production hosts automatically.';
+				'Could not reach Dora. Check your network, or try again — the app tries local dev and production hosts automatically.';
 		} else if (s === 'revoked') {
 			statusBanner = 'Your device access was revoked by an admin. Reconnect with a new request if allowed.';
 		} else {
@@ -229,7 +229,6 @@
 						<label class="form-control w-full">
 							<div class="label pt-0 pb-1.5">
 								<span class="label-text font-medium text-base-content/80">Organization code</span>
-								<span class="label-text-alt text-xs text-base-content/50">Example: pun_hlaing_hospitals</span>
 							</div>
 							<input
 								class="input input-bordered input-md w-full rounded-xl border-base-300 bg-base-100"

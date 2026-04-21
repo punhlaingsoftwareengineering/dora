@@ -1,4 +1,5 @@
 const BUILTIN_ORIGINS = [
+	'https://dora.fly.dev',
 	'http://localhost:5173',
 	'https://whitelist-browser.fly.dev',
 	'https://whitelist-browser-server.fly.dev'
@@ -44,7 +45,7 @@ async function fetchWithFallback(path: string, init?: RequestInit): Promise<Resp
 		}
 	}
 	if (lastError instanceof Error) throw lastError;
-	throw new Error('Server unreachable');
+	throw new Error('Dora unreachable');
 }
 
 export async function postConnect(payload: unknown) {
@@ -119,5 +120,5 @@ export async function getDeviceOptionsWithTimeout(
 		}
 	}
 	if (lastError instanceof Error) throw lastError;
-	throw new Error('Server unreachable');
+	throw new Error('Dora unreachable');
 }

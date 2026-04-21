@@ -1,8 +1,17 @@
+use regex::Regex;
 use serde::Serialize;
 use std::fs;
 use std::path::PathBuf;
+use std::sync::atomic::{AtomicU64, Ordering};
 use tauri::Manager;
-use tauri::{Url, WebviewUrl, WebviewWindowBuilder};
+use tauri::Url;
+use tauri::WebviewUrl;
+use tauri::WebviewWindow;
+use tauri::WebviewWindowBuilder;
+use tauri::webview::NewWindowFeatures;
+use tauri::webview::NewWindowResponse;
+
+static BROWSER_LABEL_SEQ: AtomicU64 = AtomicU64::new(0);
 
 fn app_device_storage_path(app: &tauri::AppHandle) -> Result<PathBuf, String> {
   let dir = app.path().app_local_data_dir().map_err(|e| e.to_string())?;
@@ -67,25 +76,79 @@ fn wb_storage_save(app: tauri::AppHandle, json: String) -> Result<(), String> {
   fs::write(path, json).map_err(|e| e.to_string())
 }
 
-/// Opens a dedicated site browsing window. On Windows this runs in an async command so WebView2
-/// is not created from the same call stack as a UI event (see wry#583). Uses a per-window
-/// `data_directory` so `proxy_url` does not share the main webview's user-data folder.
-#[tauri::command]
-async fn wb_open_site_window(
-  app: tauri::AppHandle,
+fn regex_special(c: char) -> bool {
+  matches!(
+    c,
+    '.' | '+' | '?' | '^' | '$' | '{' | '}' | '(' | ')' | '|' | '[' | ']' | '\\'
+  )
+}
+
+/// Match URL against an admin pattern using `*` wildcards (same rules as desktop `allowlist.ts`).
+fn url_matches_pattern(url: &str, pattern: &str) -> bool {
+  let mut escaped = String::with_capacity(pattern.len() * 2);
+  for c in pattern.chars() {
+    if c == '*' {
+      escaped.push_str(".*");
+    } else if regex_special(c) {
+      escaped.push('\\');
+      escaped.push(c);
+    } else {
+      escaped.push(c);
+    }
+  }
+  let Ok(re) = Regex::new(&format!("^{escaped}$")) else {
+    return false;
+  };
+  re.is_match(url)
+}
+
+fn url_matches_any(url: &str, patterns: &[String]) -> bool {
+  if patterns.is_empty() {
+    return true;
+  }
+  patterns.iter().any(|p| url_matches_pattern(url, p))
+}
+
+fn unique_browser_label() -> String {
+  let n = BROWSER_LABEL_SEQ.fetch_add(1, Ordering::Relaxed);
+  let mut x = n ^ 0x9E37_79B9_7F4A_7C15;
+  let alpha = b"abcdefghijklmnopqrstuvwxyz";
+  let mut s = String::from("browser-");
+  for _ in 0..16 {
+    x = x.wrapping_mul(6364136223846793005).wrapping_add(1);
+    s.push(alpha[(x % 26) as usize] as char);
+  }
+  s
+}
+
+fn title_for_url(url: &Url) -> String {
+  url
+    .host_str()
+    .map(|h| format!("{h} - Dora"))
+    .unwrap_or_else(|| format!("{} - Dora", url.as_str()))
+}
+
+/// Opens a dedicated site browsing window with allowlist + proxy, and handles `window.open` / `target=_blank`
+/// by spawning additional windows with the same policy.
+fn open_site_webview_window(
+  app: &tauri::AppHandle,
   label: String,
-  url: String,
+  parsed_url: Url,
   title: String,
   proxy_url: Option<String>,
-) -> Result<(), String> {
-  let parsed_url: Url = url.parse().map_err(|e| format!("invalid url: {e}"))?;
-
-  let mut builder = WebviewWindowBuilder::new(&app, &label, WebviewUrl::External(parsed_url))
+  patterns: Vec<String>,
+  opener_features: Option<NewWindowFeatures>,
+) -> Result<WebviewWindow, String> {
+  let mut builder = WebviewWindowBuilder::new(app, &label, WebviewUrl::External(parsed_url.clone()))
     .title(title)
     .inner_size(1100.0, 800.0)
     .resizable(true)
     .visible(true)
     .focused(true);
+
+  if let Some(features) = opener_features {
+    builder = builder.window_features(features);
+  }
 
   #[cfg(windows)]
   {
@@ -108,7 +171,65 @@ async fn wb_open_site_window(
     }
   }
 
-  builder.build().map_err(|e| e.to_string())?;
+  let patterns_nav = patterns.clone();
+  builder = builder.on_navigation(move |url| url_matches_any(url.as_str(), &patterns_nav));
+
+  let app_nw = app.clone();
+  let proxy_nw = proxy_url.clone();
+  let patterns_nw = patterns.clone();
+  builder = builder.on_new_window(move |url, features| {
+    if !url_matches_any(url.as_str(), &patterns_nw) {
+      return NewWindowResponse::Deny;
+    }
+    let new_label = unique_browser_label();
+    let t = title_for_url(&url);
+    match open_site_webview_window(
+      &app_nw,
+      new_label,
+      url,
+      t,
+      proxy_nw.clone(),
+      patterns_nw.clone(),
+      Some(features),
+    ) {
+      Ok(w) => NewWindowResponse::Create { window: w },
+      Err(e) => {
+        log::warn!("site window (new-window): {e}");
+        NewWindowResponse::Deny
+      }
+    }
+  });
+
+  builder = builder.on_document_title_changed(|window, doc_title| {
+    let _ = window.set_title(&doc_title);
+  });
+
+  builder.build().map_err(|e| e.to_string())
+}
+
+/// Opens a dedicated site browsing window. On Windows this runs in an async command so WebView2
+/// is not created from the same call stack as a UI event (see wry#583). Uses a per-window
+/// `data_directory` so `proxy_url` does not share the main webview's user-data folder.
+#[tauri::command]
+async fn wb_open_site_window(
+  app: tauri::AppHandle,
+  label: String,
+  url: String,
+  title: String,
+  proxy_url: Option<String>,
+  allowed_patterns: Option<Vec<String>>,
+) -> Result<(), String> {
+  let parsed_url: Url = url.parse().map_err(|e| format!("invalid url: {e}"))?;
+  let patterns = allowed_patterns.unwrap_or_default();
+  open_site_webview_window(
+    &app,
+    label,
+    parsed_url,
+    title,
+    proxy_url,
+    patterns,
+    None,
+  )?;
   Ok(())
 }
 

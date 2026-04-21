@@ -9,30 +9,47 @@
 	let storageReady = $state(false);
 
 	const UPDATE_DISMISS_KEY = 'wb.updateBanner.dismiss';
+	const UPDATE_POLL_MS = 15 * 60 * 1000;
 
 	let pendingUpdate = $state<{ version: string; handle: UpdateHandle } | null>(null);
 	let updateBannerDismissed = $state(false);
 	let updateBannerInstalling = $state(false);
 	let updateBannerError = $state<string | null>(null);
 
+	function syncDismissedForVersion(version: string) {
+		updateBannerDismissed = sessionStorage.getItem(UPDATE_DISMISS_KEY) === version;
+	}
+
+	async function pollForUpdate() {
+		try {
+			const u = await checkForUpdate();
+			if (u) {
+				pendingUpdate = { version: u.version, handle: u };
+				syncDismissedForVersion(u.version);
+			} else {
+				pendingUpdate = null;
+			}
+		} catch {
+			// Dev build, offline, or updater not configured — ignore.
+		}
+	}
+
 	onMount(() => {
-		updateBannerDismissed = sessionStorage.getItem(UPDATE_DISMISS_KEY) === '1';
+		let pollId: ReturnType<typeof setInterval> | undefined;
 
 		void initDeviceStorage().then(() => {
 			storageReady = true;
-			void (async () => {
-				try {
-					const u = await checkForUpdate();
-					if (u) pendingUpdate = { version: u.version, handle: u };
-				} catch {
-					// Dev build, offline, or updater not configured — ignore.
-				}
-			})();
+			void pollForUpdate();
+			pollId = setInterval(() => void pollForUpdate(), UPDATE_POLL_MS);
 		});
+
+		return () => {
+			if (pollId !== undefined) clearInterval(pollId);
+		};
 	});
 
 	function dismissUpdateBanner() {
-		sessionStorage.setItem(UPDATE_DISMISS_KEY, '1');
+		if (pendingUpdate) sessionStorage.setItem(UPDATE_DISMISS_KEY, pendingUpdate.version);
 		updateBannerDismissed = true;
 		updateBannerError = null;
 	}
@@ -67,20 +84,33 @@
 		</div>
 	{:else}
 		{#if pendingUpdate && !updateBannerDismissed}
-			<div
-				class="flex flex-col gap-2 border-b border-info/30 bg-info/15 px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
-				role="alert"
-			>
-				<div class="min-w-0 text-sm text-base-content">
-					<span class="font-medium">Update available</span>
-					<span class="text-base-content/80">
-						— version <span class="font-mono tabular-nums">{pendingUpdate.version}</span> is ready to install.
-					</span>
-				</div>
-				<div class="flex shrink-0 flex-wrap items-center gap-2">
+			<div role="alert" class="alert alert-info rounded-none border-b border-base-300">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					class="h-6 w-6 shrink-0 stroke-current"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+					/>
+				</svg>
+				<div class="min-w-0 flex-1">
+					<h3 class="font-bold">Update available</h3>
+					<div class="text-sm opacity-90">
+						Version <span class="font-mono tabular-nums">{pendingUpdate.version}</span> is ready to install.
+					</div>
 					{#if updateBannerError}
-						<span class="max-w-md truncate text-xs text-error" title={updateBannerError}>{updateBannerError}</span>
+						<div class="mt-1 truncate text-xs text-error" title={updateBannerError}>{updateBannerError}</div>
 					{/if}
+				</div>
+				<div class="flex shrink-0 flex-wrap justify-end gap-2">
+					<button type="button" class="btn btn-sm" disabled={updateBannerInstalling} onclick={dismissUpdateBanner}>
+						Later
+					</button>
 					<button
 						type="button"
 						class="btn btn-primary btn-sm"
@@ -91,11 +121,8 @@
 							<span class="loading loading-spinner loading-xs"></span>
 							Installing…
 						{:else}
-							Download & restart
+							Update
 						{/if}
-					</button>
-					<button type="button" class="btn btn-ghost btn-sm" disabled={updateBannerInstalling} onclick={dismissUpdateBanner}>
-						Later
 					</button>
 				</div>
 			</div>
