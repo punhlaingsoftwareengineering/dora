@@ -81,6 +81,8 @@
 				'Could not reach Dora. Check your network, or try again — the app tries local dev and production hosts automatically.';
 		} else if (s === 'revoked') {
 			statusBanner = 'Your device access was revoked by an admin. Reconnect with a new request if allowed.';
+		} else if (s === 'pending') {
+			statusBanner = 'Your device is pending approval. You can’t use the app yet.';
 		} else {
 			statusBanner = null;
 		}
@@ -128,11 +130,18 @@
 		const deviceFingerprint = getOrCreateFingerprint();
 		if (!orgName || !secretKey) throw new Error('Missing orgName/secretKey');
 
+		const version = appVersion ?? (await resolveAppVersion().catch(() => null));
+		if (!appVersion) appVersion = version;
+
 		const res = await postConnect({
 			orgName,
 			secretKey,
 			deviceFingerprint,
-			deviceInfo: { userAgent: navigator.userAgent, platform: navigator.platform }
+			deviceInfo: {
+				userAgent: navigator.userAgent,
+				platform: navigator.platform,
+				appVersion: version ?? undefined
+			}
 		});
 		saveConnectCredentials({ orgName, secretKey });
 		savePendingRequestId(res.requestId);

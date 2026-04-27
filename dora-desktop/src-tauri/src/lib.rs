@@ -1,6 +1,7 @@
 use regex::Regex;
 use serde::Serialize;
 use std::fs;
+use std::hash::{Hash, Hasher};
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicU64, Ordering};
 use tauri::Manager;
@@ -13,12 +14,15 @@ use tauri::webview::NewWindowResponse;
 
 static BROWSER_LABEL_SEQ: AtomicU64 = AtomicU64::new(0);
 
-// Runs in the main frame of every site window. Forces normal link clicks to open a new window
-// (handled by `on_new_window`), so the new window keeps the same proxy + allowlist policy.
+// Runs in the main frame of every site window.
+// - Forces normal link clicks to open a new window (handled by `on_new_window`), so the new window
+//   keeps the same proxy + allowlist policy.
+// - Adds a small always-available refresh control.
+// - Auto-recovers after sleep / long pauses by reloading when the app resumes.
 const OPEN_LINKS_IN_NEW_WINDOW_SCRIPT: &str = r#"
 (() => {
-  if (window.__doraLinksNewWindowInstalled) return;
-  window.__doraLinksNewWindowInstalled = true;
+  if (window.__doraSiteWindowInitInstalled) return;
+  window.__doraSiteWindowInitInstalled = true;
 
   function closestAnchor(el) {
     while (el && el !== document.documentElement) {
@@ -53,6 +57,69 @@ const OPEN_LINKS_IN_NEW_WINDOW_SCRIPT: &str = r#"
       // ignore
     }
   }, true);
+
+  function installRefreshButton() {
+    if (document.getElementById('__dora_refresh_btn')) return;
+    const btn = document.createElement('button');
+    btn.id = '__dora_refresh_btn';
+    btn.type = 'button';
+    btn.textContent = 'Refresh';
+    btn.setAttribute('aria-label', 'Refresh');
+    btn.style.position = 'fixed';
+    btn.style.right = '12px';
+    btn.style.bottom = '12px';
+    btn.style.zIndex = '2147483647';
+    btn.style.padding = '8px 10px';
+    btn.style.borderRadius = '999px';
+    btn.style.border = '1px solid rgba(0,0,0,0.15)';
+    btn.style.background = 'rgba(255,255,255,0.92)';
+    btn.style.color = '#111';
+    btn.style.font = '600 12px system-ui, -apple-system, Segoe UI, Roboto, sans-serif';
+    btn.style.boxShadow = '0 6px 20px rgba(0,0,0,0.18)';
+    btn.style.cursor = 'pointer';
+    btn.addEventListener('click', () => {
+      try { window.location.reload(); } catch {}
+    });
+    (document.body || document.documentElement).appendChild(btn);
+  }
+
+  function installResumeReload() {
+    // Many web apps (e.g. WhatsApp Web) can lose real-time connection after sleep.
+    // We detect long event-loop pauses and reload to re-establish sessions.
+    let last = Date.now();
+    setInterval(() => {
+      const now = Date.now();
+      const gapMs = now - last;
+      last = now;
+      if (gapMs > 120000) {
+        try { window.location.reload(); } catch {}
+      }
+    }, 15000);
+
+    window.addEventListener('online', () => {
+      try { window.location.reload(); } catch {}
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        // Small defer lets WebView/network settle post-resume.
+        setTimeout(() => {
+          try { window.location.reload(); } catch {}
+        }, 500);
+      }
+    });
+  }
+
+  function init() {
+    try { installResumeReload(); } catch {}
+    try { installRefreshButton(); } catch {}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
 })();
 "#;
 
@@ -171,6 +238,25 @@ fn title_for_url(url: &Url) -> String {
     .unwrap_or_else(|| format!("{} - Dora", url.as_str()))
 }
 
+fn stable_site_profile_key(url: &Url, proxy_url: &Option<String>) -> String {
+  let host = url.host_str().unwrap_or("unknown-host");
+  let scheme = url.scheme();
+  let port = url.port_or_known_default().unwrap_or(0);
+
+  let mut h = std::collections::hash_map::DefaultHasher::new();
+  proxy_url.hash(&mut h);
+  let proxy_hash = h.finish();
+
+  let raw = format!("{scheme}-{host}-{port}-{proxy_hash:x}");
+  raw
+    .chars()
+    .map(|c| match c {
+      'a'..='z' | 'A'..='Z' | '0'..='9' | '-' | '_' | '.' => c,
+      _ => '-',
+    })
+    .collect()
+}
+
 /// Opens a dedicated site browsing window with allowlist + proxy, and handles `window.open` / `target=_blank`
 /// by spawning additional windows with the same policy.
 fn open_site_webview_window(
@@ -197,12 +283,19 @@ fn open_site_webview_window(
 
   #[cfg(windows)]
   {
+    // IMPORTANT: WebView2 persistence is tied to its user-data directory.
+    // If we create a unique `data_directory` per window label (random each run),
+    // cookies/localStorage will never persist across app restarts.
+    //
+    // We still want to isolate site browsing webviews from the main app webview (proxy, etc),
+    // so we use a stable directory per (origin-ish + proxy) instead.
+    let profile_key = stable_site_profile_key(&parsed_url, &proxy_url);
     let dir = app
       .path()
       .app_local_data_dir()
       .map_err(|e| e.to_string())?
       .join("site-webviews")
-      .join(&label);
+      .join(profile_key);
     fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
     builder = builder.data_directory(dir);
   }

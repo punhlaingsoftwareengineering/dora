@@ -36,17 +36,24 @@
 		verifyError = null;
 		getDeviceOptionsWithTimeout(conn.orgId, conn.deviceId, 8000)
 			.then((opt) => {
-				if (opt.status === 'REJECTED' || opt.status === 'IGNORED') {
+				if (
+					opt.status === 'REJECTED' ||
+					opt.status === 'IGNORED' ||
+					opt.status === 'REVOKED'
+				) {
 					clearConnection();
 					goto('/auth/connect?status=revoked');
+					return;
+				}
+				if (opt.status === 'PENDING' || opt.status === 'PENDING_APPROVAL') {
+					goto('/auth/connect?status=pending');
 					return;
 				}
 				verifyError = null;
 				verifying = false;
 			})
 			.catch(() => {
-				verifyError =
-					'Could not reach Dora. You can keep using the last saved sites below, or retry. Use Disconnect to sign out.';
+				verifyError = 'Could not reach Dora. Connect to the internet (or VPN) and retry.';
 				verifying = false;
 			});
 	}
@@ -140,6 +147,28 @@
 			<div class="flex min-h-[45vh] flex-col items-center justify-center gap-3">
 				<span class="loading loading-spinner loading-lg text-primary" aria-label="Verifying"></span>
 				<p class="text-sm text-base-content/60">Checking with Dora…</p>
+			</div>
+		{:else if verifyError}
+			<div class="flex min-h-[45vh] flex-col items-center justify-center gap-4 text-center">
+				<div class="max-w-lg space-y-2">
+					<h2 class="text-xl font-semibold tracking-tight">Can’t verify access</h2>
+					<p class="text-sm text-base-content/65">{verifyError}</p>
+				</div>
+				<div class="flex flex-wrap items-center justify-center gap-2">
+					<button type="button" class="btn btn-primary btn-sm" onclick={() => runVerify()}>
+						Retry
+					</button>
+					<button
+						class="btn btn-ghost btn-sm text-error"
+						type="button"
+						onclick={() => {
+							clearConnection();
+							goto('/auth/connect');
+						}}
+					>
+						Disconnect
+					</button>
+				</div>
 			</div>
 		{:else}
 			{@render children()}
