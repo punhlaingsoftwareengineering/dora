@@ -14,7 +14,6 @@
 	import { postConnect, getRequestStatus } from '$lib/api';
 	import { page } from '$app/state';
 	import { resolveAppVersion } from '$lib/appVersion';
-	import { checkForUpdate, relaunchApp, type DownloadEvent, type UpdateHandle } from '$lib/updater';
 	import LogoMark from '$lib/ui/LogoMark.svelte';
 
 	let orgName = $state('');
@@ -25,54 +24,6 @@
 	let error = $state<string | null>(null);
 	let polling = $state(false);
 	let statusBanner = $state<string | null>(null);
-	let refreshBusy = $state(false);
-	type UpdateState =
-		| { kind: 'idle' }
-		| { kind: 'checking' }
-		| { kind: 'none' }
-		| { kind: 'available'; version: string; notes?: string; handle: UpdateHandle }
-		| { kind: 'downloading'; progress: number; handle: UpdateHandle }
-		| { kind: 'error'; message: string };
-
-	let updateState = $state<UpdateState>({ kind: 'idle' });
-
-	async function checkUpdates() {
-		updateState = { kind: 'checking' };
-		try {
-			const update = await checkForUpdate();
-			if (!update) {
-				updateState = { kind: 'none' };
-				(document.getElementById('modal-update') as HTMLDialogElement).showModal();
-				return;
-			}
-			updateState = { kind: 'available', version: update.version, notes: update.body, handle: update };
-			(document.getElementById('modal-update') as HTMLDialogElement).showModal();
-		} catch (e) {
-			updateState = { kind: 'error', message: e instanceof Error ? e.message : 'Update check failed' };
-			(document.getElementById('modal-update') as HTMLDialogElement).showModal();
-		}
-	}
-
-	async function downloadAndInstall() {
-		if (updateState.kind !== 'available') return;
-		const handle = updateState.handle;
-		updateState = { kind: 'downloading', progress: 0, handle };
-		try {
-			await handle.downloadAndInstall((evt: DownloadEvent) => {
-				if (evt.event === 'Progress') {
-					updateState = {
-						kind: 'downloading',
-						handle,
-						progress: Math.min(95, updateState.kind === 'downloading' ? updateState.progress + 1 : 1)
-					};
-				}
-				if (evt.event === 'Finished') updateState = { kind: 'downloading', handle, progress: 100 };
-			});
-			await relaunchApp();
-		} catch (e) {
-			updateState = { kind: 'error', message: e instanceof Error ? e.message : 'Update failed' };
-		}
-	}
 
 	function replayBannerFromUrl() {
 		const s = page.url.searchParams.get('status');
@@ -108,20 +59,6 @@
 		} catch (e) {
 			error = e instanceof Error ? e.message : 'Unexpected error';
 			polling = false;
-		}
-	}
-
-	async function refreshConnect() {
-		refreshBusy = true;
-		error = null;
-		try {
-			if (requestId) {
-				await pullRequestStatus();
-			} else {
-				replayBannerFromUrl();
-			}
-		} finally {
-			refreshBusy = false;
 		}
 	}
 
@@ -184,7 +121,7 @@
 	});
 </script>
 
-<div class="flex min-h-screen flex-col items-center justify-center px-4 py-12 sm:px-6">
+<div class="flex min-h-0 flex-1 flex-col items-center justify-center px-4 py-12 sm:px-6">
 	<div class="w-full max-w-2xl">
 		<div
 			class="overflow-hidden rounded-2xl border border-base-300/60 bg-base-100 shadow-lg shadow-base-300/40"
@@ -200,19 +137,6 @@
 						</p>
 						</div>
 					</div>
-					<button
-						type="button"
-						class="btn btn-outline btn-sm gap-1.5 rounded-lg"
-						onclick={() => refreshConnect()}
-						disabled={refreshBusy}
-						aria-busy={refreshBusy}
-					>
-						{#if refreshBusy}
-							<span class="loading loading-spinner loading-xs" aria-hidden="true"></span>
-						{/if}
-						Refresh
-					</button>
-					<button type="button" class="btn btn-ghost btn-sm rounded-lg" onclick={checkUpdates}>Updates</button>
 				</div>
 			</div>
 
@@ -298,36 +222,3 @@
 		{/if}
 	</div>
 </div>
-
-<dialog id="modal-update" class="modal">
-	<div class="modal-box rounded-2xl">
-		<h3 class="text-lg font-semibold">Updates</h3>
-
-		{#if updateState.kind === 'checking'}
-			<p class="mt-2 text-sm text-base-content/70">Checking for updates…</p>
-		{:else if updateState.kind === 'none'}
-			<p class="mt-2 text-sm text-base-content/70">You’re up to date.</p>
-		{:else if updateState.kind === 'available'}
-			<p class="mt-2 text-sm text-base-content/70">
-				Update available: <span class="font-mono">{updateState.version}</span>
-			</p>
-			{#if updateState.notes}
-				<div class="mt-3 max-h-48 overflow-y-auto rounded-xl bg-base-200 p-3 text-sm whitespace-pre-wrap">
-					{updateState.notes}
-				</div>
-			{/if}
-		{:else if updateState.kind === 'downloading'}
-			<p class="mt-2 text-sm text-base-content/70">Downloading and installing…</p>
-			<progress class="progress progress-primary mt-3 w-full" value={updateState.progress} max="100"></progress>
-		{:else if updateState.kind === 'error'}
-			<div class="alert alert-error mt-3"><span>{updateState.message}</span></div>
-		{/if}
-
-		<div class="modal-action">
-			<form method="dialog"><button class="btn">Close</button></form>
-			{#if updateState.kind === 'available'}
-				<button class="btn btn-primary" type="button" onclick={downloadAndInstall}>Download & install</button>
-			{/if}
-		</div>
-	</div>
-</dialog>

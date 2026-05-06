@@ -2,3 +2,9 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 @plugin 'daisyui';
+
+/* Prevent tooltip/modals from causing horizontal scroll */
+html,
+body {
+	overflow-x: hidden;
+}

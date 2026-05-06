@@ -1,6 +1,6 @@
-use regex::Regex;
 use serde::Serialize;
 use std::fs;
+#[cfg(windows)]
 use std::hash::{Hash, Hasher};
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicU64, Ordering};
@@ -9,6 +9,7 @@ use tauri::Url;
 use tauri::WebviewUrl;
 use tauri::WebviewWindow;
 use tauri::WebviewWindowBuilder;
+use tauri::webview::DownloadEvent;
 use tauri::webview::NewWindowFeatures;
 use tauri::webview::NewWindowResponse;
 
@@ -16,8 +17,9 @@ static BROWSER_LABEL_SEQ: AtomicU64 = AtomicU64::new(0);
 
 // Runs in the main frame of every site window.
 // - Forces normal link clicks to open a new window (handled by `on_new_window`), so the new window
-//   keeps the same proxy + allowlist policy.
-// - Adds a small always-available refresh control.
+//   keeps the same proxy configuration as sibling site windows.
+// - Site windows use **native** decorations (`decorations(true)`), so the OS draws the title bar
+//   outside the web content (draggable, does not cover fixed-position site UI).
 // - Auto-recovers after sleep / long pauses by reloading when the app resumes.
 const OPEN_LINKS_IN_NEW_WINDOW_SCRIPT: &str = r#"
 (() => {
@@ -58,31 +60,6 @@ const OPEN_LINKS_IN_NEW_WINDOW_SCRIPT: &str = r#"
     }
   }, true);
 
-  function installRefreshButton() {
-    if (document.getElementById('__dora_refresh_btn')) return;
-    const btn = document.createElement('button');
-    btn.id = '__dora_refresh_btn';
-    btn.type = 'button';
-    btn.textContent = 'Refresh';
-    btn.setAttribute('aria-label', 'Refresh');
-    btn.style.position = 'fixed';
-    btn.style.right = '12px';
-    btn.style.bottom = '12px';
-    btn.style.zIndex = '2147483647';
-    btn.style.padding = '8px 10px';
-    btn.style.borderRadius = '999px';
-    btn.style.border = '1px solid rgba(0,0,0,0.15)';
-    btn.style.background = 'rgba(255,255,255,0.92)';
-    btn.style.color = '#111';
-    btn.style.font = '600 12px system-ui, -apple-system, Segoe UI, Roboto, sans-serif';
-    btn.style.boxShadow = '0 6px 20px rgba(0,0,0,0.18)';
-    btn.style.cursor = 'pointer';
-    btn.addEventListener('click', () => {
-      try { window.location.reload(); } catch {}
-    });
-    (document.body || document.documentElement).appendChild(btn);
-  }
-
   function installResumeReload() {
     // Many web apps (e.g. WhatsApp Web) can lose real-time connection after sleep.
     // We detect long event-loop pauses and reload to re-establish sessions.
@@ -112,7 +89,6 @@ const OPEN_LINKS_IN_NEW_WINDOW_SCRIPT: &str = r#"
 
   function init() {
     try { installResumeReload(); } catch {}
-    try { installRefreshButton(); } catch {}
   }
 
   if (document.readyState === 'loading') {
@@ -186,39 +162,6 @@ fn wb_storage_save(app: tauri::AppHandle, json: String) -> Result<(), String> {
   fs::write(path, json).map_err(|e| e.to_string())
 }
 
-fn regex_special(c: char) -> bool {
-  matches!(
-    c,
-    '.' | '+' | '?' | '^' | '$' | '{' | '}' | '(' | ')' | '|' | '[' | ']' | '\\'
-  )
-}
-
-/// Match URL against an admin pattern using `*` wildcards (same rules as desktop `allowlist.ts`).
-fn url_matches_pattern(url: &str, pattern: &str) -> bool {
-  let mut escaped = String::with_capacity(pattern.len() * 2);
-  for c in pattern.chars() {
-    if c == '*' {
-      escaped.push_str(".*");
-    } else if regex_special(c) {
-      escaped.push('\\');
-      escaped.push(c);
-    } else {
-      escaped.push(c);
-    }
-  }
-  let Ok(re) = Regex::new(&format!("^{escaped}$")) else {
-    return false;
-  };
-  re.is_match(url)
-}
-
-fn url_matches_any(url: &str, patterns: &[String]) -> bool {
-  if patterns.is_empty() {
-    return true;
-  }
-  patterns.iter().any(|p| url_matches_pattern(url, p))
-}
-
 fn unique_browser_label() -> String {
   let n = BROWSER_LABEL_SEQ.fetch_add(1, Ordering::Relaxed);
   let mut x = n ^ 0x9E37_79B9_7F4A_7C15;
@@ -238,6 +181,16 @@ fn title_for_url(url: &Url) -> String {
     .unwrap_or_else(|| format!("{} - Dora", url.as_str()))
 }
 
+/// Best-effort filename suggestion derived from the download URL's last path segment.
+/// Used as the default name in the Save As dialog when WebKit/wry doesn't provide one.
+fn suggested_download_filename(url: &Url) -> String {
+  url
+    .path_segments()
+    .and_then(|mut segs| segs.next_back().filter(|s| !s.is_empty()).map(|s| s.to_string()))
+    .unwrap_or_else(|| "download".to_string())
+}
+
+#[cfg(windows)]
 fn stable_site_profile_key(url: &Url, proxy_url: &Option<String>) -> String {
   let host = url.host_str().unwrap_or("unknown-host");
   let scheme = url.scheme();
@@ -257,23 +210,81 @@ fn stable_site_profile_key(url: &Url, proxy_url: &Option<String>) -> String {
     .collect()
 }
 
-/// Opens a dedicated site browsing window with allowlist + proxy, and handles `window.open` / `target=_blank`
-/// by spawning additional windows with the same policy.
+/// Opens a dedicated site browsing window with proxy + `window.open` handling.
+///
+/// `allowed_patterns` is kept for IPC compatibility with the desktop client (same shapes as the
+/// admin-managed site list) but is **not** applied inside webviews: blocking navigations by pattern
+/// prevented CDN/blob downloads from completing on WebKitGTK.
 fn open_site_webview_window(
   app: &tauri::AppHandle,
   label: String,
   parsed_url: Url,
   title: String,
   proxy_url: Option<String>,
-  patterns: Vec<String>,
+  allowed_patterns: Vec<String>,
   opener_features: Option<NewWindowFeatures>,
 ) -> Result<WebviewWindow, String> {
   let mut builder = WebviewWindowBuilder::new(app, &label, WebviewUrl::External(parsed_url.clone()))
     .title(title)
     .inner_size(1100.0, 800.0)
+    // Native title bar lives outside the webview — draggable on all platforms and does not
+    // overlap fixed-position site chrome (unlike an HTML overlay + body padding).
+    .decorations(true)
     .resizable(true)
     .visible(true)
-    .focused(true);
+    .focused(true)
+    .enable_clipboard_access()
+    .zoom_hotkeys_enabled(true);
+
+  #[cfg(windows)]
+  {
+    // Required so sites can use HTML5 drag-and-drop (file uploads, WhatsApp media, etc.).
+    builder = builder.disable_drag_drop_handler();
+  }
+
+  builder = builder.on_download(|webview, event| {
+    match event {
+      DownloadEvent::Requested { url, destination } => {
+        // Browser-style "Save As": pick the destination synchronously before the download starts.
+        //
+        // We deliberately ignore the path wry pre-filled (`~/Downloads/<file>`) because that
+        // directory may not be writable for the current user (we've seen `~/Downloads` owned by
+        // `root` on this machine). Whatever the user picks here is guaranteed-writable, and
+        // returning `false` cancels the download cleanly when the dialog is cancelled.
+        //
+        // Tie the dialog to this webview's [`Window`] as parent (`HasWindowHandle` + `HasDisplayHandle`)
+        // so GTK/XDG shows a proper modal picker instead of silently using Downloads-only flows.
+        let name = suggested_download_filename(&url);
+        let win = webview.window();
+        match rfd::FileDialog::new()
+          .set_parent(&win)
+          .set_title("Save download")
+          .set_file_name(&name)
+          .save_file()
+        {
+          Some(path) => {
+            *destination = path;
+            true
+          }
+          None => false,
+        }
+      }
+      DownloadEvent::Finished {
+        url,
+        path,
+        success,
+      } => {
+        if !success {
+          log::warn!(
+            "site window download failed (url={}, path={path:?})",
+            url.as_str()
+          );
+        }
+        true
+      }
+      _ => true,
+    }
+  });
 
   builder = builder.initialization_script(OPEN_LINKS_IN_NEW_WINDOW_SCRIPT);
 
@@ -309,16 +320,18 @@ fn open_site_webview_window(
     }
   }
 
-  let patterns_nav = patterns.clone();
-  builder = builder.on_navigation(move |url| url_matches_any(url.as_str(), &patterns_nav));
+  // Allow all navigations inside external site webviews. WebKitGTK applies this before the HTTP
+  // response is known; strict URL-pattern blocking prevented CDN/blob/download URLs from loading,
+  // so `on_download` never fired. Entry URLs are still gated in the desktop UI (`open()`).
+  builder = builder.on_navigation(|_| true);
 
   let app_nw = app.clone();
   let proxy_nw = proxy_url.clone();
-  let patterns_nw = patterns.clone();
+  let patterns_nw = allowed_patterns.clone();
+  // Note: we intentionally do NOT enforce the allowlist on `on_new_window`. Many sites serve
+  // downloads from a different host (CDN / file server). Child windows still inherit the relaxed
+  // `on_navigation` policy above so those loads can complete and trigger downloads.
   builder = builder.on_new_window(move |url, features| {
-    if !url_matches_any(url.as_str(), &patterns_nw) {
-      return NewWindowResponse::Deny;
-    }
     let new_label = unique_browser_label();
     let t = title_for_url(&url);
     match open_site_webview_window(

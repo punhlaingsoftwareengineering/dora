@@ -7,7 +7,6 @@
 	import { clearConnection } from '$lib/deviceStorage';
 	import { isAllowed as isAllowedPattern } from '$lib/allowlist';
 	import { openBrowserWindow } from '$lib/tauriBrowser';
-	import { formatObfuscatedProxy } from '$lib/proxyDisplay';
 	import { goto } from '$app/navigation';
 	import { getVersion } from '@tauri-apps/api/app';
 	import { invoke } from '@tauri-apps/api/core';
@@ -23,8 +22,6 @@
 		arch?: string;
 	} | null>(null);
 	let hasConnection = $state(false);
-	let refreshBusy = $state(false);
-	let refreshMessage = $state<string | null>(null);
 
 	onMount(() => {
 		cfg = loadConfig();
@@ -137,76 +134,11 @@
 		}
 	}
 
-	async function refreshFromServer() {
-		const conn = loadConnection();
-		if (!conn) {
-			refreshMessage = 'Not connected.';
-			return;
-		}
-		refreshBusy = true;
-		refreshMessage = null;
-		uiError = null;
-		try {
-			const opt = await getDeviceOptions(conn.orgId, conn.deviceId);
-			if (opt.status === 'REJECTED' || opt.status === 'IGNORED') {
-				clearConnection();
-				hasConnection = false;
-				goto('/auth/connect');
-				return;
-			}
-			cfg = { proxy: opt.proxy ?? null, sites: opt.sites ?? [] };
-			saveConfig(cfg);
-			if (!current) current = cfg.sites?.[0] ? patternToStartUrl(cfg.sites[0].urlPattern) : null;
-		} catch (e) {
-			refreshMessage = e instanceof Error ? e.message : 'Could not refresh settings from Dora.';
-		} finally {
-			refreshBusy = false;
-		}
-	}
 </script>
 
 <div class="space-y-8">
 	{#if uiError}
 		<div class="alert alert-error rounded-xl"><span>{uiError}</span></div>
-	{/if}
-
-	<div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-		<div class="min-w-0 flex-1 space-y-3">
-			<div>
-				<h1 class="text-2xl font-semibold tracking-tight sm:text-3xl">Allowed sites</h1>
-				<p class="mt-1 max-w-xl text-sm leading-relaxed text-base-content/65">
-					Choose a site to open it in a separate secured window. Only allowed destinations load.
-				</p>
-			</div>
-			<button
-				type="button"
-				class="btn btn-outline btn-sm gap-2 rounded-lg"
-				onclick={() => refreshFromServer()}
-				disabled={refreshBusy || !hasConnection}
-				aria-busy={refreshBusy}
-			>
-				{#if refreshBusy}
-					<span class="loading loading-spinner loading-xs" aria-hidden="true"></span>
-				{/if}
-				Refresh
-			</button>
-		</div>
-
-		{#if cfg?.proxy}
-			<div
-				class="w-full shrink-0 rounded-2xl border border-base-300/50 bg-base-100 px-5 py-4 text-sm shadow-sm lg:max-w-sm"
-			>
-				<div class="text-[0.65rem] font-semibold uppercase tracking-wider text-base-content/50">
-					Proxy (masked)
-				</div>
-				<div class="mt-2 font-mono text-sm tracking-wide">{formatObfuscatedProxy(cfg.proxy)}</div>
-				<p class="mt-2 text-xs leading-snug text-base-content/50">Used when opening site windows.</p>
-			</div>
-		{/if}
-	</div>
-
-	{#if refreshMessage}
-		<div class="alert alert-warning rounded-xl py-3 text-sm"><span>{refreshMessage}</span></div>
 	{/if}
 
 	{#if !cfg}
