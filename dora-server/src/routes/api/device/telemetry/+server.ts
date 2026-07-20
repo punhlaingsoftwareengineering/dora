@@ -39,7 +39,8 @@ export const POST: RequestHandler = async (event) => {
 			lastIp: ip,
 			lastLocation: input.location,
 			lastSpec: input.spec,
-			lastAppVersion: input.spec.appVersion ?? device.lastAppVersion
+			lastAppVersion: input.spec.appVersion ?? device.lastAppVersion,
+			lastCurrentUrl: input.currentUrl ?? device.lastCurrentUrl
 		})
 		.where(eq(main_device.id, input.deviceId));
 

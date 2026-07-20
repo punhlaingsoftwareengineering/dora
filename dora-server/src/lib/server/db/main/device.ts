@@ -14,6 +14,7 @@ export const main_device = pgTable(
 		deviceFingerprint: text('device_fingerprint').notNull(),
 		lastSeenAt: timestamp('last_seen_at'),
 		lastIp: text('last_ip'),
+		lastCurrentUrl: text('last_current_url'),
 		lastLocation: jsonb('last_location_json').notNull().default({}),
 		lastSpec: jsonb('last_spec_json').notNull().default({}),
 		lastAppVersion: text('last_app_version'),

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LogOut, Home, Settings } from '@lucide/svelte';
+	import { LogOut, Home, Settings, Shield } from '@lucide/svelte';
 	import LogoMark from '$lib/ui/LogoMark.svelte';
 
 	let { data, children } = $props();
@@ -17,6 +17,7 @@
 			<ul class="menu menu-horizontal px-1">
 				<li><a href="/home"><Home size={18} />Home</a></li>
 				<li><a href="/home"><Settings size={18} />Organizations</a></li>
+				<li><a href="/home/security"><Shield size={18} />Security</a></li>
 			</ul>
 		</div>
 		<div class="navbar-end">
@@ -31,4 +32,3 @@
 		{@render children()}
 	</div>
 </div>
-

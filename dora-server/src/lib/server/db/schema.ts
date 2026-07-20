@@ -9,6 +9,8 @@ export * from './main/org';
 export * from './main/org_secret';
 export * from './main/org_proxy';
 export * from './main/org_site';
+export * from './main/org_member';
+export * from './main/org_invite';
 export * from './main/device_request';
 export * from './main/device';
 export * from './main/device_event';

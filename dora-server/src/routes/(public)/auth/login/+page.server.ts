@@ -17,11 +17,20 @@ export const actions: Actions = {
 		const password = formData.get('password')?.toString() ?? '';
 
 		try {
-			await auth.api.signInEmail({
+			const result = await auth.api.signInEmail({
 				body: { email, password, callbackURL: '/home' },
 				headers: event.request.headers
 			});
+
+			if (result && typeof result === 'object' && 'twoFactorRedirect' in result && result.twoFactorRedirect) {
+				return redirect(302, '/auth/two-factor');
+			}
 		} catch (error) {
+			// better-auth may throw for 2FA redirect depending on version
+			const msg = error instanceof APIError ? error.message : '';
+			if (msg.toLowerCase().includes('two factor') || msg.toLowerCase().includes('2fa')) {
+				return redirect(302, '/auth/two-factor');
+			}
 			if (error instanceof APIError) return fail(400, { message: error.message || 'Signin failed' });
 			return fail(500, { message: 'Unexpected error' });
 		}
@@ -42,4 +51,3 @@ export const actions: Actions = {
 		return fail(400, { message: 'Social sign-in failed' });
 	}
 };
-

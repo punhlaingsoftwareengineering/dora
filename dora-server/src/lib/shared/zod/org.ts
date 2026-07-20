@@ -17,14 +17,38 @@ export const ZOrgUpdateInput = createZodSchema(
 	})
 );
 
+export const ZOrgRole = createZodSchema(z.enum(['owner', 'admin', 'member']));
+export const ZInviteRole = createZodSchema(z.enum(['admin', 'member']));
+
 export const ZOrgRow = createZodSchema(
 	z.object({
 		id: ZOrgId,
 		ownerUserId: z.string().min(1),
 		name: z.string(),
+		configVersion: z.number().int().optional(),
 		masterStatusId: ZUuidV7,
 		createdAt: z.coerce.date(),
 		updatedAt: z.coerce.date()
+	})
+);
+
+export const ZInviteCreateInput = createZodSchema(
+	z.object({
+		email: z.string().email().max(255),
+		role: ZInviteRole
+	})
+);
+
+export const ZMemberRoleUpdateInput = createZodSchema(
+	z.object({
+		memberId: ZUuidV7,
+		role: ZInviteRole
+	})
+);
+
+export const ZTransferOwnershipInput = createZodSchema(
+	z.object({
+		newOwnerUserId: z.string().min(1)
 	})
 );
 

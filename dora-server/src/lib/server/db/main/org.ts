@@ -1,4 +1,4 @@
-import { pgTable, text } from 'drizzle-orm/pg-core';
+import { integer, pgTable, text } from 'drizzle-orm/pg-core';
 import { createdUpdatedColumns, uuidTextPk } from '../_columns';
 import { master_status } from '../master/status';
 
@@ -6,6 +6,7 @@ export const main_org = pgTable('main_org', {
 	id: uuidTextPk('id'),
 	ownerUserId: text('owner_user_id').notNull(),
 	name: text('name').notNull(),
+	configVersion: integer('config_version').notNull().default(1),
 	masterStatusId: text('master_status_id')
 		.notNull()
 		.references(() => master_status.id),

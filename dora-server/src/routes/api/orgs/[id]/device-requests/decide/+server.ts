@@ -2,18 +2,17 @@ import type { RequestHandler } from './$types';
 import { jsonError, jsonOk, parseOrThrow } from '$lib/shared/zod/_helpers';
 import { ZDeviceRequestDecisionInput } from '$lib/shared/zod/device';
 import { db } from '$lib/server/db';
-import { main_org, main_device_request, main_device, master_status } from '$lib/server/db/schema';
+import { main_device_request, main_device } from '$lib/server/db/schema';
 import { and, eq } from 'drizzle-orm';
 import { getMasterStatusId } from '$lib/server/status';
 import { hub } from '$lib/server/ws/hub';
+import { requireOrgRole } from '$lib/server/org_access';
 
 export const POST: RequestHandler = async (event) => {
 	if (!event.locals.user) return jsonError(401, 'Unauthorized');
 
-	const org = await db.query.main_org.findFirst({
-		where: and(eq(main_org.id, event.params.id), eq(main_org.ownerUserId, event.locals.user.id))
-	});
-	if (!org) return jsonError(404, 'Not found');
+	const access = await requireOrgRole(event.locals.user.id, event.params.id, 'admin');
+	if (!access) return jsonError(404, 'Not found');
 
 	const body = await event.request.json().catch(() => null);
 	const input = parseOrThrow(ZDeviceRequestDecisionInput, body);
@@ -30,7 +29,6 @@ export const POST: RequestHandler = async (event) => {
 		if (!input.deviceName) return jsonError(400, 'deviceName is required for approve');
 		const approvedId = await getMasterStatusId('APPROVED');
 
-		// upsert device
 		const [device] = await db
 			.insert(main_device)
 			.values({
@@ -79,7 +77,6 @@ export const POST: RequestHandler = async (event) => {
 		return jsonOk({ ok: true });
 	}
 
-	// IGNORE
 	const ignoredId = await getMasterStatusId('IGNORED');
 	await db
 		.update(main_device_request)
@@ -95,4 +92,3 @@ export const POST: RequestHandler = async (event) => {
 	hub.emitOrg(event.params.id, { type: 'device_request_decided', requestId: req.id, status: 'IGNORED' });
 	return jsonOk({ ok: true });
 };
-

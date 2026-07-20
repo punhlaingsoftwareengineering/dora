@@ -2,7 +2,14 @@ import type { RequestHandler } from './$types';
 import { jsonError, jsonOk, parseOrThrow } from '$lib/shared/zod/_helpers';
 import { ZDeviceOptionsInput } from '$lib/shared/zod/device';
 import { db } from '$lib/server/db';
-import { main_device, main_device_request, main_org_proxy, main_org_site, master_status } from '$lib/server/db/schema';
+import {
+	main_device,
+	main_device_request,
+	main_org,
+	main_org_proxy,
+	main_org_site,
+	master_status
+} from '$lib/server/db/schema';
 import { and, eq } from 'drizzle-orm';
 
 export const OPTIONS: RequestHandler = async () =>
@@ -25,6 +32,20 @@ export const GET: RequestHandler = async (event) => {
 	});
 	if (!device) return jsonError(404, 'Device not found');
 
+	const org = await db.query.main_org.findFirst({ where: eq(main_org.id, input.orgId) });
+	const deviceStatus = await db.query.master_status.findFirst({
+		where: eq(master_status.id, device.masterStatusId)
+	});
+	if (deviceStatus?.code === 'DISABLED' || deviceStatus?.code === 'DELETED') {
+		return jsonOk({
+			ok: true,
+			status: 'DISABLED',
+			configVersion: org?.configVersion ?? 1,
+			proxy: null,
+			sites: []
+		});
+	}
+
 	// If the latest request for this device fingerprint is rejected/ignored, treat device as revoked.
 	const req = await db.query.main_device_request.findFirst({
 		where: and(
@@ -37,7 +58,13 @@ export const GET: RequestHandler = async (event) => {
 		const status = await db.query.master_status.findFirst({ where: eq(master_status.id, req.requestStatusId) });
 		const code = status?.code ?? 'PENDING';
 		if (code === 'REJECTED' || code === 'IGNORED') {
-			return jsonOk({ ok: true, status: code, proxy: null, sites: [] });
+			return jsonOk({
+				ok: true,
+				status: code,
+				configVersion: org?.configVersion ?? 1,
+				proxy: null,
+				sites: []
+			});
 		}
 	}
 
@@ -47,8 +74,8 @@ export const GET: RequestHandler = async (event) => {
 	return jsonOk({
 		ok: true,
 		status: 'APPROVED',
+		configVersion: org?.configVersion ?? 1,
 		proxy: proxy ? { host: proxy.host, port: proxy.port } : null,
 		sites: sites.map((s) => ({ id: s.id, label: s.label, urlPattern: s.urlPattern }))
 	});
 };
-

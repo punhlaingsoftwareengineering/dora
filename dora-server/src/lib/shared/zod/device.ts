@@ -58,3 +58,15 @@ export const ZDeviceOptionsInput = createZodSchema(
 	})
 );
 
+export const ZDeviceRenameInput = createZodSchema(
+	z.object({
+		deviceName: z.string().min(1).max(120)
+	})
+);
+
+export const ZDeviceEnabledInput = createZodSchema(
+	z.object({
+		enabled: z.boolean()
+	})
+);
+

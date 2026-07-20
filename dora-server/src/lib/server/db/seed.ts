@@ -65,6 +65,8 @@ export async function seedMasterStatus() {
 
 export async function seedAll() {
 	await seedMasterStatus();
+	const { backfillOwnerMemberships } = await import('$lib/server/org_access');
+	await backfillOwnerMemberships();
 }
 
 // Allow running via `node -e "import('./dist/...').then(m=>m.seedAll())"` if needed.

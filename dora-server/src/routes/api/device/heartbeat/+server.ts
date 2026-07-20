@@ -4,6 +4,7 @@ import { ZDeviceHeartbeatInput } from '$lib/shared/zod/device';
 import { db } from '$lib/server/db';
 import { main_device, main_device_event } from '$lib/server/db/schema';
 import { and, eq } from 'drizzle-orm';
+import { hub } from '$lib/server/ws/hub';
 
 export const POST: RequestHandler = async (event) => {
 	const body = await event.request.json().catch(() => null);
@@ -15,7 +16,13 @@ export const POST: RequestHandler = async (event) => {
 	if (!device) return jsonError(404, 'Device not found');
 
 	const now = new Date();
-	await db.update(main_device).set({ lastSeenAt: now }).where(eq(main_device.id, input.deviceId));
+	await db
+		.update(main_device)
+		.set({
+			lastSeenAt: now,
+			lastCurrentUrl: input.currentUrl ?? device.lastCurrentUrl
+		})
+		.where(eq(main_device.id, input.deviceId));
 
 	await db.insert(main_device_event).values({
 		deviceId: input.deviceId,
@@ -23,6 +30,13 @@ export const POST: RequestHandler = async (event) => {
 		payload: { currentUrl: input.currentUrl ?? null }
 	});
 
+	hub.emitDevice(input.deviceId, {
+		type: 'heartbeat',
+		deviceId: input.deviceId,
+		orgId: input.orgId,
+		at: now.toISOString(),
+		currentUrl: input.currentUrl ?? null
+	});
+
 	return jsonOk({ ok: true });
 };
-

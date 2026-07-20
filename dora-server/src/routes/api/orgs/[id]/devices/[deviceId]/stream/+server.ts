@@ -1,17 +1,16 @@
 import type { RequestHandler } from './$types';
 import { jsonError } from '$lib/shared/zod/_helpers';
 import { db } from '$lib/server/db';
-import { main_device, main_org } from '$lib/server/db/schema';
+import { main_device } from '$lib/server/db/schema';
 import { and, eq } from 'drizzle-orm';
 import { hub } from '$lib/server/ws/hub';
+import { requireOrgRole } from '$lib/server/org_access';
 
 export const GET: RequestHandler = async (event) => {
 	if (!event.locals.user) return jsonError(401, 'Unauthorized');
 
-	const org = await db.query.main_org.findFirst({
-		where: and(eq(main_org.id, event.params.id), eq(main_org.ownerUserId, event.locals.user.id))
-	});
-	if (!org) return jsonError(404, 'Not found');
+	const access = await requireOrgRole(event.locals.user.id, event.params.id, 'member');
+	if (!access) return jsonError(404, 'Not found');
 
 	const device = await db.query.main_device.findFirst({
 		where: and(eq(main_device.id, event.params.deviceId), eq(main_device.orgId, event.params.id))
@@ -55,4 +54,3 @@ export const GET: RequestHandler = async (event) => {
 		}
 	});
 };
-

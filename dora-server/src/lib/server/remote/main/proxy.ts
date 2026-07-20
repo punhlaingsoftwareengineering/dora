@@ -1,15 +1,12 @@
 import { db } from '$lib/server/db';
-import { main_org, main_org_proxy } from '$lib/server/db/schema';
-import { and, eq } from 'drizzle-orm';
+import { main_org_proxy } from '$lib/server/db/schema';
+import { eq } from 'drizzle-orm';
 import { getMasterStatusId } from '$lib/server/status';
-
-type AuthedUser = { id: string };
+import { bumpOrgConfigVersion, requireOrgRole, type AuthedUser } from '$lib/server/org_access';
 
 export async function upsertProxy(user: AuthedUser, input: { orgId: string; host: string; port: number }) {
-	const org = await db.query.main_org.findFirst({
-		where: and(eq(main_org.id, input.orgId), eq(main_org.ownerUserId, user.id))
-	});
-	if (!org) return null;
+	const access = await requireOrgRole(user.id, input.orgId, 'admin');
+	if (!access) return null;
 
 	const activeId = await getMasterStatusId('ACTIVE');
 
@@ -17,34 +14,34 @@ export async function upsertProxy(user: AuthedUser, input: { orgId: string; host
 		where: eq(main_org_proxy.orgId, input.orgId)
 	});
 
+	let row;
 	if (existing) {
-		const [row] = await db
+		[row] = await db
 			.update(main_org_proxy)
 			.set({ host: input.host, port: input.port })
 			.where(eq(main_org_proxy.id, existing.id))
 			.returning();
-		return row;
+	} else {
+		[row] = await db
+			.insert(main_org_proxy)
+			.values({
+				orgId: input.orgId,
+				host: input.host,
+				port: input.port,
+				masterStatusId: activeId
+			})
+			.returning();
 	}
 
-	const [row] = await db
-		.insert(main_org_proxy)
-		.values({
-			orgId: input.orgId,
-			host: input.host,
-			port: input.port,
-			masterStatusId: activeId
-		})
-		.returning();
+	await bumpOrgConfigVersion(input.orgId);
 	return row;
 }
 
 export async function deleteProxy(user: AuthedUser, orgId: string) {
-	const org = await db.query.main_org.findFirst({
-		where: and(eq(main_org.id, orgId), eq(main_org.ownerUserId, user.id))
-	});
-	if (!org) return null;
+	const access = await requireOrgRole(user.id, orgId, 'admin');
+	if (!access) return null;
 
 	const [row] = await db.delete(main_org_proxy).where(eq(main_org_proxy.orgId, orgId)).returning();
+	await bumpOrgConfigVersion(orgId);
 	return row ?? null;
 }
-

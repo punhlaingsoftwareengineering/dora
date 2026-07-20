@@ -1,7 +1,13 @@
 <script lang="ts">
 	import { Plus, Pencil, Trash2, ArrowRight } from '@lucide/svelte';
 
-	type Org = { id: string; name: string; createdAt: string; updatedAt: string };
+	type Org = {
+		id: string;
+		name: string;
+		createdAt: string;
+		updatedAt: string;
+		role?: string;
+	};
 	let { data } = $props<{ data: { orgs: Org[] } }>();
 
 	let orgs = $state<Org[]>([]);
@@ -82,46 +88,52 @@
 	<table class="table">
 		<thead>
 			<tr>
+				<th>#</th>
 				<th>Name</th>
+				<th>Role</th>
 				<th>Created</th>
 				<th class="text-right">Actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			{#if loading}
-				<tr><td colspan="3"><span class="loading loading-spinner" aria-label="Loading"></span></td></tr>
+				<tr><td colspan="5"><span class="loading loading-spinner" aria-label="Loading"></span></td></tr>
 			{:else if orgs.length === 0}
-				<tr><td colspan="3" class="text-base-content/70">No organizations yet.</td></tr>
+				<tr><td colspan="5" class="text-base-content/70">No organizations yet.</td></tr>
 			{:else}
-				{#each orgs as org}
+				{#each orgs as org, i}
 					<tr>
+						<td class="text-base-content/60">{i + 1}</td>
 						<td class="font-medium">{org.name}</td>
+						<td><span class="badge badge-outline">{org.role ?? 'owner'}</span></td>
 						<td>{new Date(org.createdAt).toLocaleString()}</td>
 						<td class="text-right">
 							<div class="join">
 								<a class="btn btn-sm join-item" href={`/home/${org.id}`}>
 									Enter <ArrowRight size={16} />
 								</a>
-								<button
-									class="btn btn-sm join-item"
-									type="button"
-									onclick={() => {
-										edit = { id: org.id, name: org.name };
-										(document.getElementById('modal-edit') as HTMLDialogElement).showModal();
-									}}
-								>
-									<Pencil size={16} />
-								</button>
-								<button
-									class="btn btn-sm btn-error join-item"
-									type="button"
-									onclick={() => {
-										deleteTarget = { id: org.id, name: org.name, confirm: '' };
-										(document.getElementById('modal-delete') as HTMLDialogElement).showModal();
-									}}
-								>
-									<Trash2 size={16} />
-								</button>
+								{#if (org.role ?? 'owner') === 'owner'}
+									<button
+										class="btn btn-sm join-item"
+										type="button"
+										onclick={() => {
+											edit = { id: org.id, name: org.name };
+											(document.getElementById('modal-edit') as HTMLDialogElement).showModal();
+										}}
+									>
+										<Pencil size={16} />
+									</button>
+									<button
+										class="btn btn-sm btn-error join-item"
+										type="button"
+										onclick={() => {
+											deleteTarget = { id: org.id, name: org.name, confirm: '' };
+											(document.getElementById('modal-delete') as HTMLDialogElement).showModal();
+										}}
+									>
+										<Trash2 size={16} />
+									</button>
+								{/if}
 							</div>
 						</td>
 					</tr>
@@ -194,4 +206,3 @@
 		</div>
 	</div>
 </dialog>
-
