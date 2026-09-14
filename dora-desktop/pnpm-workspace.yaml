@@ -1,4 +1,6 @@
 allowBuilds:
   esbuild: set this to true or false
+minimumReleaseAgeExclude:
+  - '@menzies-mariesta-com/menzies-design-wash-ui'
 onlyBuiltDependencies:
   - esbuild

@@ -1,14 +1,14 @@
+# syntax=docker/dockerfile:1
+
 # ---------- Build stage ----------
 FROM node:24-alpine AS builder
 
 WORKDIR /app
 RUN corepack enable
 
-# GitHub Packages auth for @menzies-mariesta-com (set via Fly build secret / --build-arg)
-ARG NODE_AUTH_TOKEN
-ENV NODE_AUTH_TOKEN=$NODE_AUTH_TOKEN
-
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+
+# Wash UI is on public npmjs (@menzies-mariesta-com/menzies-design-wash-ui).
 # allowBuilds.esbuild=true in pnpm-workspace.yaml permits esbuild install scripts
 RUN pnpm install --frozen-lockfile
 

@@ -18,7 +18,7 @@
 		"test:e2e": "playwright test"
 	},
 	"dependencies": {
-		"@menzies-mariesta-com/menzies-design-wash-ui": "^1.0.5",
+		"@menzies-mariesta-com/menzies-design-wash-ui": "^1.0.6",
 		"@tauri-apps/api": "^2.5.0",
 		"lucide-svelte": "^0.544.0"
 	},

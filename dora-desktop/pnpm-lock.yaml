@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@menzies-mariesta-com/menzies-design-wash-ui':
-        specifier: ^1.0.5
-        version: 1.0.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: ^1.0.6
+        version: 1.0.6(react@19.3.0)
       '@tauri-apps/api':
         specifier: ^2.5.0
         version: 2.10.1
@@ -368,11 +368,16 @@ packages:
   '@lix-js/server-protocol-schema@0.1.1':
     resolution: {integrity: sha512-jBeALB6prAbtr5q4vTuxnRZZv1M2rKe8iNqRQhFJ4Tv7150unEa0vKyz0hs8Gl3fUGsWaNJBh3J8++fpbrpRBQ==}
 
-  '@menzies-mariesta-com/menzies-design-wash-ui@1.0.5':
-    resolution: {integrity: sha512-u4GVCO90uQVRsE5CjCPSpMMtWmBIU/57IVPfeJui6nNARVpugqJF+P/LOOvVPloUCpV0JHaGzFMHgIxR8XQwmw==, tarball: https://npm.pkg.github.com/download/@menzies-mariesta-com/menzies-design-wash-ui/1.0.5/61ff4ee11bbfe5156f3bb13969974635faf54417}
+  '@menzies-mariesta-com/menzies-design-wash-ui@1.0.6':
+    resolution: {integrity: sha512-mqrz8DewesUfCUpVAZV8Tvu0kIAxnDfSFq945S4HtXyNSzfxVlrS4tpW2uH//3IOIIjEiqU2fyvCPgo3k8LjCA==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
 
   '@playwright/test@1.59.1':
     resolution: {integrity: sha512-PG6q63nQg5c9rIi4/Z5lR5IVF7yU5MqmKaPOe0HSc0O2cX1fPi96sUQu5j7eo4gKCkB2AnNGoWt7y4/Xx3Kcqg==}
@@ -1536,11 +1541,6 @@ packages:
       apexcharts: '>=5.10.1'
       react: '>=16.8.0'
 
-  react-dom@19.3.0:
-    resolution: {integrity: sha512-JDk8dgif51OjFoDE70+OT9ICyYr+69HlmihNwp1+Nsfbna3t5sIiCa9ZJktDmQ4/1b/rn26hIAR2uYXDMr5r0Q==}
-    peerDependencies:
-      react: ^19.3.0
-
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -1560,9 +1560,6 @@ packages:
   sade@1.8.1:
     resolution: {integrity: sha512-xal3CZX1Xlo/k4ApwCFrHVACi9fBqJ7V+mwhBsuf/1IOKbBy098Fex+Wa/5QMubw09pSZ/u8EY8PWgevJsXp1A==}
     engines: {node: '>=6'}
-
-  scheduler@0.28.0:
-    resolution: {integrity: sha512-juorfCmIkIw8tT+p5BXSm6PJjQF/ycEYmKyzURCIt/RaZIhL+PulbQ9Yu2z1HdOJDdqDTlxA1+xKBmHXJsczAw==}
 
   semver@7.7.4:
     resolution: {integrity: sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==}
@@ -2045,14 +2042,14 @@ snapshots:
 
   '@lix-js/server-protocol-schema@0.1.1': {}
 
-  '@menzies-mariesta-com/menzies-design-wash-ui@1.0.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@menzies-mariesta-com/menzies-design-wash-ui@1.0.6(react@19.3.0)':
     dependencies:
       apexcharts: 5.16.0
       lucide-react: 1.28.0(react@19.3.0)
-      react: 19.3.0
       react-apexcharts: 2.1.1(apexcharts@5.16.0)(react@19.3.0)
-      react-dom: 19.3.0(react@19.3.0)
       simple-icons: 15.22.0
+    optionalDependencies:
+      react: 19.3.0
 
   '@playwright/test@1.59.1':
     dependencies:
@@ -3017,11 +3014,6 @@ snapshots:
       prop-types: 15.8.1
       react: 19.3.0
 
-  react-dom@19.3.0(react@19.3.0):
-    dependencies:
-      react: 19.3.0
-      scheduler: 0.28.0
-
   react-is@16.13.1: {}
 
   react@19.3.0: {}
@@ -3062,8 +3054,6 @@ snapshots:
   sade@1.8.1:
     dependencies:
       mri: 1.2.0
-
-  scheduler@0.28.0: {}
 
   semver@7.7.4: {}
 

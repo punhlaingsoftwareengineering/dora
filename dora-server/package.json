@@ -26,7 +26,7 @@
 	},
 	"dependencies": {
 		"@lucide/svelte": "^0.542.0",
-		"@menzies-mariesta-com/menzies-design-wash-ui": "^1.0.5",
+		"@menzies-mariesta-com/menzies-design-wash-ui": "^1.0.6",
 		"better-auth": "~1.4.21",
 		"drizzle-orm": "^0.45.1",
 		"nodemailer": "^7.0.7",
