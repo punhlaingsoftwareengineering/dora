@@ -2,6 +2,7 @@ import type { Actions, PageServerLoad } from './$types';
 import { fail } from '@sveltejs/kit';
 import { auth } from '$lib/server/auth';
 import { APIError } from 'better-auth/api';
+import QRCode from 'qrcode';
 
 export const load: PageServerLoad = async (event) => {
 	const twoFactorEnabled = Boolean(
@@ -9,6 +10,16 @@ export const load: PageServerLoad = async (event) => {
 	);
 	return { twoFactorEnabled, user: event.locals.user };
 };
+
+function secretFromTotpUri(uri: string | null | undefined) {
+	if (!uri) return null;
+	try {
+		const u = new URL(uri);
+		return u.searchParams.get('secret');
+	} catch {
+		return null;
+	}
+}
 
 export const actions: Actions = {
 	enable: async (event) => {
@@ -21,8 +32,20 @@ export const actions: Actions = {
 				body: body as { password: string; issuer: string },
 				headers: event.request.headers
 			});
+			const totpURI = (data as { totpURI?: string }).totpURI ?? null;
+			const qrDataUrl = totpURI
+				? await QRCode.toDataURL(totpURI, {
+						errorCorrectionLevel: 'M',
+						margin: 2,
+						width: 240,
+						color: { dark: '#000000', light: '#ffffff' }
+					})
+				: null;
+
 			return {
-				totpURI: (data as { totpURI?: string }).totpURI ?? null,
+				totpURI,
+				qrDataUrl,
+				manualSecret: secretFromTotpUri(totpURI),
 				backupCodes: (data as { backupCodes?: string[] }).backupCodes ?? []
 			};
 		} catch (error) {

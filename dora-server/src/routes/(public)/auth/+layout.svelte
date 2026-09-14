@@ -2,7 +2,6 @@
 	let { children } = $props();
 </script>
 
-<div class="mx-auto flex min-h-[calc(100vh-160px)] max-w-lg items-center px-6 py-10">
-	<div class="w-full">{@render children()}</div>
+<div class="flex flex-1 items-center justify-center px-4 py-12 sm:px-6">
+	<div class="w-full max-w-md">{@render children()}</div>
 </div>
-

@@ -1,7 +1,8 @@
 import type { PageServerLoad } from './$types';
 import { getOrgDetail } from '$lib/server/remote/main/org_detail';
-import { listDevices } from '$lib/server/remote/main/device';
-import { listInvites, listMembers } from '$lib/server/remote/main/member';
+import { listDevicesForOrg } from '$lib/server/remote/main/device';
+import { listMembersWithUsers } from '$lib/server/org_access';
+import { listPendingInvitesForOrg } from '$lib/server/remote/main/member';
 import { db } from '$lib/server/db';
 import { main_device_request, master_status } from '$lib/server/db/schema';
 import { desc, eq, inArray } from 'drizzle-orm';
@@ -12,9 +13,9 @@ export const load: PageServerLoad = async (event) => {
 		return {
 			org: null,
 			role: null,
+			activeSecret: null,
 			proxy: null,
 			sites: [],
-			activeSecret: null,
 			requests: [],
 			devices: [],
 			members: [],
@@ -22,10 +23,21 @@ export const load: PageServerLoad = async (event) => {
 		};
 	}
 
-	const rows = await db.query.main_device_request.findMany({
-		where: eq(main_device_request.orgId, event.params.id),
-		orderBy: desc(main_device_request.requestedAt)
-	});
+	const orgId = event.params.id;
+	const canManage = detail.role === 'owner' || detail.role === 'admin';
+
+	const [rows, devices, members, invites] = await Promise.all([
+		canManage
+			? db.query.main_device_request.findMany({
+					where: eq(main_device_request.orgId, orgId),
+					orderBy: desc(main_device_request.requestedAt),
+					limit: 20
+				})
+			: Promise.resolve([]),
+		listDevicesForOrg(orgId),
+		listMembersWithUsers(orgId),
+		canManage ? listPendingInvitesForOrg(orgId) : Promise.resolve([])
+	]);
 
 	const statusById = new Map<string, string>();
 	const ids = Array.from(new Set(rows.map((r) => r.requestStatusId)));
@@ -34,19 +46,11 @@ export const load: PageServerLoad = async (event) => {
 		for (const s of statuses) statusById.set(s.id, s.code);
 	}
 
-	const devices = (await listDevices(event.locals.user!, event.params.id)) ?? [];
-	const members = (await listMembers(event.locals.user!, event.params.id)) ?? [];
-	const invites =
-		detail.role === 'owner' || detail.role === 'admin'
-			? ((await listInvites(event.locals.user!, event.params.id)) ?? [])
-			: [];
-
 	return {
 		...detail,
 		requests: rows.map((r) => ({
 			id: r.id,
 			deviceFingerprint: r.deviceFingerprint,
-			devicePublicInfo: r.devicePublicInfo as Record<string, unknown>,
 			requestedAt: r.requestedAt.toISOString(),
 			status: statusById.get(r.requestStatusId) ?? 'PENDING',
 			deviceName: r.deviceName
@@ -56,7 +60,6 @@ export const load: PageServerLoad = async (event) => {
 			deviceName: d.deviceName,
 			online: d.online,
 			freshness: d.freshness,
-			lastCurrentUrl: d.lastCurrentUrl,
 			lastSeenAt: d.lastSeenAt?.toISOString?.() ?? d.lastSeenAt,
 			statusCode: d.statusCode
 		})),

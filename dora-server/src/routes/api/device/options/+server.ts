@@ -7,10 +7,10 @@ import {
 	main_device_request,
 	main_org,
 	main_org_proxy,
-	main_org_site,
-	master_status
+	main_org_site
 } from '$lib/server/db/schema';
 import { and, eq } from 'drizzle-orm';
+import { getMasterStatusCode } from '$lib/server/status';
 
 export const OPTIONS: RequestHandler = async () =>
 	new Response(null, {
@@ -27,54 +27,71 @@ export const GET: RequestHandler = async (event) => {
 	const deviceId = event.url.searchParams.get('deviceId');
 	const input = parseOrThrow(ZDeviceOptionsInput, { orgId, deviceId });
 
-	const device = await db.query.main_device.findFirst({
-		where: and(eq(main_device.id, input.deviceId), eq(main_device.orgId, input.orgId))
-	});
+	const [device, org] = await Promise.all([
+		db.query.main_device.findFirst({
+			where: and(eq(main_device.id, input.deviceId), eq(main_device.orgId, input.orgId)),
+			columns: {
+				id: true,
+				orgId: true,
+				deviceFingerprint: true,
+				masterStatusId: true
+			}
+		}),
+		db.query.main_org.findFirst({
+			where: eq(main_org.id, input.orgId),
+			columns: { id: true, configVersion: true }
+		})
+	]);
 	if (!device) return jsonError(404, 'Device not found');
 
-	const org = await db.query.main_org.findFirst({ where: eq(main_org.id, input.orgId) });
-	const deviceStatus = await db.query.master_status.findFirst({
-		where: eq(master_status.id, device.masterStatusId)
-	});
-	if (deviceStatus?.code === 'DISABLED' || deviceStatus?.code === 'DELETED') {
+	const configVersion = org?.configVersion ?? 1;
+	const deviceStatusCode = await getMasterStatusCode(device.masterStatusId);
+	if (deviceStatusCode === 'DISABLED' || deviceStatusCode === 'DELETED') {
 		return jsonOk({
 			ok: true,
 			status: 'DISABLED',
-			configVersion: org?.configVersion ?? 1,
+			configVersion,
 			proxy: null,
 			sites: []
 		});
 	}
 
-	// If the latest request for this device fingerprint is rejected/ignored, treat device as revoked.
 	const req = await db.query.main_device_request.findFirst({
 		where: and(
 			eq(main_device_request.orgId, input.orgId),
 			eq(main_device_request.deviceFingerprint, device.deviceFingerprint)
 		),
+		columns: { requestStatusId: true },
 		orderBy: (t, { desc }) => [desc(t.requestedAt)]
 	});
 	if (req) {
-		const status = await db.query.master_status.findFirst({ where: eq(master_status.id, req.requestStatusId) });
-		const code = status?.code ?? 'PENDING';
+		const code = (await getMasterStatusCode(req.requestStatusId)) ?? 'PENDING';
 		if (code === 'REJECTED' || code === 'IGNORED') {
 			return jsonOk({
 				ok: true,
 				status: code,
-				configVersion: org?.configVersion ?? 1,
+				configVersion,
 				proxy: null,
 				sites: []
 			});
 		}
 	}
 
-	const proxy = await db.query.main_org_proxy.findFirst({ where: eq(main_org_proxy.orgId, input.orgId) });
-	const sites = await db.query.main_org_site.findMany({ where: eq(main_org_site.orgId, input.orgId) });
+	const [proxy, sites] = await Promise.all([
+		db.query.main_org_proxy.findFirst({
+			where: eq(main_org_proxy.orgId, input.orgId),
+			columns: { host: true, port: true }
+		}),
+		db.query.main_org_site.findMany({
+			where: eq(main_org_site.orgId, input.orgId),
+			columns: { id: true, label: true, urlPattern: true }
+		})
+	]);
 
 	return jsonOk({
 		ok: true,
 		status: 'APPROVED',
-		configVersion: org?.configVersion ?? 1,
+		configVersion,
 		proxy: proxy ? { host: proxy.host, port: proxy.port } : null,
 		sites: sites.map((s) => ({ id: s.id, label: s.label, urlPattern: s.urlPattern }))
 	});

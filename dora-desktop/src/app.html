@@ -1,12 +1,25 @@
 <!doctype html>
 
-<html lang="%paraglide.lang%" dir="%paraglide.dir%" data-theme="sunset">
+<html lang="%paraglide.lang%" dir="%paraglide.dir%" data-theme="mineral">
 	<head>
 		<meta charset="utf-8" />
 
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<meta name="text-scale" content="scale" />
+		<script>
+			(function () {
+				try {
+					var pigment = localStorage.getItem('design-web-menzies-theme') || 'mineral';
+					var mode = localStorage.getItem('design-web-menzies-mode') || 'light';
+					if (!/^[a-z]+$/.test(pigment)) pigment = 'mineral';
+					document.documentElement.setAttribute(
+						'data-theme',
+						mode === 'dark' ? pigment + '-dark' : pigment
+					);
+				} catch (e) {}
+			})();
+		</script>
 		%sveltekit.head%
 	</head>
 

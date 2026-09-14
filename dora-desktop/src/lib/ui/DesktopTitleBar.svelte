@@ -1,13 +1,27 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { X, Minus, Plus, RefreshCw, ArrowDownToLine, LogOut } from 'lucide-svelte';
+	import { X, Minus, Plus, RefreshCw, ArrowDownToLine, LogOut, Palette, Sun, Moon } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 	import { checkForUpdate, relaunchApp, type DownloadEvent, type UpdateHandle } from '$lib/updater';
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
 	import { clearConnectCredentials, clearConnection, loadConnection } from '$lib/deviceStorage';
+	import { resolveAppVersion } from '$lib/appVersion';
+	import {
+		type ThemeMode,
+		type WatercolorThemeId
+	} from '@menzies-mariesta-com/menzies-design-wash-ui/core';
+	import { WashThemeTool } from '$lib/tool/wash-theme.tool.svelte';
+	import { closeDetailsOnOutside } from '$lib/attachments/close-details-on-outside';
+	import { syncWashChromeToNative } from '$lib/washChrome';
 
 	let isTauri = $state(false);
+	let appVersion = $state<string | null>(null);
+	const washThemeTool = new WashThemeTool();
+	let pigment = $state<WatercolorThemeId>('mineral');
+	let mode = $state<ThemeMode>('light');
+	let appearanceOpen = $state(false);
+	const pigments = washThemeTool.listPigments();
 
 	/** Only the Home screen may disconnect an approved session (not Connect setup, not `/` redirect, etc.). */
 	const onHome = $derived(
@@ -25,12 +39,28 @@
 
 	onMount(() => {
 		isTauri = '__TAURI_INTERNALS__' in window;
+		pigment = washThemeTool.getPigment();
+		mode = washThemeTool.getMode();
+		void resolveAppVersion().then((v) => (appVersion = v));
 		if (!isTauri) return;
 
+		void syncWashChromeToNative(mode, pigment);
 		void checkUpdates({ showModal: false });
 		const id = setInterval(() => void checkUpdates({ showModal: false }), UPDATE_POLL_MS);
 		return () => clearInterval(id);
 	});
+
+	function setPigment(next: WatercolorThemeId) {
+		pigment = next;
+		washThemeTool.setPigment(next);
+		void syncWashChromeToNative(mode, next);
+	}
+
+	function setMode(next: ThemeMode) {
+		mode = next;
+		washThemeTool.setMode(next);
+		void syncWashChromeToNative(next, pigment);
+	}
 
 	const UPDATE_POLL_MS = 10 * 60 * 1000;
 
@@ -137,17 +167,80 @@
 
 {#if browser && isTauri}
 	<header
-		class="navbar rounded-none border-b border-base-300 bg-base-100/95 min-h-11 shrink-0 select-none px-0 backdrop-blur-sm"
+		class="navbar min-h-11 shrink-0 select-none rounded-none border-b border-ink-border/80 bg-base-100/80 px-0 backdrop-blur-sm"
 		aria-label="Window title bar"
 	>
 		<div class="navbar-start flex flex-1 self-stretch ps-2" data-tauri-drag-region>
-			<div class="flex items-center py-2 ps-1">
-				<span class="text-sm font-semibold tracking-tight text-base-content/80">Dora</span>
+			<div class="flex items-center gap-2 py-2 ps-1">
+				<span class="dora-wordmark font-display text-sm font-semibold tracking-tight text-base-content/80"
+					>Dora</span
+				>
+				{#if appVersion}
+					<span class="text-[11px] text-base-content/45 tabular-nums">v{appVersion}</span>
+				{/if}
 			</div>
 		</div>
 		<div class="navbar-end flex-none gap-0 pe-1">
+			<div class="tooltip tooltip-bottom tooltip-secondary" data-tip="Appearance">
+				<details
+					class="dropdown dropdown-end"
+					bind:open={appearanceOpen}
+					{@attach closeDetailsOnOutside()}
+				>
+					<summary
+						class="btn btn-ghost btn-square btn-sm btn-secondary cursor-pointer"
+						aria-label="Appearance"
+					>
+						<Palette size={18} aria-hidden="true" />
+					</summary>
+					<div
+						class="dropdown-content z-[60] mt-2 w-72 rounded-box border border-ink-border bg-base-100 p-3 shadow-lg"
+					>
+						<p class="mb-2 text-xs font-semibold uppercase tracking-wide text-base-content/60">
+							Mode
+						</p>
+						<div class="join mb-3 w-full">
+							<button
+								type="button"
+								class="btn join-item flex-1 cursor-pointer"
+								class:btn-primary={mode === 'light'}
+								onclick={() => setMode('light')}
+							>
+								<Sun size={16} aria-hidden="true" />
+								Light
+							</button>
+							<button
+								type="button"
+								class="btn join-item flex-1 cursor-pointer"
+								class:btn-primary={mode === 'dark'}
+								onclick={() => setMode('dark')}
+							>
+								<Moon size={16} aria-hidden="true" />
+								Dark
+							</button>
+						</div>
+						<p class="mb-2 text-xs font-semibold uppercase tracking-wide text-base-content/60">
+							Themes
+						</p>
+						<div class="grid max-h-56 grid-cols-3 gap-2 overflow-y-auto pe-1">
+							{#each pigments as p (p.id)}
+								<button
+									type="button"
+									class="btn btn-sm cursor-pointer capitalize"
+									class:btn-primary={pigment === p.id}
+									class:btn-ghost={pigment !== p.id}
+									onclick={() => setPigment(p.id)}
+								>
+									{p.id}
+								</button>
+							{/each}
+						</div>
+					</div>
+				</details>
+			</div>
+
 			<div class="tooltip tooltip-bottom" data-tip="Refresh">
-				<button type="button" class="btn btn-ghost btn-square btn-sm" aria-label="Refresh" onclick={reloadApp}>
+				<button type="button" class="btn btn-ghost btn-square btn-sm cursor-pointer" aria-label="Refresh" onclick={reloadApp}>
 					<RefreshCw size={18} aria-hidden="true" />
 				</button>
 			</div>

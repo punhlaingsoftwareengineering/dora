@@ -84,8 +84,8 @@
 	<div class="alert alert-error mt-4"><span>{error}</span></div>
 {/if}
 
-<div class="mt-6 overflow-x-auto rounded-box bg-base-100 shadow">
-	<table class="table">
+<div class="mt-6 overflow-x-auto rounded-box border border-ink-border/60 bg-base-100 shadow-sm">
+	<table class="table table-zebra [&_tbody_tr]:hover:bg-primary/40">
 		<thead>
 			<tr>
 				<th>#</th>

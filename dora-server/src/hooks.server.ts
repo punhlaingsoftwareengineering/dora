@@ -4,12 +4,20 @@ import { auth } from '$lib/server/auth';
 import { svelteKitHandler } from 'better-auth/svelte-kit';
 import type { Handle } from '@sveltejs/kit';
 
-const handleBetterAuth: Handle = async ({ event, resolve }) => {
-	const session = await auth.api.getSession({ headers: event.request.headers });
+function isSessionSkippedPath(pathname: string) {
+	return pathname.startsWith('/api/device/') || pathname.startsWith('/api/updates/');
+}
 
-	if (session) {
-		event.locals.session = session.session;
-		event.locals.user = session.user;
+const handleBetterAuth: Handle = async ({ event, resolve }) => {
+	const skipSession = isSessionSkippedPath(event.url.pathname);
+
+	if (!skipSession) {
+		const session = await auth.api.getSession({ headers: event.request.headers });
+
+		if (session) {
+			event.locals.session = session.session;
+			event.locals.user = session.user;
+		}
 	}
 
 	const isDeviceApi = event.url.pathname.startsWith('/api/device/');
@@ -33,7 +41,9 @@ const handleBetterAuth: Handle = async ({ event, resolve }) => {
 		});
 	}
 
-	const response = await svelteKitHandler({ event, resolve, auth, building });
+	const response = skipSession
+		? await resolve(event)
+		: await svelteKitHandler({ event, resolve, auth, building });
 
 	if (corsHeaders) {
 		for (const [k, v] of corsHeaders.entries()) {

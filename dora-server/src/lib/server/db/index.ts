@@ -28,7 +28,8 @@ if (!DATABASE_URL) {
 
 const client = new pg.Pool({
 	connectionString: DATABASE_URL ?? 'postgres://localhost:1/_db_disabled',
-	max: 2,
+	max: 5,
+	idleTimeoutMillis: 30_000,
 	connectionTimeoutMillis: 2_000
 });
 

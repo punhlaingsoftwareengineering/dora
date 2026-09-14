@@ -1,11 +1,11 @@
-import { fail, redirect } from '@sveltejs/kit';
+import { fail, isRedirect, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { auth } from '$lib/server/auth';
 import { APIError } from 'better-auth/api';
 
 export const load: PageServerLoad = (event) => {
 	if (event.locals.user) {
-		return redirect(302, '/home');
+		throw redirect(302, '/home');
 	}
 	return {};
 };
@@ -20,10 +20,11 @@ export const actions: Actions = {
 				headers: event.request.headers
 			});
 		} catch (error) {
+			if (isRedirect(error)) throw error;
 			if (error instanceof APIError) return fail(400, { message: error.message || 'Invalid code' });
 			return fail(500, { message: 'Unexpected error' });
 		}
-		return redirect(302, '/home');
+		throw redirect(302, '/home');
 	},
 
 	verifyBackup: async (event) => {
@@ -35,9 +36,10 @@ export const actions: Actions = {
 				headers: event.request.headers
 			});
 		} catch (error) {
+			if (isRedirect(error)) throw error;
 			if (error instanceof APIError) return fail(400, { message: error.message || 'Invalid code' });
 			return fail(500, { message: 'Unexpected error' });
 		}
-		return redirect(302, '/home');
+		throw redirect(302, '/home');
 	}
 };

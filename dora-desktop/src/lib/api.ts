@@ -85,6 +85,7 @@ export async function getDeviceOptions(orgId: string, deviceId: string) {
 	return json as {
 		ok: true;
 		status?: string;
+		configVersion?: number;
 		proxy: { host: string; port: number } | null;
 		sites: { id: string; label: string; urlPattern: string }[];
 	};
@@ -112,6 +113,7 @@ export async function getDeviceOptionsWithTimeout(
 			return json as {
 				ok: true;
 				status?: string;
+				configVersion?: number;
 				proxy: { host: string; port: number } | null;
 				sites: { id: string; label: string; urlPattern: string }[];
 			};

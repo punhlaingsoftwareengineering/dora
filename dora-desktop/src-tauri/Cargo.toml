@@ -1,6 +1,6 @@
 [package]
 name = "app"
-version = "0.4.4"
+version = "1.0.0"
 description = "Dora"
 authors = ["you"]
 license = ""
@@ -28,3 +28,11 @@ tauri-plugin-updater = "2"
 tauri-plugin-process = "2"
 whoami = "1.6.1"
 rfd = "0.15"
+
+# Platform webview handles for site-window permission auto-allow (see site_permissions.rs).
+# Versions match tauri/wry lockfile; do not cargo-add newer crates offline.
+[target.'cfg(any(target_os = "linux", target_os = "dragonfly", target_os = "freebsd", target_os = "openbsd", target_os = "netbsd"))'.dependencies]
+webkit2gtk = { version = "2.0.2", features = ["v2_40"] }
+
+[target.'cfg(windows)'.dependencies]
+webview2-com = "0.38"

@@ -7,6 +7,12 @@ app = 'dora-server'
 primary_region = 'sin'
 
 [build]
+  # Private Wash UI package: pass GitHub Packages token at build time, e.g.
+  #   fly deploy --build-arg NODE_AUTH_TOKEN=$NODE_AUTH_TOKEN
+  # or a Fly Docker build secret named NODE_AUTH_TOKEN (see Dockerfile ARG).
+
+[env]
+  NODE_OPTIONS = '--max-old-space-size=768'
 
 [http_service]
   internal_port = 5173

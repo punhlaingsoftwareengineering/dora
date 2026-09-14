@@ -21,21 +21,30 @@ class Hub {
 		const set = this.orgSubs.get(orgId) ?? new Set<OrgSubscriber>();
 		set.add(sub);
 		this.orgSubs.set(orgId, set);
-		return () => set.delete(sub);
+		return () => {
+			set.delete(sub);
+			if (set.size === 0) this.orgSubs.delete(orgId);
+		};
 	}
 
 	subscribeRequest(requestId: string, sub: RequestSubscriber) {
 		const set = this.requestSubs.get(requestId) ?? new Set<RequestSubscriber>();
 		set.add(sub);
 		this.requestSubs.set(requestId, set);
-		return () => set.delete(sub);
+		return () => {
+			set.delete(sub);
+			if (set.size === 0) this.requestSubs.delete(requestId);
+		};
 	}
 
 	subscribeDevice(deviceId: string, sub: DeviceSubscriber) {
 		const set = this.deviceSubs.get(deviceId) ?? new Set<DeviceSubscriber>();
 		set.add(sub);
 		this.deviceSubs.set(deviceId, set);
-		return () => set.delete(sub);
+		return () => {
+			set.delete(sub);
+			if (set.size === 0) this.deviceSubs.delete(deviceId);
+		};
 	}
 
 	emitOrg(orgId: string, payload: Json) {

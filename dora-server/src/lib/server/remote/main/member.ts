@@ -21,15 +21,19 @@ export async function listMembers(user: AuthedUser, orgId: string) {
 	return listMembersWithUsers(orgId);
 }
 
-export async function listInvites(user: AuthedUser, orgId: string) {
-	const access = await requireOrgRole(user.id, orgId, 'admin');
-	if (!access) return null;
-
+/** Assumes caller already verified admin+ role. */
+export async function listPendingInvitesForOrg(orgId: string) {
 	const pendingId = await getMasterStatusId('PENDING');
 	return db.query.main_org_invite.findMany({
 		where: and(eq(main_org_invite.orgId, orgId), eq(main_org_invite.masterStatusId, pendingId)),
 		orderBy: desc(main_org_invite.createdAt)
 	});
+}
+
+export async function listInvites(user: AuthedUser, orgId: string) {
+	const access = await requireOrgRole(user.id, orgId, 'admin');
+	if (!access) return null;
+	return listPendingInvitesForOrg(orgId);
 }
 
 export async function createInvite(
@@ -85,8 +89,8 @@ export async function createInvite(
 	await sendMail({
 		to: email,
 		subject: `You're invited to ${access.org.name} on Dora`,
-		html: `<p>You've been invited to join <strong>${access.org.name}</strong> as <strong>${input.role}</strong>.</p><p><a href="${link}">Accept invitation</a></p><p>This link expires in 7 days.</p>`,
-		text: `You've been invited to join ${access.org.name} as ${input.role}. Accept: ${link}`
+		html: `<p>You've been invited to join <strong>${access.org.name}</strong> as <strong>${input.role}</strong>.</p><p><a href="${link}">Open invite &amp; set your password</a></p><p>This link expires in 7 days. No separate sign-up form is needed.</p>`,
+		text: `You've been invited to join ${access.org.name} as ${input.role}. Open this link and set your password to join: ${link}`
 	});
 
 	return row;

@@ -6,6 +6,16 @@ import { main_device, main_device_event } from '$lib/server/db/schema';
 import { and, eq } from 'drizzle-orm';
 import { hub } from '$lib/server/ws/hub';
 
+/** Insert a telemetry history row at most this often when nothing else changed. */
+const TELEMETRY_SAMPLE_MS = 5 * 60 * 1000;
+
+type SampleStore = Map<string, number>;
+const g = globalThis as typeof globalThis & { __doraTelemetrySample?: SampleStore };
+function sampleStore(): SampleStore {
+	if (!g.__doraTelemetrySample) g.__doraTelemetrySample = new Map();
+	return g.__doraTelemetrySample;
+}
+
 function getIp(req: Request) {
 	return (
 		req.headers.get('cf-connecting-ip') ??
@@ -31,6 +41,8 @@ export const POST: RequestHandler = async (event) => {
 
 	const ip = getIp(event.request);
 	const now = new Date();
+	const currentUrl = input.currentUrl ?? null;
+	const appVersion = input.spec.appVersion ?? null;
 
 	await db
 		.update(main_device)
@@ -39,24 +51,37 @@ export const POST: RequestHandler = async (event) => {
 			lastIp: ip,
 			lastLocation: input.location,
 			lastSpec: input.spec,
-			lastAppVersion: input.spec.appVersion ?? device.lastAppVersion,
-			lastCurrentUrl: input.currentUrl ?? device.lastCurrentUrl
+			lastAppVersion: appVersion ?? device.lastAppVersion,
+			lastCurrentUrl: currentUrl ?? device.lastCurrentUrl
 		})
 		.where(eq(main_device.id, input.deviceId));
 
-	await db.insert(main_device_event).values({
-		deviceId: input.deviceId,
-		eventType: 'telemetry',
-		payload: { currentUrl: input.currentUrl ?? null, spec: input.spec, location: input.location, ip }
-	});
+	const urlChanged = currentUrl !== (device.lastCurrentUrl ?? null);
+	const versionChanged = appVersion != null && appVersion !== device.lastAppVersion;
+	const samples = sampleStore();
+	const lastSample = samples.get(input.deviceId) ?? 0;
+	const dueForSample = now.getTime() - lastSample >= TELEMETRY_SAMPLE_MS;
 
-	// Push to any viewers on server device detail page
+	if (urlChanged || versionChanged || dueForSample) {
+		await db.insert(main_device_event).values({
+			deviceId: input.deviceId,
+			eventType: 'telemetry',
+			payload: {
+				currentUrl,
+				spec: input.spec,
+				location: input.location,
+				ip
+			}
+		});
+		samples.set(input.deviceId, now.getTime());
+	}
+
 	hub.emitDevice(input.deviceId, {
 		type: 'telemetry',
 		deviceId: input.deviceId,
 		orgId: input.orgId,
 		at: now.toISOString(),
-		currentUrl: input.currentUrl ?? null,
+		currentUrl,
 		spec: input.spec,
 		location: input.location,
 		ip
@@ -64,4 +89,3 @@ export const POST: RequestHandler = async (event) => {
 
 	return jsonOk({ ok: true });
 };
-

@@ -1,6 +1,6 @@
 import { db } from '$lib/server/db';
 import { main_device, main_device_event, master_status } from '$lib/server/db/schema';
-import { and, desc, eq, gte, inArray } from 'drizzle-orm';
+import { and, desc, eq, gte, inArray, sql } from 'drizzle-orm';
 import { getMasterStatusId } from '$lib/server/status';
 import {
 	bumpOrgConfigVersion,
@@ -24,10 +24,8 @@ function mapDevice(d: typeof main_device.$inferSelect, statusCode?: string) {
 	};
 }
 
-export async function listDevices(user: AuthedUser, orgId: string) {
-	const access = await requireOrgRole(user.id, orgId, 'member');
-	if (!access) return null;
-
+/** Assumes caller already verified org membership. */
+export async function listDevicesForOrg(orgId: string) {
 	const devices = await db.query.main_device.findMany({
 		where: eq(main_device.orgId, orgId),
 		orderBy: desc(main_device.updatedAt)
@@ -41,6 +39,12 @@ export async function listDevices(user: AuthedUser, orgId: string) {
 	}
 
 	return devices.map((d) => mapDevice(d, statusMap.get(d.masterStatusId)));
+}
+
+export async function listDevices(user: AuthedUser, orgId: string) {
+	const access = await requireOrgRole(user.id, orgId, 'member');
+	if (!access) return null;
+	return listDevicesForOrg(orgId);
 }
 
 export async function getDeviceDetail(user: AuthedUser, orgId: string, deviceId: string) {
@@ -63,20 +67,39 @@ export async function getDeviceDetail(user: AuthedUser, orgId: string, deviceId:
 	});
 
 	const since = new Date(Date.now() - 24 * 60 * 60 * 1000);
-	const dayEvents = await db.query.main_device_event.findMany({
-		where: and(eq(main_device_event.deviceId, deviceId), gte(main_device_event.createdAt, since)),
-		orderBy: desc(main_device_event.createdAt)
-	});
+	const hourExpr = sql<number>`extract(hour from ${main_device_event.createdAt})::int`;
+
+	const [hourRows, typeRows] = await Promise.all([
+		db
+			.select({
+				hour: hourExpr,
+				count: sql<number>`count(*)::int`
+			})
+			.from(main_device_event)
+			.where(and(eq(main_device_event.deviceId, deviceId), gte(main_device_event.createdAt, since)))
+			.groupBy(hourExpr),
+		db
+			.select({
+				eventType: main_device_event.eventType,
+				count: sql<number>`count(*)::int`
+			})
+			.from(main_device_event)
+			.where(and(eq(main_device_event.deviceId, deviceId), gte(main_device_event.createdAt, since)))
+			.groupBy(main_device_event.eventType)
+	]);
 
 	const byHour = new Array(24).fill(0) as number[];
-	for (const e of dayEvents) {
-		const h = e.createdAt.getHours();
-		byHour[h] += 1;
+	let eventCount24h = 0;
+	for (const row of hourRows) {
+		const h = Number(row.hour);
+		const c = Number(row.count);
+		if (h >= 0 && h < 24) byHour[h] = c;
+		eventCount24h += c;
 	}
 
 	const typeCounts: Record<string, number> = {};
-	for (const e of dayEvents) {
-		typeCounts[e.eventType] = (typeCounts[e.eventType] ?? 0) + 1;
+	for (const row of typeRows) {
+		typeCounts[row.eventType] = Number(row.count);
 	}
 
 	return {
@@ -85,7 +108,7 @@ export async function getDeviceDetail(user: AuthedUser, orgId: string, deviceId:
 		charts: {
 			eventsByHour: byHour,
 			eventTypeCounts: typeCounts,
-			eventCount24h: dayEvents.length
+			eventCount24h
 		},
 		role: access.role
 	};

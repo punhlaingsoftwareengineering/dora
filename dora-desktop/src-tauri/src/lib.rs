@@ -1,17 +1,22 @@
+mod site_permissions;
+
+use serde::Deserialize;
 use serde::Serialize;
 use std::fs;
-#[cfg(windows)]
 use std::hash::{Hash, Hasher};
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use std::sync::atomic::{AtomicU64, Ordering};
 use tauri::Manager;
 use tauri::Url;
 use tauri::WebviewUrl;
 use tauri::WebviewWindow;
 use tauri::WebviewWindowBuilder;
+use tauri::webview::Color;
 use tauri::webview::DownloadEvent;
 use tauri::webview::NewWindowFeatures;
 use tauri::webview::NewWindowResponse;
+
+use site_permissions::attach_site_webview_permissions;
 
 static BROWSER_LABEL_SEQ: AtomicU64 = AtomicU64::new(0);
 
@@ -99,6 +104,127 @@ const OPEN_LINKS_IN_NEW_WINDOW_SCRIPT: &str = r#"
 })();
 "#;
 
+/// Soft Wash atmosphere on site windows: colors `html` only (not `body`), so opaque site UIs stay
+/// intact while load flash, overscroll, and transparent pages pick up mineral paper + wash blobs.
+/// Mode is substituted at window-open time from persisted chrome prefs.
+fn wash_bleed_init_script(mode: &str) -> String {
+  let dark = mode.eq_ignore_ascii_case("dark");
+  // Mineral pigment tokens from menzies-design-wash-ui (light / dark).
+  let (base, wash_a, wash_b, wash_c) = if dark {
+    ("#12141a", "#1a3a48", "#3a3020", "#3a2826")
+  } else {
+    ("#f7f4ef", "#d9eef5", "#f2e1c6", "#e8c9c3")
+  };
+  format!(
+    r#"
+(() => {{
+  if (window.__doraWashBleedInstalled) return;
+  window.__doraWashBleedInstalled = true;
+  const css = `
+html {{
+  background-color: {base} !important;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 6% -5%, {wash_a}, transparent 58%),
+    radial-gradient(ellipse 70% 45% at 96% 4%, {wash_b}, transparent 52%),
+    radial-gradient(ellipse 55% 40% at 72% 100%, {wash_c}, transparent 58%) !important;
+  background-attachment: fixed !important;
+  min-height: 100%;
+}}
+`;
+  function inject() {{
+    if (document.querySelector('style[data-dora-wash-bleed]')) return;
+    const el = document.createElement('style');
+    el.setAttribute('data-dora-wash-bleed', '');
+    el.textContent = css;
+    (document.head || document.documentElement).appendChild(el);
+  }}
+  if (document.documentElement) inject();
+  if (document.readyState === 'loading') {{
+    document.addEventListener('DOMContentLoaded', inject, {{ once: true }});
+  }} else {{
+    inject();
+  }}
+}})();
+"#,
+    base = base,
+    wash_a = wash_a,
+    wash_b = wash_b,
+    wash_c = wash_c
+  )
+}
+
+fn wash_chrome_path(app: &tauri::AppHandle) -> Result<PathBuf, String> {
+  let dir = app.path().app_local_data_dir().map_err(|e| e.to_string())?;
+  fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
+  Ok(dir.join("wash_chrome.json"))
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct WashChrome {
+  mode: String,
+  #[serde(default = "default_wash_pigment")]
+  pigment: String,
+}
+
+fn default_wash_pigment() -> String {
+  "mineral".to_string()
+}
+
+impl Default for WashChrome {
+  fn default() -> Self {
+    Self {
+      mode: "light".to_string(),
+      pigment: default_wash_pigment(),
+    }
+  }
+}
+
+fn load_wash_chrome(app: &tauri::AppHandle) -> WashChrome {
+  let Ok(path) = wash_chrome_path(app) else {
+    return WashChrome::default();
+  };
+  let Ok(raw) = fs::read_to_string(path) else {
+    return WashChrome::default();
+  };
+  serde_json::from_str(&raw).unwrap_or_default()
+}
+
+fn wash_background_color(chrome: &WashChrome) -> Color {
+  if chrome.mode.eq_ignore_ascii_case("dark") {
+    // mineral-dark --color-base-100
+    Color(0x12, 0x14, 0x1a, 255)
+  } else {
+    // mineral light paper (base-200): warmer than stark white webview default
+    Color(0xf7, 0xf4, 0xef, 255)
+  }
+}
+
+#[tauri::command]
+fn wb_set_wash_chrome(app: tauri::AppHandle, mode: String, pigment: String) -> Result<(), String> {
+  let mode = if mode.eq_ignore_ascii_case("dark") {
+    "dark"
+  } else {
+    "light"
+  };
+  let pigment = if pigment
+    .chars()
+    .all(|c| c.is_ascii_lowercase())
+    && !pigment.is_empty()
+  {
+    pigment
+  } else {
+    default_wash_pigment()
+  };
+  let chrome = WashChrome {
+    mode: mode.to_string(),
+    pigment,
+  };
+  let path = wash_chrome_path(&app)?;
+  let json = serde_json::to_string_pretty(&chrome).map_err(|e| e.to_string())?;
+  fs::write(path, json).map_err(|e| e.to_string())
+}
+
 fn app_device_storage_path(app: &tauri::AppHandle) -> Result<PathBuf, String> {
   let dir = app.path().app_local_data_dir().map_err(|e| e.to_string())?;
   fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
@@ -181,16 +307,119 @@ fn title_for_url(url: &Url) -> String {
     .unwrap_or_else(|| format!("{} - Dora", url.as_str()))
 }
 
-/// Best-effort filename suggestion derived from the download URL's last path segment.
-/// Used as the default name in the Save As dialog when WebKit/wry doesn't provide one.
-fn suggested_download_filename(url: &Url) -> String {
+/// Strip wry's Downloads-folder uniqueness suffix (`name (1).ext` → `name.ext`).
+///
+/// wry builds collision names as `{base} ({n}){ext}` after splitting on the first `.`.
+fn strip_trailing_paren_number(base: &str) -> Option<&str> {
+  let open = base.rfind(" (")?;
+  if !base.ends_with(')') {
+    return None;
+  }
+  let num = &base[open + 2..base.len() - 1];
+  if !num.is_empty() && num.bytes().all(|b| b.is_ascii_digit()) {
+    Some(&base[..open])
+  } else {
+    None
+  }
+}
+
+fn strip_download_collision_suffix(name: &str) -> String {
+  if let Some((base, rest)) = name.split_once('.') {
+    if let Some(clean) = strip_trailing_paren_number(base) {
+      return format!("{clean}.{rest}");
+    }
+  } else if let Some(clean) = strip_trailing_paren_number(name) {
+    return clean.to_string();
+  }
+  name.to_string()
+}
+
+fn url_path_basename(url: &Url) -> Option<String> {
   url
     .path_segments()
     .and_then(|mut segs| segs.next_back().filter(|s| !s.is_empty()).map(|s| s.to_string()))
-    .unwrap_or_else(|| "download".to_string())
 }
 
-#[cfg(windows)]
+fn is_generic_download_name(name: &str) -> bool {
+  // Bare WebKit/route fallbacks with no extension (e.g. `/download` → `download`).
+  // Keep names like `download.pdf` from Content-Disposition.
+  if Path::new(name).extension().is_some() {
+    return false;
+  }
+  matches!(
+    name.to_ascii_lowercase().as_str(),
+    "download" | "unknown" | "untitled"
+  )
+}
+
+/// Default Save As name: wry/platform suggestion (Content-Disposition) → URL basename → `download`.
+///
+/// wry pre-fills `destination` as `~/Downloads/<suggested>` where `<suggested>` already comes from
+/// WebKit / WKWebView / WebView2 (Content-Disposition when present). We only take the basename so
+/// the dialog still lets the user pick a writable folder.
+fn suggested_download_filename(url: &Url, destination: &Path) -> String {
+  let from_dest = destination
+    .file_name()
+    .and_then(|n| n.to_str())
+    .map(str::trim)
+    .filter(|n| !n.is_empty() && *n != "." && *n != "..")
+    .map(strip_download_collision_suffix);
+
+  let from_url = url_path_basename(url);
+
+  match (from_dest, from_url) {
+    (Some(dest), Some(url_name))
+      if is_generic_download_name(&dest) && !is_generic_download_name(&url_name) =>
+    {
+      url_name
+    }
+    (Some(dest), _) => dest,
+    (None, Some(url_name)) => url_name,
+    (None, None) => "download".to_string(),
+  }
+}
+
+#[cfg(test)]
+mod suggested_download_filename_tests {
+  use super::*;
+  use std::path::PathBuf;
+
+  #[test]
+  fn prefers_destination_basename_over_url() {
+    let url = Url::parse("https://cdn.example/api/download").unwrap();
+    let dest = PathBuf::from("/tmp/Downloads/invoice.pdf");
+    assert_eq!(suggested_download_filename(&url, &dest), "invoice.pdf");
+  }
+
+  #[test]
+  fn falls_back_to_url_basename() {
+    let url = Url::parse("https://cdn.example/files/report.xlsx").unwrap();
+    let dest = PathBuf::new();
+    assert_eq!(suggested_download_filename(&url, &dest), "report.xlsx");
+  }
+
+  #[test]
+  fn prefers_url_when_destination_is_generic_download() {
+    let url = Url::parse("https://cdn.example/exports/q1-sales.csv").unwrap();
+    let dest = PathBuf::from("/home/user/Downloads/download");
+    assert_eq!(suggested_download_filename(&url, &dest), "q1-sales.csv");
+  }
+
+  #[test]
+  fn strips_wry_collision_suffix() {
+    let url = Url::parse("https://cdn.example/download").unwrap();
+    let dest = PathBuf::from("/tmp/Downloads/photo (2).png");
+    assert_eq!(suggested_download_filename(&url, &dest), "photo.png");
+  }
+
+  #[test]
+  fn ultimate_fallback_is_download() {
+    let url = Url::parse("https://cdn.example/").unwrap();
+    let dest = PathBuf::new();
+    assert_eq!(suggested_download_filename(&url, &dest), "download");
+  }
+}
+
 fn stable_site_profile_key(url: &Url, proxy_url: &Option<String>) -> String {
   let host = url.host_str().unwrap_or("unknown-host");
   let scheme = url.scheme();
@@ -210,6 +439,39 @@ fn stable_site_profile_key(url: &Url, proxy_url: &Option<String>) -> String {
     .collect()
 }
 
+/// Always show a native Save As dialog. Never accept wry's pre-filled `~/Downloads/...` path.
+///
+/// Returning `false` cancels the download (no file written). The chosen path must be absolute
+/// (wry requirement).
+fn prompt_download_destination(
+  webview: &tauri::Webview<tauri::Wry>,
+  url: &Url,
+  destination: &mut PathBuf,
+) -> bool {
+  let name = suggested_download_filename(url, destination);
+  let win = webview.window();
+  match rfd::FileDialog::new()
+    .set_parent(&win)
+    .set_title("Save download")
+    .set_file_name(&name)
+    .save_file()
+  {
+    Some(path) if path.is_absolute() => {
+      *destination = path;
+      true
+    }
+    Some(path) => {
+      // Relative paths are rejected: wry requires an absolute destination.
+      log::warn!(
+        "download Save As returned a non-absolute path ({}); cancelling",
+        path.display()
+      );
+      false
+    }
+    None => false,
+  }
+}
+
 /// Opens a dedicated site browsing window with proxy + `window.open` handling.
 ///
 /// `allowed_patterns` is kept for IPC compatibility with the desktop client (same shapes as the
@@ -224,17 +486,22 @@ fn open_site_webview_window(
   allowed_patterns: Vec<String>,
   opener_features: Option<NewWindowFeatures>,
 ) -> Result<WebviewWindow, String> {
+  let wash = load_wash_chrome(app);
+  let wash_bg = wash_background_color(&wash);
+
   let mut builder = WebviewWindowBuilder::new(app, &label, WebviewUrl::External(parsed_url.clone()))
     .title(title)
     .inner_size(1100.0, 800.0)
-    // Native title bar lives outside the webview — draggable on all platforms and does not
+    // Native title bar lives outside the webview: draggable on all platforms and does not
     // overlap fixed-position site chrome (unlike an HTML overlay + body padding).
     .decorations(true)
     .resizable(true)
     .visible(true)
     .focused(true)
     .enable_clipboard_access()
-    .zoom_hotkeys_enabled(true);
+    .zoom_hotkeys_enabled(true)
+    // Wash paper tone for load flash / overscroll / transparent pages (cross-platform).
+    .background_color(wash_bg);
 
   #[cfg(windows)]
   {
@@ -245,29 +512,10 @@ fn open_site_webview_window(
   builder = builder.on_download(|webview, event| {
     match event {
       DownloadEvent::Requested { url, destination } => {
-        // Browser-style "Save As": pick the destination synchronously before the download starts.
-        //
-        // We deliberately ignore the path wry pre-filled (`~/Downloads/<file>`) because that
-        // directory may not be writable for the current user (we've seen `~/Downloads` owned by
-        // `root` on this machine). Whatever the user picks here is guaranteed-writable, and
-        // returning `false` cancels the download cleanly when the dialog is cancelled.
-        //
-        // Tie the dialog to this webview's [`Window`] as parent (`HasWindowHandle` + `HasDisplayHandle`)
-        // so GTK/XDG shows a proper modal picker instead of silently using Downloads-only flows.
-        let name = suggested_download_filename(&url);
-        let win = webview.window();
-        match rfd::FileDialog::new()
-          .set_parent(&win)
-          .set_title("Save download")
-          .set_file_name(&name)
-          .save_file()
-        {
-          Some(path) => {
-            *destination = path;
-            true
-          }
-          None => false,
-        }
+        // Always prompt. Never return true with wry's default ~/Downloads path.
+        // Cancel (false) writes nothing. Parent the dialog to this window for a reliable
+        // modal picker on GTK/XDG (avoids silent portal failures).
+        prompt_download_destination(&webview, &url, destination)
       }
       DownloadEvent::Finished {
         url,
@@ -287,19 +535,21 @@ fn open_site_webview_window(
   });
 
   builder = builder.initialization_script(OPEN_LINKS_IN_NEW_WINDOW_SCRIPT);
+  builder = builder.initialization_script(wash_bleed_init_script(&wash.mode));
 
   if let Some(features) = opener_features {
     builder = builder.window_features(features);
   }
 
-  #[cfg(windows)]
+  // Isolate site webviews from the main app WebContext on every OS.
+  //
+  // On Linux, WebKitGTK download handlers are registered on a shared WebContext keyed by
+  // `data_directory`. Without a separate directory, the main window's wry default handler
+  // (`|_, _| true`) auto-accepts to ~/Downloads and races the site Save As dialog.
+  //
+  // Stable per (origin-ish + proxy) so cookies/localStorage persist across restarts (same as
+  // the prior Windows-only profile), instead of a random per-window label.
   {
-    // IMPORTANT: WebView2 persistence is tied to its user-data directory.
-    // If we create a unique `data_directory` per window label (random each run),
-    // cookies/localStorage will never persist across app restarts.
-    //
-    // We still want to isolate site browsing webviews from the main app webview (proxy, etc),
-    // so we use a stable directory per (origin-ish + proxy) instead.
     let profile_key = stable_site_profile_key(&parsed_url, &proxy_url);
     let dir = app
       .path()
@@ -355,12 +605,16 @@ fn open_site_webview_window(
     let _ = window.set_title(&doc_title);
   });
 
-  builder.build().map_err(|e| e.to_string())
+  let window = builder.build().map_err(|e| e.to_string())?;
+  // Auto-allow notifications + other web permissions for allowlisted site windows.
+  attach_site_webview_permissions(&window);
+  Ok(window)
 }
 
 /// Opens a dedicated site browsing window. On Windows this runs in an async command so WebView2
-/// is not created from the same call stack as a UI event (see wry#583). Uses a per-window
-/// `data_directory` so `proxy_url` does not share the main webview's user-data folder.
+/// is not created from the same call stack as a UI event (see wry#583). Uses a per-origin
+/// `data_directory` so site downloads and storage stay isolated from the main webview (and so
+/// Linux WebKitGTK does not inherit wry's default auto-accept-to-Downloads handler).
 #[tauri::command]
 async fn wb_open_site_window(
   app: tauri::AppHandle,
@@ -393,6 +647,7 @@ pub fn run() {
       get_device_spec,
       wb_storage_load,
       wb_storage_save,
+      wb_set_wash_chrome,
       wb_open_site_window
     ])
     .setup(|app| {
@@ -403,6 +658,39 @@ pub fn run() {
             .build(),
         )?;
       }
+
+      // Build the main window from config with an explicit download handler.
+      // wry's default (`|_, _| true`) would otherwise auto-write to ~/Downloads with no dialog.
+      let conf = app
+        .config()
+        .app
+        .windows
+        .iter()
+        .find(|w| w.label == "main")
+        .cloned()
+        .ok_or("missing main window config")?;
+      WebviewWindowBuilder::from_config(app.handle(), &conf)?
+        .on_download(|webview, event| match event {
+          DownloadEvent::Requested { url, destination } => {
+            prompt_download_destination(&webview, &url, destination)
+          }
+          DownloadEvent::Finished {
+            url,
+            path,
+            success,
+          } => {
+            if !success {
+              log::warn!(
+                "main window download failed (url={}, path={path:?})",
+                url.as_str()
+              );
+            }
+            true
+          }
+          _ => true,
+        })
+        .build()?;
+
       Ok(())
     })
     .run(tauri::generate_context!())
