@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/forms';
 
 /*
  * Wash sets --color-* on :root at runtime (pigment themes) but does not emit

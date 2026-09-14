@@ -340,10 +340,25 @@ fn url_path_basename(url: &Url) -> Option<String> {
     .and_then(|mut segs| segs.next_back().filter(|s| !s.is_empty()).map(|s| s.to_string()))
 }
 
+fn extension_str(name: &str) -> Option<&str> {
+  Path::new(name).extension().and_then(|e| e.to_str()).filter(|e| !e.is_empty())
+}
+
+fn is_temp_download_extension(ext: &str) -> bool {
+  matches!(
+    ext.to_ascii_lowercase().as_str(),
+    "crdownload" | "tmp" | "partial" | "temp"
+  )
+}
+
+fn name_has_usable_extension(name: &str) -> bool {
+  extension_str(name).is_some_and(|e| !is_temp_download_extension(e))
+}
+
 fn is_generic_download_name(name: &str) -> bool {
   // Bare WebKit/route fallbacks with no extension (e.g. `/download` → `download`).
   // Keep names like `download.pdf` from Content-Disposition.
-  if Path::new(name).extension().is_some() {
+  if name_has_usable_extension(name) {
     return false;
   }
   matches!(
@@ -352,30 +367,90 @@ fn is_generic_download_name(name: &str) -> bool {
   )
 }
 
+/// WebView2 / Chromium placeholders that must not become the Save As default.
+fn is_unusable_download_suggestion(name: &str) -> bool {
+  let lower = name.to_ascii_lowercase();
+  if is_generic_download_name(name) {
+    return true;
+  }
+  // Edge/Chrome incomplete download names (sometimes still present as ResultFilePath).
+  if lower.starts_with("unconfirmed ") {
+    return true;
+  }
+  if let Some(ext) = extension_str(name) {
+    if is_temp_download_extension(ext) {
+      return true;
+    }
+  }
+  false
+}
+
+/// Attach `ext` to `base` when `base` has no usable extension yet.
+fn with_extension_from(base: &str, ext_source: &str) -> String {
+  if name_has_usable_extension(base) {
+    return base.to_string();
+  }
+  match extension_str(ext_source) {
+    Some(ext) => format!("{base}.{ext}"),
+    None => base.to_string(),
+  }
+}
+
 /// Default Save As name: wry/platform suggestion (Content-Disposition) → URL basename → `download`.
 ///
 /// wry pre-fills `destination` as `~/Downloads/<suggested>` where `<suggested>` already comes from
 /// WebKit / WKWebView / WebView2 (Content-Disposition when present). We only take the basename so
 /// the dialog still lets the user pick a writable folder.
+///
+/// On Windows, WebView2 may hand a path without a real extension (or a temp `Unconfirmed …`
+/// / `.crdownload` name). Prefer a URL basename that still carries `.ext`, or merge the two.
 fn suggested_download_filename(url: &Url, destination: &Path) -> String {
   let from_dest = destination
     .file_name()
     .and_then(|n| n.to_str())
     .map(str::trim)
     .filter(|n| !n.is_empty() && *n != "." && *n != "..")
-    .map(strip_download_collision_suffix);
+    .map(strip_download_collision_suffix)
+    .filter(|n| !is_unusable_download_suggestion(n));
 
-  let from_url = url_path_basename(url);
+  let from_url = url_path_basename(url).filter(|n| !is_unusable_download_suggestion(n));
 
   match (from_dest, from_url) {
-    (Some(dest), Some(url_name))
-      if is_generic_download_name(&dest) && !is_generic_download_name(&url_name) =>
-    {
-      url_name
+    (Some(dest), Some(url_name)) => {
+      if name_has_usable_extension(&dest) {
+        dest
+      } else if name_has_usable_extension(&url_name) {
+        // Dest may be a meaningful stem (`report`) while only the URL has `.pdf`.
+        if is_generic_download_name(&dest) {
+          url_name
+        } else {
+          with_extension_from(&dest, &url_name)
+        }
+      } else if is_generic_download_name(&dest) && !is_generic_download_name(&url_name) {
+        url_name
+      } else {
+        dest
+      }
     }
-    (Some(dest), _) => dest,
+    (Some(dest), None) => dest,
     (None, Some(url_name)) => url_name,
     (None, None) => "download".to_string(),
+  }
+}
+
+/// Windows `IFileSaveDialog` can drop the extension when Explorer hides known types and no
+/// default extension / filter was set. Re-apply the suggested extension if the result lacks one.
+fn ensure_saved_extension(path: PathBuf, suggested_name: &str) -> PathBuf {
+  if path.extension().is_some() {
+    return path;
+  }
+  match extension_str(suggested_name) {
+    Some(ext) => {
+      let mut out = path;
+      out.set_extension(ext);
+      out
+    }
+    None => path,
   }
 }
 
@@ -418,6 +493,52 @@ mod suggested_download_filename_tests {
     let dest = PathBuf::new();
     assert_eq!(suggested_download_filename(&url, &dest), "download");
   }
+
+  #[test]
+  fn windows_style_path_basename_with_extension() {
+    // Forward slashes parse as path separators on every OS (unlike `\` on Unix hosts).
+    let url = Url::parse("https://cdn.example/api/get").unwrap();
+    let dest = PathBuf::from("C:/Users/Ada/Downloads/photo.png");
+    assert_eq!(suggested_download_filename(&url, &dest), "photo.png");
+  }
+
+  #[test]
+  fn rejects_unconfirmed_crdownload_prefers_url() {
+    let url = Url::parse("https://cdn.example/files/contract.docx").unwrap();
+    let dest = PathBuf::from("C:/Users/Ada/Downloads/Unconfirmed 748293.crdownload");
+    assert_eq!(suggested_download_filename(&url, &dest), "contract.docx");
+  }
+
+  #[test]
+  fn merges_extension_when_dest_stem_lacks_ext() {
+    let url = Url::parse("https://cdn.example/exports/q1.pdf").unwrap();
+    let dest = PathBuf::from("/tmp/Downloads/Quarterly Report");
+    assert_eq!(
+      suggested_download_filename(&url, &dest),
+      "Quarterly Report.pdf"
+    );
+  }
+
+  #[test]
+  fn prefers_url_when_dest_extension_missing() {
+    let url = Url::parse("https://cdn.example/media/clip.mp4").unwrap();
+    let dest = PathBuf::from("/tmp/Downloads/download");
+    assert_eq!(suggested_download_filename(&url, &dest), "clip.mp4");
+  }
+
+  #[test]
+  fn ensure_saved_extension_appends_when_missing() {
+    let path = PathBuf::from("C:/Users/Ada/Documents/invoice");
+    let out = ensure_saved_extension(path, "invoice.pdf");
+    assert_eq!(out.extension().and_then(|e| e.to_str()), Some("pdf"));
+  }
+
+  #[test]
+  fn ensure_saved_extension_keeps_existing() {
+    let path = PathBuf::from("/tmp/invoice.pdf");
+    let out = ensure_saved_extension(path, "invoice.pdf");
+    assert_eq!(out.file_name().and_then(|n| n.to_str()), Some("invoice.pdf"));
+  }
 }
 
 fn stable_site_profile_key(url: &Url, proxy_url: &Option<String>) -> String {
@@ -443,6 +564,10 @@ fn stable_site_profile_key(url: &Url, proxy_url: &Option<String>) -> String {
 ///
 /// Returning `false` cancels the download (no file written). The chosen path must be absolute
 /// (wry requirement).
+///
+/// On Windows, rfd only calls `IFileSaveDialog::SetDefaultExtension` when a filter is set. Without
+/// that, Explorer's "hide extensions" setting often returns a path with no `.ext`. We add a
+/// type filter from the suggested name and re-apply the extension if the dialog still omits it.
 fn prompt_download_destination(
   webview: &tauri::Webview<tauri::Wry>,
   url: &Url,
@@ -450,14 +575,23 @@ fn prompt_download_destination(
 ) -> bool {
   let name = suggested_download_filename(url, destination);
   let win = webview.window();
-  match rfd::FileDialog::new()
+
+  let mut dialog = rfd::FileDialog::new()
     .set_parent(&win)
     .set_title("Save download")
-    .set_file_name(&name)
-    .save_file()
-  {
+    .set_file_name(&name);
+
+  if let Some(ext) = extension_str(&name) {
+    let label = format!("{ext} file");
+    // First filter drives Windows SetDefaultExtension; keep All files as a second choice.
+    dialog = dialog
+      .add_filter(&label, &[ext])
+      .add_filter("All files", &["*"]);
+  }
+
+  match dialog.save_file() {
     Some(path) if path.is_absolute() => {
-      *destination = path;
+      *destination = ensure_saved_extension(path, &name);
       true
     }
     Some(path) => {
